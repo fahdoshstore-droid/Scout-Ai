@@ -1,0 +1,44 @@
+flowchart TD
+    A([User Submits Player Form]) --> B{File Type?}
+    
+    B -->|Image| C[FileReader API\nRead as DataURL\nExtract base64]
+    B -->|Video| D[Load video element\nSeek to 20% duration\nDraw frame to canvas\n1280×720 max\nJPEG quality 0.85]
+    B -->|Other| ERR1[❌ Unsupported Type\nFallback to Simulation]
+    
+    C --> E[POST /api/scout/upload\nbody: fileData + mimeType + fileName]
+    D --> E
+    
+    E --> F{Upload Success?}
+    F -->|No| ERR2[❌ Upload Failed\nFallback to Simulation]
+    F -->|Yes| G[S3 CDN URL returned]
+    
+    G --> H[POST /api/scout/analyze\nbody: imageUrl + playerInfo]
+    
+    H --> I[Build FIFA/SAFF Prompt\n• Player context injection\n• Arabic date injection\n• Report ID generation\n• JSON schema template]
+    
+    I --> J[Claude 3.5 Sonnet\nVision + Text\nmaxOutputTokens: 1500]
+    
+    J --> K{Response OK?}
+    K -->|Timeout 55s| ERR3[❌ Analysis Timeout\nFallback to Simulation]
+    K -->|API Error| ERR4[❌ API Error\nFallback to Simulation]
+    K -->|Success| L[Strip markdown fences\nRegex match JSON object\nJSON.parse]
+    
+    L --> M{Parse Success?}
+    M -->|No| ERR5[❌ Parse Error\nFallback to Simulation]
+    M -->|Yes| N[✅ AI Scout Report\n25 structured fields]
+    
+    N --> O[Display Mode: AI\nGreen badge shown\nFull Claude report rendered]
+    
+    ERR1 & ERR2 & ERR3 & ERR4 & ERR5 --> SIM[Deterministic Simulation\nSeed = name.length + age\n18 metrics generated]
+    SIM --> P[Display Mode: Simulated\nAmber badge shown]
+
+    style A fill:#1db954,color:#000
+    style N fill:#1db954,color:#000
+    style O fill:#0d2b1a,stroke:#1db954,color:#fff
+    style SIM fill:#78350f,stroke:#F59E0B,color:#fff
+    style P fill:#1a1a0d,stroke:#F59E0B,color:#fff
+    style ERR1 fill:#450a0a,stroke:#ef4444,color:#fff
+    style ERR2 fill:#450a0a,stroke:#ef4444,color:#fff
+    style ERR3 fill:#450a0a,stroke:#ef4444,color:#fff
+    style ERR4 fill:#450a0a,stroke:#ef4444,color:#fff
+    style ERR5 fill:#450a0a,stroke:#ef4444,color:#fff

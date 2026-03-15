@@ -1,0 +1,40 @@
+flowchart TD
+    subgraph INPUT["Input Data"]
+        P[Player Position\nمهاجم / وسط / مدافع\nجناح / حارس مرمى]
+        M[18 Raw Metric Scores\nfrom AI or Simulation\nRange: 0-100]
+    end
+
+    subgraph CATEGORIES["Category Averages"]
+        T["Technical Average\n6 metrics:\nBall Control, Dribbling\nPassing, Shooting\nHeading, First Touch"]
+        PH["Physical Average\n5 metrics:\nSpeed, Acceleration\nStamina, Strength\nAgility"]
+        TA["Tactical Average\n4 metrics:\nPositioning, Vision\nPressing, Off-Ball"]
+        ME["Mental Average\n3 metrics:\nDecision Making\nLeadership, Resilience"]
+    end
+
+    subgraph WEIGHTS["Position-Adaptive Weights"]
+        W1["مهاجم\nTech: 35%\nPhys: 30%\nTact: 20%\nMent: 15%"]
+        W2["وسط\nTech: 30%\nPhys: 25%\nTact: 30%\nMent: 15%"]
+        W3["مدافع\nTech: 25%\nPhys: 30%\nTact: 30%\nMent: 15%"]
+        W4["جناح\nTech: 35%\nPhys: 35%\nTact: 20%\nMent: 10%"]
+        W5["حارس مرمى\nTech: 30%\nPhys: 25%\nTact: 25%\nMent: 20%"]
+    end
+
+    subgraph OUTPUT["Output"]
+        OS[Overall Score\n0-100]
+        DNA["Sport DNA\n10 positions scored\nRW, LW, ST, CAM\nCM, CDM, RB, LB\nCB, GK"]
+        REC["Scout Recommendation\n≥82: Exceptional Talent\n≥72: Promising\n≥62: Needs Development\n<62: Intensive Training"]
+    end
+
+    M --> T & PH & TA & ME
+    P --> W1 & W2 & W3 & W4 & W5
+    T & PH & TA & ME --> FORMULA["Weighted Formula:\nScore = T×wT + PH×wPH + TA×wTA + ME×wME"]
+    W1 & W2 & W3 & W4 & W5 --> FORMULA
+    FORMULA --> OS
+    OS --> DNA
+    OS --> REC
+
+    style INPUT fill:#0d2b1a,stroke:#1db954,color:#fff
+    style CATEGORIES fill:#0d1a2b,stroke:#00C2A8,color:#fff
+    style WEIGHTS fill:#1a0d2b,stroke:#8B5CF6,color:#fff
+    style OUTPUT fill:#2b1a0d,stroke:#F59E0B,color:#fff
+    style FORMULA fill:#1db954,color:#000

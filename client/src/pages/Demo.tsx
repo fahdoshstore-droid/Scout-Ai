@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import {
   RadarChart,
   PolarGrid,
@@ -150,8 +149,8 @@ export default function Demo() {
   const currentStep = Math.floor((progress / 100) * analysisSteps.length);
 
   return (
-    <div className="min-h-screen bg-[oklch(0.08_0.02_240)] text-white" dir="rtl">
-      <Navbar />
+    <div className="min-h-screen bg-[#000A0F] text-[#EEEFEE]" dir="rtl">
+      <Ada2aiNavbar />
 
       {/* Header */}
       <section className="pt-24 pb-10 relative overflow-hidden">
@@ -660,7 +659,6 @@ export default function Demo() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

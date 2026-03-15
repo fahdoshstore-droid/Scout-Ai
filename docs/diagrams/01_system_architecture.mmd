@@ -1,0 +1,41 @@
+graph TB
+    subgraph CLIENT["🖥️ Client Layer — React 19 SPA"]
+        H[Home Page<br/>Landing & Marketing]
+        U[Upload Page<br/>AI Analysis Wizard]
+        SI[SportID Page<br/>Digital Passport]
+        SC[Scouts Dashboard<br/>Player Discovery]
+        CM[Compare Engine<br/>Dual Player Analysis]
+        AC[Academies Directory<br/>Map & Search]
+        DM[Demo Module<br/>Interactive Preview]
+    end
+
+    subgraph BACKEND["⚙️ Backend Layer — Express.js + tRPC"]
+        TR[tRPC Router<br/>auth.me / auth.logout]
+        SA[Scout Analysis API<br/>/api/scout/upload<br/>/api/scout/analyze]
+        OA[OAuth Handler<br/>/api/oauth/callback]
+        DB[(MySQL Database<br/>Users & Sessions)]
+    end
+
+    subgraph EXTERNAL["☁️ External Services"]
+        FORGE[Manus Forge API<br/>Claude 3.5 Sonnet<br/>Vision Analysis]
+        S3[AWS S3 Storage<br/>Media Files<br/>CDN Delivery]
+        MAPS[Google Maps API<br/>Academy Locations]
+        OAUTH[Manus OAuth<br/>User Authentication]
+    end
+
+    U -->|"1. Upload media (base64)"| SA
+    SA -->|"2. Store file"| S3
+    S3 -->|"3. Return CDN URL"| SA
+    SA -->|"4. Send image URL + prompt"| FORGE
+    FORGE -->|"5. Return JSON report"| SA
+    SA -->|"6. Return AI Scout Report"| U
+
+    SC -->|"Navigate with player IDs"| CM
+    AC -->|"Render markers"| MAPS
+    H & U & SI & SC & CM & AC & DM -->|"Auth state"| TR
+    TR -->|"Session"| DB
+    OA -->|"Token exchange"| OAUTH
+
+    style CLIENT fill:#0d2b1a,stroke:#1db954,color:#fff
+    style BACKEND fill:#1a1a2e,stroke:#00C2A8,color:#fff
+    style EXTERNAL fill:#2b1a0d,stroke:#F59E0B,color:#fff

@@ -1,0 +1,74 @@
+flowchart LR
+    subgraph ENTRY["Entry Points"]
+        E1[Direct URL]
+        E2[WhatsApp Link]
+        E3[QR Code Scan]
+        E4[Social Media]
+    end
+
+    subgraph HOME["/ Home Page"]
+        H1[Hero Section\nParticle Animation]
+        H2[Problem → Solution\n→ How It Works]
+        H3[Market + Tech\n+ Competitive]
+        H4[Pricing 4 Tiers]
+        H5[Vision 2030\n+ Contact]
+    end
+
+    subgraph SCOUT["Scout AI Module"]
+        S1[Step 1: Player Form\nName/Age/Position/City]
+        S2[Step 2: Media Upload\nImage or Video]
+        S3[Step 3: AI Analysis\n11-stage animation]
+        S4[Step 4: Results\nFull Scout Report]
+    end
+
+    subgraph SPORTID["SportID Module"]
+        ID1[Onboarding\nNaftath Verify]
+        ID2[Passport Card\n3D Flip + QR]
+        ID3[Performance Stats\nRadar Chart]
+        ID4[Certifications\n+ Trials + Sessions]
+    end
+
+    subgraph SCOUTS["Scouts Dashboard"]
+        SC1[Search + Filter\nPosition/City/Age]
+        SC2[Player Table\nSort by 7 metrics]
+        SC3[Add to Compare\nMax 2 players]
+    end
+
+    subgraph COMPARE["Compare Engine"]
+        CM1[Select 2 Players\nURL params support]
+        CM2[Radar Chart\nDual overlay]
+        CM3[Bar Chart\n+ Metric Table]
+        CM4[Strengths &\nRecommendations]
+    end
+
+    subgraph ACADEMIES["Academies Directory"]
+        AC1[Filter by City\nSport + Age]
+        AC2[Academy Cards\nRating + Contact]
+        AC3[Google Maps\nInteractive Pins]
+    end
+
+    subgraph DEMO["Demo Module"]
+        DM1[Select Demo Player\n3 options]
+        DM2[Simulate Analysis\nAnimated stages]
+        DM3[View Results\nRadar + Stats]
+    end
+
+    E1 & E2 & E3 & E4 --> HOME
+    HOME -->|"CTA: ابدأ تحليل AI"| SCOUT
+    HOME -->|"CTA: احصل على SportID"| SPORTID
+    HOME -->|Navbar| SCOUTS
+    HOME -->|Navbar| ACADEMIES
+    HOME -->|Navbar| DEMO
+    SCOUTS -->|"Compare button"| COMPARE
+    SCOUTS -->|"View button"| SPORTID
+    SCOUT -->|"WhatsApp share"| WA([WhatsApp\nReport Share])
+    SPORTID -->|"QR share"| WA
+
+    style ENTRY fill:#1a1a2e,stroke:#6366f1,color:#fff
+    style HOME fill:#0d2b1a,stroke:#1db954,color:#fff
+    style SCOUT fill:#0d1a2b,stroke:#00C2A8,color:#fff
+    style SPORTID fill:#2b0d1a,stroke:#8B5CF6,color:#fff
+    style SCOUTS fill:#1a2b0d,stroke:#22c55e,color:#fff
+    style COMPARE fill:#2b1a0d,stroke:#F59E0B,color:#fff
+    style ACADEMIES fill:#0d2b2b,stroke:#06b6d4,color:#fff
+    style DEMO fill:#1a0d2b,stroke:#a855f7,color:#fff

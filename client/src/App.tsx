@@ -11,16 +11,20 @@ import Scouts from "./pages/Scouts";
 import Upload from "./pages/Upload";
 import Compare from "./pages/Compare";
 import SportID from "./pages/SportID";
+import Product from "./pages/Product";
+import Players from "./pages/Players";
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/academies"} component={Academies} />
+      <Route path={"/product"} component={Product} />
       <Route path={"/demo"} component={Demo} />
+      <Route path={"/academies"} component={Academies} />
       <Route path={"/scouts"} component={Scouts} />
-      <Route path={"/upload"} component={Upload} />
+      <Route path={"/players"} component={Players} />
       <Route path={"/compare"} component={Compare} />
+      <Route path={"/upload"} component={Upload} />
       <Route path={"/sportid"} component={SportID} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />

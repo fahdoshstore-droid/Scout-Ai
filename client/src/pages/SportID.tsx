@@ -1,3 +1,4 @@
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 /**
  * SportID Page — SportScout Platform
  * Design: Saudi Tech Noir + Saudi Ministry of Sports branding
@@ -10,8 +11,8 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import {
   Shield, QrCode, Award, Calendar, ChevronRight,
   Fingerprint, CheckCircle, BarChart2, Activity,
@@ -160,10 +161,10 @@ function PassportCard({ flipped, onFlip }: { flipped: boolean; onFlip: () => voi
               <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "rgba(0,194,168,0.2)" }}>
                 <Shield size={14} style={{ color: "#00C2A8" }} />
               </div>
-              <span className="text-white font-bold text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SportID Passport</span>
+              <span className="text-[#EEEFEE] font-bold text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SportID Passport</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] text-white/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>وزارة الرياضة</span>
+              <span className="text-[10px] text-[#EEEFEE]/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>وزارة الرياضة</span>
               <span style={{ fontSize: 14 }}>🇸🇦</span>
             </div>
           </div>
@@ -172,17 +173,17 @@ function PassportCard({ flipped, onFlip }: { flipped: boolean; onFlip: () => voi
             <div className="relative flex-shrink-0">
               <img src={PLAYER.avatar} alt={PLAYER.nameEn} className="w-16 h-20 object-cover rounded-xl" style={{ border: "2px solid rgba(0,194,168,0.4)" }} />
               <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#00C2A8" }}>
-                <CheckCircle size={11} className="text-white" />
+                <CheckCircle size={11} className="text-[#EEEFEE]" />
               </div>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-white font-black text-base leading-tight mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{PLAYER.name}</div>
-              <div className="text-white/50 text-xs mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{PLAYER.nameEn} · {PLAYER.nationality}</div>
+              <div className="text-[#EEEFEE] font-black text-base leading-tight mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{PLAYER.name}</div>
+              <div className="text-[#EEEFEE]/50 text-xs mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{PLAYER.nameEn} · {PLAYER.nationality}</div>
               <div className="grid grid-cols-2 gap-x-3 gap-y-1">
                 {[["الرياضة", PLAYER.sport], ["المركز", PLAYER.position], ["المدينة", PLAYER.city], ["الأكاديمية", PLAYER.academy]].map(([k, v]) => (
                   <div key={k}>
-                    <div className="text-white/30 text-[9px]" style={{ fontFamily: "'Tajawal', sans-serif" }}>{k}</div>
-                    <div className="text-white/80 text-[11px] font-semibold truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{v}</div>
+                    <div className="text-[#EEEFEE]/30 text-[9px]" style={{ fontFamily: "'Tajawal', sans-serif" }}>{k}</div>
+                    <div className="text-[#EEEFEE]/80 text-[11px] font-semibold truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{v}</div>
                   </div>
                 ))}
               </div>
@@ -191,21 +192,21 @@ function PassportCard({ flipped, onFlip }: { flipped: boolean; onFlip: () => voi
               <div className="rounded-lg overflow-hidden p-1.5" style={{ background: "#fff" }}>
                 <QRCanvas value={PLAYER.id} size={58} />
               </div>
-              <span className="text-[9px] text-white/30 font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SPORTID</span>
+              <span className="text-[9px] text-[#EEEFEE]/30 font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SPORTID</span>
             </div>
           </div>
           {/* Naftath + Absher */}
           <div className="flex gap-2 px-5 pb-4">
             <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <Fingerprint size={13} style={{ color: "#00C2A8" }} />
-              <span className="text-white/70 text-[11px] font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Naftath</span>
+              <span className="text-[#EEEFEE]/70 text-[11px] font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Naftath</span>
             </div>
             <div className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <BarChart2 size={13} style={{ color: "#22c55e" }} />
-              <span className="text-white/70 text-[11px] font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Absher</span>
+              <span className="text-[#EEEFEE]/70 text-[11px] font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Absher</span>
             </div>
           </div>
-          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-white/20 text-[9px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>اضغط لعرض QR الكامل</div>
+          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-[#EEEFEE]/20 text-[9px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>اضغط لعرض QR الكامل</div>
         </div>
         {/* BACK */}
         <div style={{
@@ -216,12 +217,12 @@ function PassportCard({ flipped, onFlip }: { flipped: boolean; onFlip: () => voi
           boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10
         }}>
-          <div className="text-white/50 text-xs font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SPORTID · {PLAYER.id}</div>
+          <div className="text-[#EEEFEE]/50 text-xs font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SPORTID · {PLAYER.id}</div>
           <div className="rounded-2xl overflow-hidden p-3" style={{ background: "#fff", boxShadow: "0 0 30px rgba(0,194,168,0.3)" }}>
             <QRCanvas value={`https://sportscout.sa/athlete/${PLAYER.id}`} size={140} />
           </div>
           <div className="text-[#00C2A8] text-xs font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>امسح للتحقق من الهوية</div>
-          <div className="text-white/20 text-[9px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>اضغط للرجوع</div>
+          <div className="text-[#EEEFEE]/20 text-[9px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>اضغط للرجوع</div>
         </div>
       </div>
     </div>
@@ -247,8 +248,8 @@ function OnboardingModal({ onComplete, onSelectPlayer }: { onComplete: () => voi
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3" style={{ background: "rgba(0,194,168,0.15)", border: "1px solid rgba(0,194,168,0.3)" }}>
             <span style={{ fontSize: 28 }}>🏃</span>
           </div>
-          <div className="text-white/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>وزارة الرياضة السعودية</div>
-          <div className="text-white font-black text-xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SportID</div>
+          <div className="text-[#EEEFEE]/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>وزارة الرياضة السعودية</div>
+          <div className="text-[#EEEFEE] font-black text-xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SportID</div>
           <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full text-xs" style={{ background: "rgba(245,158,11,0.15)", border: "1px solid rgba(245,158,11,0.3)", color: "#F59E0B", fontFamily: "'Space Grotesk', sans-serif" }}>
             ⚡ Demo Mode — اختر لاعباً للمعاينة
           </div>
@@ -268,8 +269,8 @@ function OnboardingModal({ onComplete, onSelectPlayer }: { onComplete: () => voi
               >
                 <img src={p.avatar} alt={p.name} className="w-11 h-11 rounded-xl object-cover flex-shrink-0" style={{ border: selected === i ? "2px solid #00C2A8" : "2px solid rgba(255,255,255,0.1)" }} />
                 <div className="flex-1 min-w-0">
-                  <div className="text-white font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.name}</div>
-                  <div className="text-white/40 text-xs truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.position} · {p.city}</div>
+                  <div className="text-[#EEEFEE] font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.name}</div>
+                  <div className="text-[#EEEFEE]/40 text-xs truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.position} · {p.city}</div>
                 </div>
                 <div className="flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: `${levelColors[p.level]}20`, color: levelColors[p.level], border: `1px solid ${levelColors[p.level]}40`, fontFamily: "'Space Grotesk', sans-serif" }}>
                   {p.level}
@@ -280,7 +281,7 @@ function OnboardingModal({ onComplete, onSelectPlayer }: { onComplete: () => voi
           <button
             onClick={handleEnter}
             disabled={loading}
-            className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all mt-1 flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl font-bold text-[#EEEFEE] text-sm transition-all mt-1 flex items-center justify-center gap-2"
             style={{ background: loading ? "rgba(0,194,168,0.4)" : "linear-gradient(135deg, #00A896, #007A6E)", fontFamily: "'Tajawal', sans-serif", boxShadow: "0 8px 24px rgba(0,168,150,0.3)" }}
           >
             {loading ? (
@@ -289,7 +290,7 @@ function OnboardingModal({ onComplete, onSelectPlayer }: { onComplete: () => voi
               <><CheckCircle size={16} /> دخول فوري — بدون OTP</>
             )}
           </button>
-          <p className="text-white/25 text-center text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>وضع تجريبي — في الإنتاج يُستخدم نفاذ + أبشر</p>
+          <p className="text-[#EEEFEE]/25 text-center text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>وضع تجريبي — في الإنتاج يُستخدم نفاذ + أبشر</p>
         </div>
       </div>
     </div>
@@ -321,8 +322,8 @@ export default function SportIDPage() {
   }
 
   return (
-    <div className="min-h-screen text-white" style={{ background: "oklch(0.08 0.02 240)", fontFamily: "'Tajawal', sans-serif" }} dir="rtl">
-      <Navbar />
+    <div className="min-h-screen text-[#EEEFEE]" style={{ background: "oklch(0.08 0.02 240)", fontFamily: "'Tajawal', sans-serif" }} dir="rtl">
+      <Ada2aiNavbar />
       {showOnboarding && (
         <OnboardingModal
           onComplete={() => { setShowOnboarding(false); setIsAuthenticated(true); }}
@@ -337,10 +338,10 @@ export default function SportIDPage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-4" style={{ background: "rgba(0,194,168,0.1)", border: "1px solid rgba(0,194,168,0.3)", color: "#00C2A8" }}>
             <Shield size={12} /> هوية رياضية رقمية موثّقة
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Sport<span style={{ color: "#00C2A8" }}>ID</span>
           </h1>
-          <p className="text-white/50 max-w-lg mx-auto text-sm leading-relaxed">
+          <p className="text-[#EEEFEE]/50 max-w-lg mx-auto text-sm leading-relaxed">
             جواز سفرك الرياضي الرقمي — موثّق بنفاذ، معترف به في جميع الأكاديميات والمنشآت الرياضية
           </p>
         </div>
@@ -359,8 +360,8 @@ export default function SportIDPage() {
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 <div className="px-8 py-4 rounded-2xl text-center" style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)", border: "1px solid rgba(0,194,168,0.3)" }}>
                   <Shield size={28} style={{ color: "#00C2A8" }} className="mx-auto mb-2" />
-                  <p className="text-white font-bold mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>سجّل دخولك للوصول</p>
-                  <p className="text-white/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>التحقق عبر نفاذ مطلوب</p>
+                  <p className="text-[#EEEFEE] font-bold mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>سجّل دخولك للوصول</p>
+                  <p className="text-[#EEEFEE]/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>التحقق عبر نفاذ مطلوب</p>
                 </div>
               </div>
             </div>
@@ -370,19 +371,19 @@ export default function SportIDPage() {
               <div className="flex justify-center gap-4 mb-4">
                 <div className="flex items-center gap-2 px-4 py-2 rounded-xl" style={{ background: "rgba(0,194,168,0.1)", border: "1px solid rgba(0,194,168,0.25)" }}>
                   <Fingerprint size={16} style={{ color: "#00C2A8" }} />
-                  <span className="text-white/80 text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>نفاذ</span>
+                  <span className="text-[#EEEFEE]/80 text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>نفاذ</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 rounded-xl" style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.25)" }}>
                   <BarChart2 size={16} style={{ color: "#22c55e" }} />
-                  <span className="text-white/80 text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>أبشر</span>
+                  <span className="text-[#EEEFEE]/80 text-sm font-semibold" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>أبشر</span>
                 </div>
               </div>
-              <p className="text-white/50 text-sm mb-5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <p className="text-[#EEEFEE]/50 text-sm mb-5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 سجّل دخولك بهويتك الوطنية للحصول على جواز سفرك الرياضي الرقمي
               </p>
               <button
                 onClick={() => setShowOnboarding(true)}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+                className="w-full py-3.5 rounded-xl font-bold text-[#EEEFEE] text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
                 style={{ background: "linear-gradient(135deg, #00A896, #007A6E)", boxShadow: "0 8px 24px rgba(0,194,168,0.25)", fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 <Fingerprint size={16} /> تسجيل الدخول عبر نفاذ
@@ -398,8 +399,8 @@ export default function SportIDPage() {
               ].map((f) => (
                 <div key={f.title} className="rounded-xl p-4 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                   <div className="text-2xl mb-2">{f.icon}</div>
-                  <div className="text-white font-bold text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{f.title}</div>
-                  <div className="text-white/40 text-xs leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{f.desc}</div>
+                  <div className="text-[#EEEFEE] font-bold text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{f.title}</div>
+                  <div className="text-[#EEEFEE]/40 text-xs leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{f.desc}</div>
                 </div>
               ))}
             </div>
@@ -441,18 +442,18 @@ export default function SportIDPage() {
                 <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <div className="text-white/40 text-xs mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>المستوى الحالي</div>
+                      <div className="text-[#EEEFEE]/40 text-xs mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>المستوى الحالي</div>
                       <div className="font-black text-2xl" style={{ color: currentLevel.color, fontFamily: "'Space Grotesk', sans-serif" }}>{currentLevel.name}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-white/40 text-xs mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>النقاط</div>
-                      <div className="font-black text-2xl text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{PLAYER.points.toLocaleString()}</div>
+                      <div className="text-[#EEEFEE]/40 text-xs mb-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>النقاط</div>
+                      <div className="font-black text-2xl text-[#EEEFEE]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{PLAYER.points.toLocaleString()}</div>
                     </div>
                   </div>
                   <div className="w-full h-2 rounded-full mb-2" style={{ background: "rgba(255,255,255,0.08)" }}>
                     <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${currentLevel.color}, ${currentLevel.color}99)` }} />
                   </div>
-                  <div className="flex justify-between text-xs text-white/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                  <div className="flex justify-between text-xs text-[#EEEFEE]/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                     <span>{currentLevel.min.toLocaleString()}</span>
                     <span>{currentLevel.max - PLAYER.points} نقطة للمستوى التالي</span>
                     <span>{currentLevel.max.toLocaleString()}</span>
@@ -473,7 +474,7 @@ export default function SportIDPage() {
 
                 {/* Radar Chart */}
                 <div className="rounded-2xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                  <div className="text-white/60 text-xs font-semibold mb-2 text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>خريطة المهارات</div>
+                  <div className="text-[#EEEFEE]/60 text-xs font-semibold mb-2 text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>خريطة المهارات</div>
                   <ResponsiveContainer width="100%" height={180}>
                     <RadarChart data={activePlayer.skills}>
                       <PolarGrid stroke="rgba(255,255,255,0.08)" />
@@ -495,8 +496,8 @@ export default function SportIDPage() {
               {STATS.map((s) => (
                 <div key={s.label} className="rounded-xl p-4 flex flex-col gap-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                   <span className="text-xl">{s.icon}</span>
-                  <div className="font-black text-2xl text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.value}</div>
-                  <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.label}</div>
+                  <div className="font-black text-2xl text-[#EEEFEE]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.value}</div>
+                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -530,11 +531,11 @@ export default function SportIDPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {activePlayer.skills.map((s) => (
                     <div key={s.skill} className="flex items-center gap-3">
-                      <div className="text-white/60 text-sm w-24 text-right flex-shrink-0" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.skill}</div>
+                      <div className="text-[#EEEFEE]/60 text-sm w-24 text-right flex-shrink-0" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.skill}</div>
                       <div className="flex-1 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
                         <div className="h-full rounded-full transition-all duration-700" style={{ width: `${s.A}%`, background: "linear-gradient(90deg, #00C2A8, #22c55e)" }} />
                       </div>
-                      <div className="text-white/80 text-sm font-bold w-8 text-left flex-shrink-0" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.A}</div>
+                      <div className="text-[#EEEFEE]/80 text-sm font-bold w-8 text-left flex-shrink-0" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{s.A}</div>
                     </div>
                   ))}
                 </div>
@@ -548,11 +549,11 @@ export default function SportIDPage() {
                         <Award size={18} style={{ color: c.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-white font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{c.title}</div>
-                        <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{c.issuer}</div>
+                        <div className="text-[#EEEFEE] font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{c.title}</div>
+                        <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{c.issuer}</div>
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <div className="text-white/30 text-xs mb-1">{c.date}</div>
+                        <div className="text-[#EEEFEE]/30 text-xs mb-1">{c.date}</div>
                         {c.verified && (
                           <div className="flex items-center gap-1 text-[10px]" style={{ color: "#00C2A8" }}>
                             <CheckCircle size={10} /> موثّق
@@ -572,10 +573,10 @@ export default function SportIDPage() {
                         <Calendar size={18} style={{ color: t.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-white font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{t.title}</div>
+                        <div className="text-[#EEEFEE] font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{t.title}</div>
                         <div className="flex items-center gap-3 mt-1">
-                          <span className="text-white/40 text-xs flex items-center gap-1"><Clock size={10} />{t.date}</span>
-                          <span className="text-white/40 text-xs flex items-center gap-1"><MapPin size={10} />{t.location}</span>
+                          <span className="text-[#EEEFEE]/40 text-xs flex items-center gap-1"><Clock size={10} />{t.date}</span>
+                          <span className="text-[#EEEFEE]/40 text-xs flex items-center gap-1"><MapPin size={10} />{t.location}</span>
                         </div>
                       </div>
                       <div className="px-3 py-1 rounded-full text-[10px] font-bold flex-shrink-0" style={{ background: `${t.color}15`, border: `1px solid ${t.color}40`, color: t.color, fontFamily: "'Tajawal', sans-serif" }}>
@@ -594,10 +595,10 @@ export default function SportIDPage() {
                         <Activity size={18} style={{ color: "#00C2A8" }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-white font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.academy}</div>
+                        <div className="text-[#EEEFEE] font-bold text-sm truncate" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.academy}</div>
                         <div className="flex items-center gap-3 mt-1">
-                          <span className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.date}</span>
-                          <span className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.duration}</span>
+                          <span className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.date}</span>
+                          <span className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s.duration}</span>
                           <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", fontFamily: "'Tajawal', sans-serif" }}>{s.type}</span>
                         </div>
                       </div>
@@ -611,12 +612,12 @@ export default function SportIDPage() {
             {/* WhatsApp CTA */}
             <div className="rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ background: "rgba(37,211,102,0.06)", border: "1px solid rgba(37,211,102,0.2)" }}>
               <div>
-                <div className="text-white font-bold mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>شارك جواز سفرك الرياضي</div>
-                <div className="text-white/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>أرسل ملفك الرياضي للأكاديميات والكشافين عبر واتساب</div>
+                <div className="text-[#EEEFEE] font-bold mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>شارك جواز سفرك الرياضي</div>
+                <div className="text-[#EEEFEE]/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>أرسل ملفك الرياضي للأكاديميات والكشافين عبر واتساب</div>
               </div>
               <button
                 onClick={handleShare}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white text-sm transition-all hover:scale-105 flex-shrink-0"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-[#EEEFEE] text-sm transition-all hover:scale-105 flex-shrink-0"
                 style={{ background: "#25D366", boxShadow: "0 4px 16px rgba(37,211,102,0.3)", fontFamily: "'Tajawal', sans-serif" }}
               >
                 <span>📱</span> مشاركة عبر واتساب
@@ -625,7 +626,7 @@ export default function SportIDPage() {
           </div>
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 }

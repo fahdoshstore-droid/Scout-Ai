@@ -4,11 +4,19 @@
 @custom-variant dark (&:is(.dark *));
 
 /* 
- * SCOUT AI — Saudi Tech Noir Design System
- * Philosophy: Deep dark background with neon green Saudi identity
- * Primary: oklch(0.65 0.2 145) — Neon Saudi Green
- * Background: oklch(0.08 0.02 240) — Deep Navy Black
- * Typography: Tajawal (Arabic) + Space Grotesk (English)
+ * ADA2AI — Master Brand Design System 2026
+ * "Empowering Athletic Performance Through AI"
+ * 
+ * Colors:
+ *   PRIMARY TEAL:  #00DCC8  — oklch(0.80 0.15 180)  — Movement & Pulse
+ *   DEEP OCEAN:    #007ABA  — oklch(0.52 0.14 230)  — Stability & Professionalism
+ *   NAVY ABYSS:    #000A0F  — oklch(0.05 0.01 240)  — Background & Depth (MAIN BG)
+ *   PURE TECH:     #EEEFEE  — oklch(0.95 0.002 100) — High Contrast Text
+ * 
+ * Typography:
+ *   Headlines:  Orbitron Black 900 (H1: 36px) / Orbitron Bold 700 (H2: 24px)
+ *   Body/UI:    Cairo Regular 400 (16px) — Arabic + English body text
+ *   Numbers:    Orbitron (data, KPIs, scores)
  */
 
 @theme inline {
@@ -51,48 +59,60 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  --background: oklch(0.08 0.02 240);
-  --foreground: oklch(0.95 0.005 100);
-  --card: oklch(0.12 0.02 240);
-  --card-foreground: oklch(0.95 0.005 100);
-  --popover: oklch(0.12 0.02 240);
-  --popover-foreground: oklch(0.95 0.005 100);
-  --primary: oklch(0.65 0.2 145);
-  --primary-foreground: oklch(0.08 0.02 240);
-  --secondary: oklch(0.16 0.02 240);
-  --secondary-foreground: oklch(0.85 0.005 100);
-  --muted: oklch(0.14 0.015 240);
-  --muted-foreground: oklch(0.55 0.01 240);
-  --accent: oklch(0.65 0.2 145);
-  --accent-foreground: oklch(0.08 0.02 240);
+  --radius: 0.75rem;
+  /* Ada2ai Core Colors */
+  --ada-teal: #00DCC8;
+  --ada-ocean: #007ABA;
+  --ada-navy: #000A0F;
+  --ada-surface: #0A1628;
+  --ada-card: #0D1E35;
+  --ada-text: #EEEFEE;
+  --ada-muted: #6B8099;
+  --ada-amber: #FFA500;
+  --ada-red: #FF4444;
+
+  /* Semantic tokens mapped to Ada2ai palette */
+  --background: oklch(0.05 0.015 240);       /* #000A0F Navy Abyss */
+  --foreground: oklch(0.95 0.002 100);        /* #EEEFEE Pure Tech */
+  --card: oklch(0.10 0.02 230);              /* #0D1E35 Card surface */
+  --card-foreground: oklch(0.95 0.002 100);
+  --popover: oklch(0.10 0.02 230);
+  --popover-foreground: oklch(0.95 0.002 100);
+  --primary: oklch(0.80 0.15 180);           /* #00DCC8 Primary Teal */
+  --primary-foreground: oklch(0.05 0.015 240);
+  --secondary: oklch(0.52 0.14 230);         /* #007ABA Deep Ocean */
+  --secondary-foreground: oklch(0.95 0.002 100);
+  --muted: oklch(0.14 0.02 230);
+  --muted-foreground: oklch(0.50 0.04 230);
+  --accent: oklch(0.80 0.15 180);            /* Teal accent */
+  --accent-foreground: oklch(0.05 0.015 240);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.65 0.2 145);
-  --chart-1: oklch(0.65 0.2 145);
-  --chart-2: oklch(0.55 0.15 145);
-  --chart-3: oklch(0.45 0.1 145);
-  --chart-4: oklch(0.85 0.18 85);
-  --chart-5: oklch(0.65 0.2 25);
-  --sidebar: oklch(0.10 0.02 240);
-  --sidebar-foreground: oklch(0.95 0.005 100);
-  --sidebar-primary: oklch(0.65 0.2 145);
-  --sidebar-primary-foreground: oklch(0.08 0.02 240);
-  --sidebar-accent: oklch(0.16 0.02 240);
-  --sidebar-accent-foreground: oklch(0.85 0.005 100);
+  --ring: oklch(0.80 0.15 180);
+  --chart-1: oklch(0.80 0.15 180);           /* Teal */
+  --chart-2: oklch(0.52 0.14 230);           /* Ocean Blue */
+  --chart-3: oklch(0.70 0.18 85);            /* Amber */
+  --chart-4: oklch(0.65 0.22 25);            /* Red */
+  --chart-5: oklch(0.75 0.12 270);           /* Purple */
+  --sidebar: oklch(0.08 0.02 230);
+  --sidebar-foreground: oklch(0.95 0.002 100);
+  --sidebar-primary: oklch(0.80 0.15 180);
+  --sidebar-primary-foreground: oklch(0.05 0.015 240);
+  --sidebar-accent: oklch(0.14 0.02 230);
+  --sidebar-accent-foreground: oklch(0.80 0.15 180);
   --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.65 0.2 145);
+  --sidebar-ring: oklch(0.80 0.15 180);
 }
 
 .dark {
-  --background: oklch(0.08 0.02 240);
-  --foreground: oklch(0.95 0.005 100);
-  --card: oklch(0.12 0.02 240);
-  --card-foreground: oklch(0.95 0.005 100);
-  --primary: oklch(0.65 0.2 145);
-  --primary-foreground: oklch(0.08 0.02 240);
+  --background: oklch(0.05 0.015 240);
+  --foreground: oklch(0.95 0.002 100);
+  --card: oklch(0.10 0.02 230);
+  --card-foreground: oklch(0.95 0.002 100);
+  --primary: oklch(0.80 0.15 180);
+  --primary-foreground: oklch(0.05 0.015 240);
 }
 
 @layer base {
@@ -104,8 +124,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Tajawal', 'Space Grotesk', sans-serif;
-    direction: rtl;
+    font-family: 'Cairo', 'Space Grotesk', sans-serif;
+    direction: ltr;
+    background-color: #000A0F;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', 'Cairo', sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -146,186 +170,345 @@
     }
   }
 
-  .neon-text {
-    color: oklch(0.65 0.2 145);
-    text-shadow: 0 0 20px oklch(0.65 0.2 145 / 0.6), 0 0 40px oklch(0.65 0.2 145 / 0.3);
+  /* ── Ada2ai Typography Utilities ── */
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+  .font-cairo {
+    font-family: 'Cairo', sans-serif;
   }
 
-  .neon-border {
-    border: 1px solid oklch(0.65 0.2 145 / 0.4);
-    box-shadow: 0 0 15px oklch(0.65 0.2 145 / 0.1), inset 0 0 15px oklch(0.65 0.2 145 / 0.05);
+  /* ── Ada2ai Teal Glow Effects ── */
+  .teal-glow {
+    color: #00DCC8;
+    text-shadow: 0 0 20px rgba(0, 220, 200, 0.6), 0 0 40px rgba(0, 220, 200, 0.3);
   }
 
-  .neon-border:hover {
-    border-color: oklch(0.65 0.2 145 / 0.8);
-    box-shadow: 0 0 25px oklch(0.65 0.2 145 / 0.3), inset 0 0 20px oklch(0.65 0.2 145 / 0.1);
+  .teal-border {
+    border: 1px solid rgba(0, 220, 200, 0.3);
+    box-shadow: 0 0 15px rgba(0, 220, 200, 0.08), inset 0 0 15px rgba(0, 220, 200, 0.03);
   }
 
-  .card-dark {
-    background: oklch(0.12 0.02 240);
-    border: 1px solid oklch(1 0 0 / 8%);
+  .teal-border:hover {
+    border-color: rgba(0, 220, 200, 0.7);
+    box-shadow: 0 0 25px rgba(0, 220, 200, 0.25), inset 0 0 20px rgba(0, 220, 200, 0.08);
+  }
+
+  /* ── Ada2ai Card System ── */
+  .ada-card {
+    background: #0D1E35;
+    border: 1px solid rgba(0, 220, 200, 0.12);
+    border-radius: 12px;
     transition: all 0.3s ease;
   }
 
-  .card-dark:hover {
-    border-color: oklch(0.65 0.2 145 / 0.5);
-    box-shadow: 0 0 30px oklch(0.65 0.2 145 / 0.15);
+  .ada-card:hover {
+    border-color: rgba(0, 220, 200, 0.4);
+    box-shadow: 0 0 30px rgba(0, 220, 200, 0.12);
     transform: translateY(-2px);
   }
 
-  .btn-primary {
-    background: oklch(0.65 0.2 145);
-    color: oklch(0.08 0.02 240);
+  .ada-card-surface {
+    background: #0A1628;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+  }
+
+  /* ── Ada2ai Button System ── */
+  .btn-ada-primary {
+    background: #00DCC8;
+    color: #000A0F;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     padding: 0.75rem 2rem;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px oklch(0.65 0.2 145 / 0.4);
+    box-shadow: 0 0 20px rgba(0, 220, 200, 0.35);
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
   }
 
-  .btn-primary:hover {
-    background: oklch(0.72 0.22 145);
-    box-shadow: 0 0 35px oklch(0.65 0.2 145 / 0.6);
+  .btn-ada-primary:hover {
+    background: #00f5de;
+    box-shadow: 0 0 35px rgba(0, 220, 200, 0.55);
     transform: translateY(-1px);
   }
 
-  .btn-outline-green {
+  .btn-ada-outline {
     background: transparent;
-    color: oklch(0.65 0.2 145);
-    border: 1.5px solid oklch(0.65 0.2 145 / 0.6);
+    color: #00DCC8;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(0, 220, 200, 0.5);
     padding: 0.75rem 2rem;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
   }
 
-  .btn-outline-green:hover {
-    background: oklch(0.65 0.2 145 / 0.1);
-    border-color: oklch(0.65 0.2 145);
-    box-shadow: 0 0 20px oklch(0.65 0.2 145 / 0.3);
+  .btn-ada-outline:hover {
+    background: rgba(0, 220, 200, 0.1);
+    border-color: #00DCC8;
+    box-shadow: 0 0 20px rgba(0, 220, 200, 0.25);
   }
 
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.65 0.2 145 / 0.4), transparent);
-  }
-
-  .stat-number {
-    font-family: 'Space Grotesk', sans-serif;
+  /* ── Ada2ai Stats Display ── */
+  .ada-stat-number {
+    font-family: 'Orbitron', sans-serif;
     font-weight: 800;
-    color: oklch(0.65 0.2 145);
-    text-shadow: 0 0 30px oklch(0.65 0.2 145 / 0.5);
+    color: #00DCC8;
+    text-shadow: 0 0 30px rgba(0, 220, 200, 0.5);
   }
 
-  .grid-bg {
-    background-image: 
-      linear-gradient(oklch(0.65 0.2 145 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.65 0.2 145 / 0.04) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-
-  .tag-green {
-    background: oklch(0.65 0.2 145 / 0.15);
-    color: oklch(0.65 0.2 145);
-    border: 1px solid oklch(0.65 0.2 145 / 0.3);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  .tag-yellow {
-    background: oklch(0.85 0.18 85 / 0.15);
-    color: oklch(0.85 0.18 85);
-    border: 1px solid oklch(0.85 0.18 85 / 0.3);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  .tag-red {
-    background: oklch(0.65 0.22 25 / 0.15);
-    color: oklch(0.65 0.22 25);
-    border: 1px solid oklch(0.65 0.22 25 / 0.3);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: inline-block;
-  }
-
-  .clip-card {
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-  }
-
-  .progress-bar {
+  .ada-progress-bar {
     height: 6px;
-    background: oklch(0.16 0.02 240);
+    background: rgba(0, 220, 200, 0.12);
     border-radius: 3px;
     overflow: hidden;
   }
 
-  .progress-fill {
+  .ada-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, oklch(0.65 0.2 145), oklch(0.72 0.22 145));
+    background: linear-gradient(90deg, #007ABA, #00DCC8);
     border-radius: 3px;
-    box-shadow: 0 0 10px oklch(0.65 0.2 145 / 0.5);
+    box-shadow: 0 0 10px rgba(0, 220, 200, 0.5);
     transition: width 1.5s ease;
   }
 
-  /* Reveal animation for scroll */
+  /* ── Ada2ai Badges ── */
+  .badge-verified {
+    background: rgba(0, 220, 200, 0.15);
+    color: #00DCC8;
+    border: 1px solid rgba(0, 220, 200, 0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .badge-pro {
+    background: rgba(0, 122, 186, 0.15);
+    color: #007ABA;
+    border: 1px solid rgba(0, 122, 186, 0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .badge-top {
+    background: rgba(255, 165, 0, 0.15);
+    color: #FFA500;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .badge-alert {
+    background: rgba(255, 68, 68, 0.15);
+    color: #FF4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  /* ── Ada2ai Section Divider ── */
+  .ada-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 220, 200, 0.4), transparent);
+  }
+
+  /* ── Ada2ai Grid Background ── */
+  .ada-grid-bg {
+    background-image: 
+      linear-gradient(rgba(0, 220, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 220, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── Ada2ai Clip Card (tech corner cut) ── */
+  .ada-clip-card {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  /* ── Ada2ai Module Icon Box ── */
+  .ada-icon-box {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 220, 200, 0.12);
+    border: 1px solid rgba(0, 220, 200, 0.25);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00DCC8;
+  }
+
+  /* ── Reveal Animations ── */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
   .reveal-left {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
   .reveal-left.visible {
     opacity: 1;
     transform: translateX(0);
   }
-
   .reveal-right {
     opacity: 0;
     transform: translateX(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
   .reveal-right.visible {
     opacity: 1;
     transform: translateX(0);
   }
+
+  /* Legacy compatibility aliases */
+  .neon-text {
+    color: #00DCC8;
+    text-shadow: 0 0 20px rgba(0, 220, 200, 0.6), 0 0 40px rgba(0, 220, 200, 0.3);
+  }
+  .neon-border {
+    border: 1px solid rgba(0, 220, 200, 0.3);
+    box-shadow: 0 0 15px rgba(0, 220, 200, 0.08), inset 0 0 15px rgba(0, 220, 200, 0.03);
+  }
+  .card-dark {
+    background: #0D1E35;
+    border: 1px solid rgba(0, 220, 200, 0.12);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary {
+    background: #00DCC8;
+    color: #000A0F;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 220, 200, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    color: #00DCC8;
+    text-shadow: 0 0 30px rgba(0, 220, 200, 0.5);
+  }
+  .progress-bar {
+    height: 6px;
+    background: rgba(0, 220, 200, 0.12);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #007ABA, #00DCC8);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 220, 200, 0.5);
+    transition: width 1.5s ease;
+  }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 220, 200, 0.4), transparent);
+  }
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(0, 220, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 220, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .clip-card {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .tag-green {
+    background: rgba(0, 220, 200, 0.15);
+    color: #00DCC8;
+    border: 1px solid rgba(0, 220, 200, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .tag-yellow {
+    background: rgba(255, 165, 0, 0.15);
+    color: #FFA500;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .tag-red {
+    background: rgba(255, 68, 68, 0.15);
+    color: #FF4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+  }
 }
 
-/* Keyframe animations */
+/* ── Keyframe Animations ── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-green {
-  0%, 100% { box-shadow: 0 0 15px oklch(0.65 0.2 145 / 0.3); }
-  50% { box-shadow: 0 0 30px oklch(0.65 0.2 145 / 0.6); }
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 220, 200, 0.3); }
+  50% { box-shadow: 0 0 35px rgba(0, 220, 200, 0.65); }
 }
 
 @keyframes float {
@@ -348,17 +531,26 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes width-expand {
-  from { width: 20%; }
-  to { width: var(--target-width); }
+@keyframes teal-scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes logo-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 220, 200, 0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(0, 220, 200, 0.8)); }
 }
 
 .animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+.animate-pulse-teal { animation: pulse-teal 2s ease-in-out infinite; }
+.animate-pulse-green { animation: pulse-teal 2s ease-in-out infinite; }
 .animate-glow { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-logo-glow { animation: logo-glow 3s ease-in-out infinite; }
+.animate-teal-scan { animation: teal-scan 3s ease-in-out infinite; }
 
-/* Scrollbar */
+/* ── Custom Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: oklch(0.08 0.02 240); }
-::-webkit-scrollbar-thumb { background: oklch(0.65 0.2 145 / 0.4); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.65 0.2 145 / 0.7); }
+::-webkit-scrollbar-track { background: #000A0F; }
+::-webkit-scrollbar-thumb { background: rgba(0, 220, 200, 0.35); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 220, 200, 0.65); }

@@ -1,6 +1,7 @@
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import { useState, useMemo } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { useLocation, useSearch } from "wouter";
 import {
   RadarChart,
@@ -85,7 +86,7 @@ export default function Compare() {
     <select
       value={value}
       onChange={(e) => onChange(parseInt(e.target.value))}
-      className="bg-[oklch(0.10_0.02_240)] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)] w-full"
+      className="bg-[oklch(0.10_0.02_240)] border border-white/10 rounded-lg px-3 py-2 text-[#EEEFEE] text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)] w-full"
       style={{ fontFamily: "'Tajawal', sans-serif" }}
     >
       {allPlayers.filter((p) => p.id !== exclude).map((p) => (
@@ -99,29 +100,29 @@ export default function Compare() {
     return (
       <div className="grid grid-cols-7 items-center gap-2 py-2 border-b border-white/5">
         <div className="col-span-2 text-left">
-          <span className={`text-sm font-bold ${better === "p1" ? "text-[oklch(0.65_0.2_145)]" : "text-white/50"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{v1}</span>
+          <span className={`text-sm font-bold ${better === "p1" ? "text-[oklch(0.65_0.2_145)]" : "text-[#EEEFEE]/50"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{v1}</span>
         </div>
-        <div className="col-span-3 text-center text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{label}</div>
+        <div className="col-span-3 text-center text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{label}</div>
         <div className="col-span-2 text-right">
-          <span className={`text-sm font-bold ${better === "p2" ? "text-[oklch(0.65_0.22_25)]" : "text-white/50"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{v2}</span>
+          <span className={`text-sm font-bold ${better === "p2" ? "text-[oklch(0.65_0.22_25)]" : "text-[#EEEFEE]/50"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{v2}</span>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen bg-[oklch(0.08_0.02_240)] text-white" dir="rtl">
-      <Navbar />
+    <div className="min-h-screen bg-[#000A0F] text-[#EEEFEE]" dir="rtl">
+      <Ada2aiNavbar />
 
       {/* Header */}
       <section className="pt-24 pb-8 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-20" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <span className="tag-green mb-4">مقارنة اللاعبين</span>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 mt-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+          <h1 className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3 mt-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
             قارن بين اللاعبين
           </h1>
-          <p className="text-white/50 text-lg" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
+          <p className="text-[#EEEFEE]/50 text-lg" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
             مقارنة مرئية شاملة مدعومة بتحليل AI
           </p>
         </div>
@@ -166,11 +167,11 @@ export default function Compare() {
                     {player.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-white font-bold flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                    <div className="text-[#EEEFEE] font-bold flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                       {player.name}
                       {winner?.id === player.id && <span className="text-yellow-400 text-xs">🏆 الأفضل</span>}
                     </div>
-                    <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                    <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                       {player.position} · {player.age} سنة · {player.city}
                     </div>
                   </div>
@@ -181,21 +182,21 @@ export default function Compare() {
                     {player.score}
                   </div>
                 </div>
-                <div className="text-white/35 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.academy}</div>
+                <div className="text-[#EEEFEE]/35 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.academy}</div>
               </div>
             ))}
           </div>
 
           {/* Radar Chart */}
           <div className="card-dark rounded-2xl p-6 mb-5 max-w-3xl mx-auto">
-            <h3 className="text-white font-bold mb-4 flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <h3 className="text-[#EEEFEE] font-bold mb-4 flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               <GitCompare size={16} className="neon-text" /> خريطة المهارات المقارنة
             </h3>
             <div className="flex gap-4 mb-2">
               {[p1, p2].map((p, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full" style={{ background: i === 0 ? "oklch(0.65 0.2 145)" : "oklch(0.65 0.22 25)" }} />
-                  <span className="text-white/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.name}</span>
+                  <span className="text-[#EEEFEE]/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p.name}</span>
                 </div>
               ))}
             </div>
@@ -217,7 +218,7 @@ export default function Compare() {
 
           {/* Bar comparison */}
           <div className="card-dark rounded-2xl p-6 mb-5 max-w-3xl mx-auto">
-            <h3 className="text-white font-bold mb-4 flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <h3 className="text-[#EEEFEE] font-bold mb-4 flex items-center gap-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               <Target size={16} className="neon-text" /> مقارنة الإحصائيات
             </h3>
             <ResponsiveContainer width="100%" height={220}>
@@ -240,7 +241,7 @@ export default function Compare() {
               <div className="col-span-2 text-left">
                 <span className="text-[oklch(0.65_0.2_145)] text-xs font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p1.name}</span>
               </div>
-              <div className="col-span-3 text-center text-white/30 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>الإحصائية</div>
+              <div className="col-span-3 text-center text-[#EEEFEE]/30 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>الإحصائية</div>
               <div className="col-span-2 text-right">
                 <span className="text-[oklch(0.65_0.22_25)] text-xs font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{p2.name}</span>
               </div>
@@ -267,7 +268,7 @@ export default function Compare() {
                 </h4>
                 <ul className="space-y-1.5">
                   {player.strengths.map((s, i) => (
-                    <li key={i} className="flex items-start gap-2 text-white/60 text-xs" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
+                    <li key={i} className="flex items-start gap-2 text-[#EEEFEE]/60 text-xs" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
                       <ChevronRight size={12} style={{ color: idx === 0 ? "oklch(0.65 0.2 145)" : "oklch(0.65 0.22 25)" }} className="mt-0.5 flex-shrink-0" />
                       {s}
                     </li>
@@ -280,7 +281,7 @@ export default function Compare() {
           {/* CTA */}
           <div className="max-w-3xl mx-auto text-center">
             <div className="card-dark rounded-2xl p-6" style={{ border: "1px solid oklch(0.65 0.2 145 / 0.2)" }}>
-              <p className="text-white/60 mb-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <p className="text-[#EEEFEE]/60 mb-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 هل تريد تقارير تفصيلية لكلا اللاعبين؟ تواصل معنا عبر واتساب
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -306,7 +307,7 @@ export default function Compare() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }

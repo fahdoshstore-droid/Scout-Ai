@@ -1,3 +1,4 @@
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 /**
  * Upload & AI Analysis Page — SportScout Platform
  * Design: Saudi Tech Noir — dark navy + neon green
@@ -6,8 +7,8 @@
  */
 
 import { useState, useRef, useCallback } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { useLocation } from "wouter";
 import {
   Upload, Video, User, MapPin, ChevronRight, CheckCircle,
@@ -445,8 +446,8 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen text-white" style={{ background: "oklch(0.08 0.02 240)", fontFamily: "'Tajawal', sans-serif" }} dir="rtl">
-      <Navbar />
+    <div className="min-h-screen text-[#EEEFEE]" style={{ background: "oklch(0.08 0.02 240)", fontFamily: "'Tajawal', sans-serif" }} dir="rtl">
+      <Ada2aiNavbar />
 
       {/* Banner */}
       <div className="relative pt-24 pb-10 overflow-hidden" style={{ background: "linear-gradient(180deg, oklch(0.06 0.03 145 / 0.3) 0%, oklch(0.08 0.02 240) 100%)", borderBottom: "1px solid rgba(34,197,94,0.1)" }}>
@@ -455,11 +456,11 @@ export default function UploadPage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-4" style={{ background: "oklch(0.65 0.2 145 / 0.1)", border: "1px solid oklch(0.65 0.2 145 / 0.3)", color: "oklch(0.65 0.2 145)" }}>
             <Brain size={12} /> محرك تحليل AI — معايير FIFA + الاتحاد السعودي
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             تحليل <span style={{ color: "oklch(0.65 0.2 145)" }}>AI</span> للاعب
           </h1>
-          <p className="text-white/50 max-w-xl mx-auto text-sm leading-relaxed">
-            ارفع فيديو أو صورة للاعب وسيحلل الذكاء الاصطناعي أداءه وفق <strong className="text-white/70">معايير FIFA الدولية</strong> ومعايير <strong className="text-white/70">الاتحاد السعودي لكرة القدم</strong>
+          <p className="text-[#EEEFEE]/50 max-w-xl mx-auto text-sm leading-relaxed">
+            ارفع فيديو أو صورة للاعب وسيحلل الذكاء الاصطناعي أداءه وفق <strong className="text-[#EEEFEE]/70">معايير FIFA الدولية</strong> ومعايير <strong className="text-[#EEEFEE]/70">الاتحاد السعودي لكرة القدم</strong>
           </p>
         </div>
       </div>
@@ -473,9 +474,9 @@ export default function UploadPage() {
             <div className="rounded-2xl p-4 flex gap-3" style={{ background: "oklch(0.65 0.2 145 / 0.05)", border: "1px solid oklch(0.65 0.2 145 / 0.2)" }}>
               <Info size={18} style={{ color: "oklch(0.65 0.2 145)", flexShrink: 0, marginTop: 2 }} />
               <div>
-                <div className="text-white font-bold text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير التحليل المعتمدة</div>
-                <div className="text-white/50 text-xs leading-relaxed">
-                  يعتمد محرك التحليل على <strong className="text-white/70">FIFA Quality Programme</strong> لقياس المهارات التقنية والبدنية، و<strong className="text-white/70">معايير الاتحاد السعودي لكرة القدم</strong> للفئات العمرية المحلية (U13–U19)، مع تقييم 4 محاور رئيسية: التقني، البدني، التكتيكي، والذهني.
+                <div className="text-[#EEEFEE] font-bold text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير التحليل المعتمدة</div>
+                <div className="text-[#EEEFEE]/50 text-xs leading-relaxed">
+                  يعتمد محرك التحليل على <strong className="text-[#EEEFEE]/70">FIFA Quality Programme</strong> لقياس المهارات التقنية والبدنية، و<strong className="text-[#EEEFEE]/70">معايير الاتحاد السعودي لكرة القدم</strong> للفئات العمرية المحلية (U13–U19)، مع تقييم 4 محاور رئيسية: التقني، البدني، التكتيكي، والذهني.
                 </div>
               </div>
             </div>
@@ -483,14 +484,14 @@ export default function UploadPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Player Name */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <User size={12} /> اسم اللاعب <span className="text-red-400">*</span>
                 </label>
                 <input
                   value={form.playerName}
                   onChange={(e) => setForm((p) => ({ ...p, playerName: e.target.value }))}
                   placeholder="الاسم الثلاثي"
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Tajawal', sans-serif" }}
                   onFocus={(e) => (e.target.style.borderColor = "oklch(0.65 0.2 145 / 0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
@@ -499,7 +500,7 @@ export default function UploadPage() {
 
               {/* Age */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <Clock size={12} /> العمر <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -507,7 +508,7 @@ export default function UploadPage() {
                   value={form.age}
                   onChange={(e) => setForm((p) => ({ ...p, age: e.target.value }))}
                   placeholder="مثال: 16"
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Space Grotesk', sans-serif" }}
                   onFocus={(e) => (e.target.style.borderColor = "oklch(0.65 0.2 145 / 0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
@@ -516,13 +517,13 @@ export default function UploadPage() {
 
               {/* Position */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <Target size={12} /> المركز <span className="text-red-400">*</span>
                 </label>
                 <select
                   value={form.position}
                   onChange={(e) => setForm((p) => ({ ...p, position: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Tajawal', sans-serif" }}
                 >
                   <option value="" style={{ background: "#0D1B2A" }}>اختر المركز</option>
@@ -532,13 +533,13 @@ export default function UploadPage() {
 
               {/* City */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <MapPin size={12} /> المدينة <span className="text-red-400">*</span>
                 </label>
                 <select
                   value={form.city}
                   onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Tajawal', sans-serif" }}
                 >
                   <option value="" style={{ background: "#0D1B2A" }}>اختر المدينة</option>
@@ -548,13 +549,13 @@ export default function UploadPage() {
 
               {/* Academy */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <Award size={12} /> الأكاديمية
                 </label>
                 <select
                   value={form.academy}
                   onChange={(e) => setForm((p) => ({ ...p, academy: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Tajawal', sans-serif" }}
                 >
                   <option value="" style={{ background: "#0D1B2A" }}>اختر الأكاديمية</option>
@@ -564,7 +565,7 @@ export default function UploadPage() {
 
               {/* Guardian Phone */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <label className="text-[#EEEFEE]/60 text-xs font-semibold flex items-center gap-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   <MessageCircle size={12} /> واتساب ولي الأمر
                 </label>
                 <input
@@ -572,7 +573,7 @@ export default function UploadPage() {
                   value={form.guardianPhone}
                   onChange={(e) => setForm((p) => ({ ...p, guardianPhone: e.target.value }))}
                   placeholder="05xxxxxxxx"
-                  className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[#EEEFEE] text-sm outline-none transition-all"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", fontFamily: "'Space Grotesk', sans-serif" }}
                   onFocus={(e) => (e.target.style.borderColor = "oklch(0.65 0.2 145 / 0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
@@ -583,7 +584,7 @@ export default function UploadPage() {
             {/* Position weight info */}
             {form.position && POSITIONS_WEIGHTS[form.position] && (
               <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                <div className="text-white/60 text-xs font-semibold mb-3" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <div className="text-[#EEEFEE]/60 text-xs font-semibold mb-3" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   أوزان التقييم لمركز <span style={{ color: "oklch(0.65 0.2 145)" }}>{form.position}</span> (معيار FIFA)
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -593,7 +594,7 @@ export default function UploadPage() {
                     return (
                       <div key={cat} className="text-center rounded-lg p-2" style={{ background: `${colors[cat]}10`, border: `1px solid ${colors[cat]}30` }}>
                         <div className="text-lg font-black" style={{ color: colors[cat], fontFamily: "'Space Grotesk', sans-serif" }}>{Math.round(w * 100)}%</div>
-                        <div className="text-white/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{labels[cat]}</div>
+                        <div className="text-[#EEEFEE]/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{labels[cat]}</div>
                       </div>
                     );
                   })}
@@ -603,7 +604,7 @@ export default function UploadPage() {
 
             <button
               onClick={handleFormSubmit}
-              className="w-full py-4 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-[1.01]"
+              className="w-full py-4 rounded-xl font-bold text-[#EEEFEE] flex items-center justify-center gap-2 transition-all hover:scale-[1.01]"
               style={{ background: "linear-gradient(135deg, oklch(0.55 0.2 145), oklch(0.45 0.18 145))", boxShadow: "0 8px 24px oklch(0.65 0.2 145 / 0.25)", fontFamily: "'Tajawal', sans-serif", fontSize: 16 }}
             >
               التالي: رفع الفيديو / الصورة <ChevronRight size={18} />
@@ -619,8 +620,8 @@ export default function UploadPage() {
                 <User size={18} style={{ color: "oklch(0.65 0.2 145)" }} />
               </div>
               <div>
-                <div className="text-white font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.playerName}</div>
-                <div className="text-white/40 text-xs">{form.position} · {form.city} · {form.age} سنة</div>
+                <div className="text-[#EEEFEE] font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.playerName}</div>
+                <div className="text-[#EEEFEE]/40 text-xs">{form.position} · {form.city} · {form.age} سنة</div>
               </div>
             </div>
 
@@ -659,8 +660,8 @@ export default function UploadPage() {
                 <>
                   <CheckCircle size={40} style={{ color: "#22c55e" }} />
                   <div className="text-center">
-                    <div className="text-white font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{file.name}</div>
-                    <div className="text-white/40 text-xs mt-1">{(file.size / 1024 / 1024).toFixed(1)} MB</div>
+                    <div className="text-[#EEEFEE] font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{file.name}</div>
+                    <div className="text-[#EEEFEE]/40 text-xs mt-1">{(file.size / 1024 / 1024).toFixed(1)} MB</div>
                   </div>
                   <button onClick={(e) => { e.stopPropagation(); setFile(null); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}>
                     <X size={12} /> إزالة
@@ -672,8 +673,8 @@ export default function UploadPage() {
                     {form.mediaType === "video" ? <Video size={28} style={{ color: "oklch(0.65 0.2 145)" }} /> : <FileVideo size={28} style={{ color: "oklch(0.65 0.2 145)" }} />}
                   </div>
                   <div className="text-center">
-                    <div className="text-white font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>اسحب وأفلت {form.mediaType === "video" ? "الفيديو" : "الصورة"} هنا</div>
-                    <div className="text-white/40 text-xs mt-1">أو انقر للاختيار من الجهاز</div>
+                    <div className="text-[#EEEFEE] font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>اسحب وأفلت {form.mediaType === "video" ? "الفيديو" : "الصورة"} هنا</div>
+                    <div className="text-[#EEEFEE]/40 text-xs mt-1">أو انقر للاختيار من الجهاز</div>
                   </div>
                 </>
               )}
@@ -683,7 +684,7 @@ export default function UploadPage() {
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <AlertTriangle size={14} style={{ color: "#F59E0B" }} />
-                <span className="text-white/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>نصائح لتحليل أدق (معيار FIFA)</span>
+                <span className="text-[#EEEFEE]/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>نصائح لتحليل أدق (معيار FIFA)</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
@@ -694,7 +695,7 @@ export default function UploadPage() {
                 ].map((tip) => (
                   <div key={tip} className="flex items-start gap-2">
                     <div className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0" style={{ background: "oklch(0.65 0.2 145)" }} />
-                    <span className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{tip}</span>
+                    <span className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{tip}</span>
                   </div>
                 ))}
               </div>
@@ -705,7 +706,7 @@ export default function UploadPage() {
                 رجوع
               </button>
               <button onClick={startAnalysis} disabled={!file}
-                className="flex-1 py-3.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all disabled:opacity-40"
+                className="flex-1 py-3.5 rounded-xl font-bold text-[#EEEFEE] flex items-center justify-center gap-2 transition-all disabled:opacity-40"
                 style={{ background: "linear-gradient(135deg, oklch(0.55 0.2 145), oklch(0.45 0.18 145))", boxShadow: "0 8px 24px oklch(0.65 0.2 145 / 0.25)", fontFamily: "'Tajawal', sans-serif" }}>
                 <Zap size={16} /> ابدأ التحليل بالذكاء الاصطناعي
               </button>
@@ -726,15 +727,15 @@ export default function UploadPage() {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <Brain size={28} style={{ color: "oklch(0.65 0.2 145)" }} />
-                <div className="text-white font-black text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <div className="text-[#EEEFEE] font-black text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {Math.round((currentStage / analysisStages.length) * 100)}%
                 </div>
               </div>
             </div>
 
             <div className="text-center">
-              <div className="text-white font-black text-xl mb-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>جاري تحليل {form.playerName}</div>
-              <div className="text-white/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير FIFA + الاتحاد السعودي لكرة القدم</div>
+              <div className="text-[#EEEFEE] font-black text-xl mb-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>جاري تحليل {form.playerName}</div>
+              <div className="text-[#EEEFEE]/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير FIFA + الاتحاد السعودي لكرة القدم</div>
             </div>
 
             <div className="w-full max-w-md space-y-3">
@@ -772,8 +773,8 @@ export default function UploadPage() {
                   <Brain size={16} style={{ color: "oklch(0.65 0.2 145)" }} />
                 </div>
                 <div>
-                  <div className="text-white font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>تحليل Claude AI الحقيقي ✔️</div>
-                  <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>تم التحليل الفعلي بالذكاء الاصطناعي وفق معايير FIFA + الاتحاد السعودي — رقم التقرير: {aiReport.reportId}</div>
+                  <div className="text-[#EEEFEE] font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>تحليل Claude AI الحقيقي ✔️</div>
+                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>تم التحليل الفعلي بالذكاء الاصطناعي وفق معايير FIFA + الاتحاد السعودي — رقم التقرير: {aiReport.reportId}</div>
                 </div>
               </div>
             ) : (
@@ -782,8 +783,8 @@ export default function UploadPage() {
                   <Activity size={16} style={{ color: "#F59E0B" }} />
                 </div>
                 <div>
-                  <div className="text-white font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>وضع المحاكاة (للفيديو والعرض التوضيحي)</div>
-                  <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>ارفع صورة للحصول على تحليل Claude AI الحقيقي</div>
+                  <div className="text-[#EEEFEE] font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>وضع المحاكاة (للفيديو والعرض التوضيحي)</div>
+                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>ارفع صورة للحصول على تحليل Claude AI الحقيقي</div>
                 </div>
               </div>
             )}
@@ -796,8 +797,8 @@ export default function UploadPage() {
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <div>
                       <div className="text-xs font-semibold mb-1" style={{ color: "oklch(0.65 0.2 145)", fontFamily: "'Space Grotesk', sans-serif" }}>PLAYER VISUAL SCOUT REPORT</div>
-                      <div className="text-white font-black text-xl" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.playerName}</div>
-                      <div className="text-white/50 text-xs mt-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.position} • {form.city} • {aiReport.analysisDate}</div>
+                      <div className="text-[#EEEFEE] font-black text-xl" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.playerName}</div>
+                      <div className="text-[#EEEFEE]/50 text-xs mt-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{form.position} • {form.city} • {aiReport.analysisDate}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-5xl font-black" style={{ color: getScoreColor(aiReport.overallRating), fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.overallRating}</div>
@@ -811,17 +812,17 @@ export default function UploadPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                       <div className="text-xs font-semibold mb-3" style={{ color: "oklch(0.65 0.2 145)", fontFamily: "'Space Grotesk', sans-serif" }}>ESTIMATED AGE</div>
-                      <div className="text-white font-bold text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.estimatedAge.range}</div>
-                      <div className="text-white/50 text-xs mt-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.estimatedAge.category} — {aiReport.estimatedAge.saff_category}</div>
+                      <div className="text-[#EEEFEE] font-bold text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.estimatedAge.range}</div>
+                      <div className="text-[#EEEFEE]/50 text-xs mt-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.estimatedAge.category} — {aiReport.estimatedAge.saff_category}</div>
                     </div>
                     <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                       <div className="text-xs font-semibold mb-3" style={{ color: "#00C2A8", fontFamily: "'Space Grotesk', sans-serif" }}>PHYSICAL PROFILE</div>
                       <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div><span className="text-white/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>الجسم: </span><span className="text-white" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.bodyTypeAr}</span></div>
-                        <div><span className="text-white/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>الطول: </span><span className="text-white" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.heightEstimateAr}</span></div>
-                        <div><span className="text-white/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>التوازن: </span><span className="text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.physicalProfile.balance}/10</span></div>
+                        <div><span className="text-[#EEEFEE]/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>الجسم: </span><span className="text-[#EEEFEE]" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.bodyTypeAr}</span></div>
+                        <div><span className="text-[#EEEFEE]/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>الطول: </span><span className="text-[#EEEFEE]" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.heightEstimateAr}</span></div>
+                        <div><span className="text-[#EEEFEE]/40" style={{ fontFamily: "'Tajawal', sans-serif" }}>التوازن: </span><span className="text-[#EEEFEE]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.physicalProfile.balance}/10</span></div>
                       </div>
-                      <div className="text-white/40 text-xs mt-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.posture}</div>
+                      <div className="text-[#EEEFEE]/40 text-xs mt-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.physicalProfile.posture}</div>
                     </div>
                   </div>
 
@@ -832,8 +833,8 @@ export default function UploadPage() {
                       {Object.entries(aiReport.athleticIndicators).map(([key, val]) => (
                         <div key={key} className="text-center">
                           <div className="text-2xl font-black mb-1" style={{ color: getScoreColor(val.score * 10), fontFamily: "'Space Grotesk', sans-serif" }}>{val.score}</div>
-                          <div className="text-white/60 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.label}</div>
-                          {val.note && <div className="text-white/30 text-xs mt-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.note}</div>}
+                          <div className="text-[#EEEFEE]/60 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.label}</div>
+                          {val.note && <div className="text-[#EEEFEE]/30 text-xs mt-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.note}</div>}
                         </div>
                       ))}
                     </div>
@@ -845,7 +846,7 @@ export default function UploadPage() {
                     <div className="space-y-2">
                       {Object.entries(aiReport.technicalIndicators).map(([key, val]) => (
                         <div key={key} className="flex items-center gap-3">
-                          <div className="w-24 text-white/60 text-xs flex-shrink-0" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.label}</div>
+                          <div className="w-24 text-[#EEEFEE]/60 text-xs flex-shrink-0" style={{ fontFamily: "'Tajawal', sans-serif" }}>{val.label}</div>
                           <div className="flex-1 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                             <div className="h-full rounded-full transition-all duration-700" style={{ width: `${val.score * 10}%`, background: `linear-gradient(90deg, #00C2A8, #00C2A888)` }} />
                           </div>
@@ -866,7 +867,7 @@ export default function UploadPage() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-3 text-white/50 text-xs leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.tacticalHints}</div>
+                    <div className="mt-3 text-[#EEEFEE]/50 text-xs leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.tacticalHints}</div>
                   </div>
 
                   {/* Strengths & Development */}
@@ -876,7 +877,7 @@ export default function UploadPage() {
                       {aiReport.strengths.map((s, i) => (
                         <div key={i} className="flex items-start gap-2 py-1">
                           <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#22c55e" }} />
-                          <span className="text-white/70 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s}</span>
+                          <span className="text-[#EEEFEE]/70 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s}</span>
                         </div>
                       ))}
                     </div>
@@ -885,7 +886,7 @@ export default function UploadPage() {
                       {aiReport.developmentAreas.map((s, i) => (
                         <div key={i} className="flex items-start gap-2 py-1">
                           <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: "#ef4444" }} />
-                          <span className="text-white/70 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s}</span>
+                          <span className="text-[#EEEFEE]/70 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{s}</span>
                         </div>
                       ))}
                     </div>
@@ -896,15 +897,15 @@ export default function UploadPage() {
                     <div className="text-xs font-semibold mb-3" style={{ color: "#F59E0B", fontFamily: "'Space Grotesk', sans-serif" }}>FIFA STANDARD COMPARISON</div>
                     <div className="grid grid-cols-3 gap-3 text-center">
                       <div>
-                        <div className="text-white/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>التقني</div>
+                        <div className="text-[#EEEFEE]/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>التقني</div>
                         <div className="text-xs font-bold" style={{ color: aiReport.fifaStandardComparison.technicalLevel.includes("Above") ? "#22c55e" : aiReport.fifaStandardComparison.technicalLevel.includes("Meets") ? "#F59E0B" : "#ef4444", fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.fifaStandardComparison.technicalLevel}</div>
                       </div>
                       <div>
-                        <div className="text-white/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>البدني</div>
+                        <div className="text-[#EEEFEE]/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>البدني</div>
                         <div className="text-xs font-bold" style={{ color: aiReport.fifaStandardComparison.physicalLevel.includes("Above") ? "#22c55e" : aiReport.fifaStandardComparison.physicalLevel.includes("Meets") ? "#F59E0B" : "#ef4444", fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.fifaStandardComparison.physicalLevel}</div>
                       </div>
                       <div>
-                        <div className="text-white/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>SAFF Benchmark</div>
+                        <div className="text-[#EEEFEE]/40 text-xs mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>SAFF Benchmark</div>
                         <div className="text-xl font-black" style={{ color: "#F59E0B", fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.fifaStandardComparison.saffYouthBenchmark}%</div>
                       </div>
                     </div>
@@ -913,7 +914,7 @@ export default function UploadPage() {
                   {/* Scout Recommendation */}
                   <div className="rounded-xl p-4" style={{ background: "oklch(0.65 0.2 145 / 0.05)", border: "1px solid oklch(0.65 0.2 145 / 0.2)" }}>
                     <div className="text-xs font-semibold mb-2 flex items-center gap-2" style={{ color: "oklch(0.65 0.2 145)", fontFamily: "'Space Grotesk', sans-serif" }}><Star size={12} /> SCOUT RECOMMENDATION</div>
-                    <div className="text-white/70 text-sm leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.scoutRecommendation}</div>
+                    <div className="text-[#EEEFEE]/70 text-sm leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.scoutRecommendation}</div>
                     <div className="mt-3 flex items-center gap-3">
                       <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Tajawal', sans-serif" }}>Scout Confidence:</div>
                       <div className="flex-1 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -921,7 +922,7 @@ export default function UploadPage() {
                       </div>
                       <div className="font-black text-sm" style={{ color: "oklch(0.65 0.2 145)", fontFamily: "'Space Grotesk', sans-serif" }}>{aiReport.scoutConfidence}%</div>
                     </div>
-                    <div className="text-white/30 text-xs mt-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.confidenceNote}</div>
+                    <div className="text-[#EEEFEE]/30 text-xs mt-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.confidenceNote}</div>
                   </div>
                 </div>
               </div>
@@ -932,15 +933,15 @@ export default function UploadPage() {
             <div className="rounded-2xl p-6 text-center relative overflow-hidden" style={{ background: "linear-gradient(135deg, oklch(0.12 0.04 145) 0%, oklch(0.08 0.02 240) 100%)", border: "1px solid oklch(0.65 0.2 145 / 0.3)" }}>
               <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, oklch(0.65 0.2 145 / 0.06) 0%, transparent 70%)" }} />
               <div className="relative z-10">
-                <div className="text-white/50 text-sm mb-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>التقييم الكلي — معايير FIFA</div>
+                <div className="text-[#EEEFEE]/50 text-sm mb-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>التقييم الكلي — معايير FIFA</div>
                 <div className="text-7xl font-black mb-2" style={{ color: getScoreColor(analysisMode === "ai" && aiReport ? aiReport.overallRating : analysisResult.overall), fontFamily: "'Space Grotesk', sans-serif" }}>
                   {analysisMode === "ai" && aiReport ? aiReport.overallRating : analysisResult.overall}
                 </div>
-                <div className="text-white/60 text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getScoreLabel(analysisMode === "ai" && aiReport ? aiReport.overallRating : analysisResult.overall)}</div>
+                <div className="text-[#EEEFEE]/60 text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getScoreLabel(analysisMode === "ai" && aiReport ? aiReport.overallRating : analysisResult.overall)}</div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
                   <Shield size={11} /> نسبة الثقة: {analysisMode === "ai" && aiReport ? aiReport.scoutConfidence : analysisResult.confidence}%
                 </div>
-                <div className="mt-4 text-white/70 text-sm max-w-lg mx-auto leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <div className="mt-4 text-[#EEEFEE]/70 text-sm max-w-lg mx-auto leading-relaxed" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   {analysisMode === "ai" && aiReport ? aiReport.scoutRecommendation : analysisResult.recommendation}
                 </div>
               </div>
@@ -957,7 +958,7 @@ export default function UploadPage() {
                 <div key={cat.label} className="rounded-xl p-4 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                   <div className="flex justify-center mb-2" style={{ color: cat.color }}>{cat.icon}</div>
                   <div className="text-3xl font-black mb-1" style={{ color: cat.color, fontFamily: "'Space Grotesk', sans-serif" }}>{cat.value}</div>
-                  <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{cat.label}</div>
+                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{cat.label}</div>
                 </div>
               ))}
             </div>
@@ -990,7 +991,7 @@ export default function UploadPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Radar */}
                 <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                  <div className="text-white/60 text-xs font-semibold mb-3 text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>خريطة الأداء الشاملة</div>
+                  <div className="text-[#EEEFEE]/60 text-xs font-semibold mb-3 text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>خريطة الأداء الشاملة</div>
                   <ResponsiveContainer width="100%" height={220}>
                     <RadarChart data={analysisResult.radarData}>
                       <PolarGrid stroke="rgba(255,255,255,0.08)" />
@@ -1009,7 +1010,7 @@ export default function UploadPage() {
                     </div>
                     {analysisResult.strengths.map((s) => (
                       <div key={s.key} className="flex items-center justify-between py-1.5">
-                        <span className="text-white/70 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getMetricLabel(s.key)}</span>
+                        <span className="text-[#EEEFEE]/70 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getMetricLabel(s.key)}</span>
                         <span className="font-bold text-sm" style={{ color: "#22c55e", fontFamily: "'Space Grotesk', sans-serif" }}>{s.value}</span>
                       </div>
                     ))}
@@ -1020,7 +1021,7 @@ export default function UploadPage() {
                     </div>
                     {analysisResult.weaknesses.map((s) => (
                       <div key={s.key} className="flex items-center justify-between py-1.5">
-                        <span className="text-white/70 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getMetricLabel(s.key)}</span>
+                        <span className="text-[#EEEFEE]/70 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{getMetricLabel(s.key)}</span>
                         <span className="font-bold text-sm" style={{ color: "#ef4444", fontFamily: "'Space Grotesk', sans-serif" }}>{s.value}</span>
                       </div>
                     ))}
@@ -1040,8 +1041,8 @@ export default function UploadPage() {
                     <div key={m.key} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <div className="text-white font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{m.label}</div>
-                          <div className="text-white/35 text-xs mt-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{m.description}</div>
+                          <div className="text-[#EEEFEE] font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>{m.label}</div>
+                          <div className="text-[#EEEFEE]/35 text-xs mt-0.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>{m.description}</div>
                         </div>
                         <div className="text-right">
                           <div className="text-xl font-black" style={{ color: getScoreColor(values[m.key]), fontFamily: "'Space Grotesk', sans-serif" }}>{values[m.key]}</div>
@@ -1051,7 +1052,7 @@ export default function UploadPage() {
                       <div className="h-2 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                         <div className="h-full rounded-full transition-all duration-700" style={{ width: `${values[m.key]}%`, background: `linear-gradient(90deg, ${getScoreColor(values[m.key])}, ${getScoreColor(values[m.key])}88)` }} />
                       </div>
-                      <div className="text-white/25 text-xs mt-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>الوزن في التقييم: {Math.round(m.weight * 100)}%</div>
+                      <div className="text-[#EEEFEE]/25 text-xs mt-1.5" style={{ fontFamily: "'Tajawal', sans-serif" }}>الوزن في التقييم: {Math.round(m.weight * 100)}%</div>
                     </div>
                   ))}
                 </div>
@@ -1061,7 +1062,7 @@ export default function UploadPage() {
             {/* Tab: Sport DNA */}
             {activeResultTab === "dna" && (
               <div className="space-y-4">
-                <div className="text-white/50 text-xs text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <div className="text-[#EEEFEE]/50 text-xs text-center" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   Sport DNA — المركز الأمثل بناءً على معايير FIFA لكل مركز
                 </div>
                 <ResponsiveContainer width="100%" height={220}>
@@ -1081,7 +1082,7 @@ export default function UploadPage() {
                         {i === 0 ? "🥇" : "🥈"}
                       </div>
                       <div>
-                        <div className="text-white font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{d.position}</div>
+                        <div className="text-[#EEEFEE] font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{d.position}</div>
                         <div className="text-xs" style={{ color: i === 0 ? "oklch(0.65 0.2 145)" : "rgba(255,255,255,0.4)", fontFamily: "'Space Grotesk', sans-serif" }}>{d.score}/100</div>
                       </div>
                     </div>
@@ -1094,17 +1095,17 @@ export default function UploadPage() {
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <BarChart2 size={14} style={{ color: "#F59E0B" }} />
-                <span className="text-white/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                <span className="text-[#EEEFEE]/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   مقارنة بمعيار الاتحاد السعودي — الفئة العمرية {analysisResult.benchmark.label}
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="text-center rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-xs text-white/40 mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>السرعة القصوى (المعيار)</div>
+                  <div className="text-xs text-[#EEEFEE]/40 mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>السرعة القصوى (المعيار)</div>
                   <div className="text-xl font-black" style={{ color: "#F59E0B", fontFamily: "'Space Grotesk', sans-serif" }}>{analysisResult.benchmark.speed} km/h</div>
                 </div>
                 <div className="text-center rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="text-xs text-white/40 mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>التحمل (المعيار)</div>
+                  <div className="text-xs text-[#EEEFEE]/40 mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>التحمل (المعيار)</div>
                   <div className="text-xl font-black" style={{ color: "#F59E0B", fontFamily: "'Space Grotesk', sans-serif" }}>{analysisResult.benchmark.stamina}%</div>
                 </div>
               </div>
@@ -1114,7 +1115,7 @@ export default function UploadPage() {
             <div className="flex flex-col sm:flex-row gap-3">
               {form.guardianPhone && (
                 <button onClick={sendWhatsApp}
-                  className="flex-1 py-3.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all hover:scale-[1.01]"
+                  className="flex-1 py-3.5 rounded-xl font-bold text-[#EEEFEE] flex items-center justify-center gap-2 transition-all hover:scale-[1.01]"
                   style={{ background: "linear-gradient(135deg, #25D366, #128C7E)", boxShadow: "0 8px 24px rgba(37,211,102,0.25)", fontFamily: "'Tajawal', sans-serif" }}>
                   <MessageCircle size={16} /> إرسال التقرير عبر واتساب
                 </button>
@@ -1133,7 +1134,7 @@ export default function UploadPage() {
           </div>
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 }

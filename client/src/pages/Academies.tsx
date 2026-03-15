@@ -1,7 +1,8 @@
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import { useRef, useState, useEffect } from "react";
 import { MapView } from "@/components/Map";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { MapPin, Star, Users, Phone, MessageCircle, Filter, Search, X } from "lucide-react";
 
 // 10 local academies in Eastern Province
@@ -262,8 +263,8 @@ export default function Academies() {
   };
 
   return (
-    <div className="min-h-screen bg-[oklch(0.08_0.02_240)] text-white" dir="rtl">
-      <Navbar />
+    <div className="min-h-screen bg-[#000A0F] text-[#EEEFEE]" dir="rtl">
+      <Ada2aiNavbar />
 
       {/* Header */}
       <section className="pt-24 pb-10 relative overflow-hidden">
@@ -272,13 +273,13 @@ export default function Academies() {
           <div className="text-center mb-8">
             <span className="tag-green mb-4">دليل الأكاديميات</span>
             <h1
-              className="text-4xl md:text-5xl font-black text-white mb-3 mt-4"
+              className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3 mt-4"
               style={{ fontFamily: "'Tajawal', sans-serif" }}
             >
               أكاديميات المنطقة الشرقية
             </h1>
             <p
-              className="text-white/50 text-lg"
+              className="text-[#EEEFEE]/50 text-lg"
               style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}
             >
               {academies.length} أكاديمية ونادٍ في دمام، خبر، وظهران
@@ -289,13 +290,13 @@ export default function Academies() {
           <div className="max-w-4xl mx-auto">
             <div className="flex gap-3 mb-4">
               <div className="flex-1 relative">
-                <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30" />
+                <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EEEFEE]/30" />
                 <input
                   type="text"
                   placeholder="ابحث عن أكاديمية..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[oklch(0.12_0.02_240)] border border-white/10 rounded-lg pr-10 pl-4 py-2.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)]"
+                  className="w-full bg-[#0A1628] border border-white/10 rounded-lg pr-10 pl-4 py-2.5 text-[#EEEFEE] placeholder-white/30 text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)]"
                   style={{ fontFamily: "'Tajawal', sans-serif" }}
                 />
               </div>
@@ -304,7 +305,7 @@ export default function Academies() {
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                   showFilters
                     ? "bg-[oklch(0.65_0.2_145/0.15)] border-[oklch(0.65_0.2_145/0.5)] text-[oklch(0.65_0.2_145)]"
-                    : "bg-[oklch(0.12_0.02_240)] border-white/10 text-white/60"
+                    : "bg-[#0A1628] border-white/10 text-[#EEEFEE]/60"
                 }`}
                 style={{ fontFamily: "'Tajawal', sans-serif" }}
               >
@@ -316,14 +317,14 @@ export default function Academies() {
             {showFilters && (
               <div className="card-dark rounded-xl p-4 mb-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المدينة</label>
+                  <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المدينة</label>
                   <div className="flex flex-wrap gap-2">
                     {cities.map((c) => (
                       <button
                         key={c}
                         onClick={() => setSelectedCity(c)}
                         className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                          selectedCity === c ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"
+                          selectedCity === c ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"
                         }`}
                         style={{ fontFamily: "'Tajawal', sans-serif" }}
                       >
@@ -333,14 +334,14 @@ export default function Academies() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الرياضة</label>
+                  <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الرياضة</label>
                   <div className="flex flex-wrap gap-2">
                     {sports.map((s) => (
                       <button
                         key={s}
                         onClick={() => setSelectedSport(s)}
                         className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                          selectedSport === s ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"
+                          selectedSport === s ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"
                         }`}
                         style={{ fontFamily: "'Tajawal', sans-serif" }}
                       >
@@ -350,14 +351,14 @@ export default function Academies() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الفئة العمرية</label>
+                  <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الفئة العمرية</label>
                   <div className="flex flex-wrap gap-2">
                     {ageGroups.map((ag) => (
                       <button
                         key={ag}
                         onClick={() => setSelectedAge(ag)}
                         className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                          selectedAge === ag ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"
+                          selectedAge === ag ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"
                         }`}
                         style={{ fontFamily: "'Tajawal', sans-serif", direction: "ltr" }}
                       >
@@ -369,7 +370,7 @@ export default function Academies() {
               </div>
             )}
 
-            <div className="text-white/35 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <div className="text-[#EEEFEE]/35 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               عرض {filtered.length} من {academies.length} أكاديمية
             </div>
           </div>
@@ -395,7 +396,7 @@ export default function Academies() {
                 >
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3
-                      className="text-white font-bold text-base leading-tight"
+                      className="text-[#EEEFEE] font-bold text-base leading-tight"
                       style={{ fontFamily: "'Tajawal', sans-serif" }}
                     >
                       {academy.name}
@@ -412,11 +413,11 @@ export default function Academies() {
                   </div>
 
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="flex items-center gap-1 text-white/45 text-xs">
+                    <div className="flex items-center gap-1 text-[#EEEFEE]/45 text-xs">
                       <MapPin size={11} />
                       <span style={{ fontFamily: "'Tajawal', sans-serif" }}>{academy.city}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-white/45 text-xs">
+                    <div className="flex items-center gap-1 text-[#EEEFEE]/45 text-xs">
                       <Users size={11} />
                       <span style={{ fontFamily: "'Space Grotesk', sans-serif", direction: "ltr" }}>
                         {academy.students}+
@@ -429,7 +430,7 @@ export default function Academies() {
                     {academy.tags.slice(0, 2).map((tag, i) => (
                       <span
                         key={i}
-                        className="bg-white/5 text-white/40 text-xs px-2 py-0.5 rounded"
+                        className="bg-white/5 text-[#EEEFEE]/40 text-xs px-2 py-0.5 rounded"
                         style={{ fontFamily: "'Tajawal', sans-serif" }}
                       >
                         {tag}
@@ -457,7 +458,7 @@ export default function Academies() {
                     <a
                       href={`tel:${academy.phone}`}
                       onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white/5 border border-white/10 text-white/50 hover:text-white"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-white/5 border border-white/10 text-[#EEEFEE]/50 hover:text-[#EEEFEE]"
                       style={{ fontFamily: "'Tajawal', sans-serif" }}
                     >
                       <Phone size={12} />
@@ -468,7 +469,7 @@ export default function Academies() {
               ))}
 
               {filtered.length === 0 && (
-                <div className="text-center py-12 text-white/30">
+                <div className="text-center py-12 text-[#EEEFEE]/30">
                   <p style={{ fontFamily: "'Tajawal', sans-serif" }}>لا توجد نتائج للفلاتر المحددة</p>
                 </div>
               )}
@@ -494,25 +495,25 @@ export default function Academies() {
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <h4
-                        className="text-white font-bold text-base mb-1"
+                        className="text-[#EEEFEE] font-bold text-base mb-1"
                         style={{ fontFamily: "'Tajawal', sans-serif" }}
                       >
                         {selectedAcademy.name}
                       </h4>
                       <p
-                        className="text-white/50 text-xs mb-2"
+                        className="text-[#EEEFEE]/50 text-xs mb-2"
                         style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}
                       >
                         {selectedAcademy.description}
                       </p>
-                      <div className="flex items-center gap-2 text-white/40 text-xs">
+                      <div className="flex items-center gap-2 text-[#EEEFEE]/40 text-xs">
                         <MapPin size={11} />
                         <span style={{ fontFamily: "'Tajawal', sans-serif" }}>{selectedAcademy.address}</span>
                       </div>
                     </div>
                     <button
                       onClick={() => setSelectedAcademy(null)}
-                      className="text-white/30 hover:text-white transition-colors flex-shrink-0"
+                      className="text-[#EEEFEE]/30 hover:text-[#EEEFEE] transition-colors flex-shrink-0"
                     >
                       <X size={16} />
                     </button>
@@ -524,7 +525,7 @@ export default function Academies() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }

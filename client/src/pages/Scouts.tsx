@@ -1,6 +1,7 @@
+import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import { useState, useMemo } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
+
 import { useLocation } from "wouter";
 import {
   Search,
@@ -108,8 +109,8 @@ export default function Scouts() {
   ];
 
   return (
-    <div className="min-h-screen bg-[oklch(0.08_0.02_240)] text-white" dir="rtl">
-      <Navbar />
+    <div className="min-h-screen bg-[#000A0F] text-[#EEEFEE]" dir="rtl">
+      <Ada2aiNavbar />
 
       {/* Header */}
       <section className="pt-24 pb-8 relative overflow-hidden">
@@ -117,10 +118,10 @@ export default function Scouts() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-8">
             <span className="tag-green mb-4">لوحة الكشافين</span>
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-3 mt-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <h1 className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3 mt-4" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               اكتشف المواهب المحلية
             </h1>
-            <p className="text-white/50 text-lg" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
+            <p className="text-[#EEEFEE]/50 text-lg" style={{ fontFamily: "'IBM Plex Sans Arabic', sans-serif" }}>
               {allPlayers.length} لاعب موثق في المنطقة الشرقية — محلل بالذكاء الاصطناعي
             </p>
           </div>
@@ -133,7 +134,7 @@ export default function Scouts() {
                   {kpi.icon}
                 </div>
                 <div className="text-2xl font-black mb-0.5" style={{ color: kpi.color, fontFamily: "'Space Grotesk', sans-serif" }}>{kpi.value}</div>
-                <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{kpi.label}</div>
+                <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{kpi.label}</div>
               </div>
             ))}
           </div>
@@ -146,26 +147,26 @@ export default function Scouts() {
           {/* Search + filter bar */}
           <div className="flex flex-wrap gap-3 mb-4">
             <div className="flex-1 min-w-[200px] relative">
-              <Search size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30" />
+              <Search size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EEEFEE]/30" />
               <input
                 type="text"
                 placeholder="ابحث باسم اللاعب أو الأكاديمية..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-[oklch(0.12_0.02_240)] border border-white/10 rounded-lg pr-9 pl-4 py-2.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)]"
+                className="w-full bg-[#0A1628] border border-white/10 rounded-lg pr-9 pl-4 py-2.5 text-[#EEEFEE] placeholder-white/30 text-sm focus:outline-none focus:border-[oklch(0.65_0.2_145/0.5)]"
                 style={{ fontFamily: "'Tajawal', sans-serif" }}
               />
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-medium transition-all ${showFilters ? "bg-[oklch(0.65_0.2_145/0.15)] border-[oklch(0.65_0.2_145/0.5)] text-[oklch(0.65_0.2_145)]" : "bg-[oklch(0.12_0.02_240)] border-white/10 text-white/60"}`}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-medium transition-all ${showFilters ? "bg-[oklch(0.65_0.2_145/0.15)] border-[oklch(0.65_0.2_145/0.5)] text-[oklch(0.65_0.2_145)]" : "bg-[#0A1628] border-white/10 text-[#EEEFEE]/60"}`}
               style={{ fontFamily: "'Tajawal', sans-serif" }}
             >
               <Filter size={14} /> فلاتر
             </button>
-            <div className="flex items-center gap-1 bg-[oklch(0.12_0.02_240)] border border-white/10 rounded-lg p-1">
-              <button onClick={() => setViewMode("table")} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${viewMode === "table" ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "text-white/40"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>جدول</button>
-              <button onClick={() => setViewMode("cards")} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${viewMode === "cards" ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "text-white/40"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>بطاقات</button>
+            <div className="flex items-center gap-1 bg-[#0A1628] border border-white/10 rounded-lg p-1">
+              <button onClick={() => setViewMode("table")} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${viewMode === "table" ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "text-[#EEEFEE]/40"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>جدول</button>
+              <button onClick={() => setViewMode("cards")} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${viewMode === "cards" ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "text-[#EEEFEE]/40"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>بطاقات</button>
             </div>
             {compareList.length === 2 && (
               <button
@@ -181,33 +182,33 @@ export default function Scouts() {
           {showFilters && (
             <div className="card-dark rounded-xl p-4 mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المركز</label>
+                <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المركز</label>
                 <div className="flex flex-wrap gap-1.5">
                   {positions.map((p) => (
-                    <button key={p} onClick={() => setPosition(p)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${position === p ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>{p}</button>
+                    <button key={p} onClick={() => setPosition(p)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${position === p ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>{p}</button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المدينة</label>
+                <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>المدينة</label>
                 <div className="flex flex-wrap gap-1.5">
                   {cities.map((c) => (
-                    <button key={c} onClick={() => setCity(c)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${city === c ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>{c}</button>
+                    <button key={c} onClick={() => setCity(c)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${city === c ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>{c}</button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="text-white/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الفئة العمرية</label>
+                <label className="text-[#EEEFEE]/40 text-xs mb-2 block" style={{ fontFamily: "'Tajawal', sans-serif" }}>الفئة العمرية</label>
                 <div className="flex flex-wrap gap-1.5">
                   {ageRanges.map((a) => (
-                    <button key={a} onClick={() => setAgeRange(a)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${ageRange === a ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-white/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif", direction: "ltr" }}>{a}</button>
+                    <button key={a} onClick={() => setAgeRange(a)} className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${ageRange === a ? "bg-[oklch(0.65_0.2_145)] text-[oklch(0.08_0.02_240)]" : "bg-white/5 text-[#EEEFEE]/50 hover:bg-white/10"}`} style={{ fontFamily: "'Tajawal', sans-serif", direction: "ltr" }}>{a}</button>
                   ))}
                 </div>
               </div>
             </div>
           )}
 
-          <div className="text-white/35 text-xs mb-3" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+          <div className="text-[#EEEFEE]/35 text-xs mb-3" style={{ fontFamily: "'Tajawal', sans-serif" }}>
             {filtered.length} لاعب · {compareList.length > 0 && <span className="neon-text">اختر {2 - compareList.length} لاعب للمقارنة</span>}
           </div>
 
@@ -218,24 +219,24 @@ export default function Scouts() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/8" style={{ background: "oklch(0.11 0.02 240)" }}>
-                      <th className="text-right px-4 py-3 text-white/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>اللاعب</th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>المركز</th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("age")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                      <th className="text-right px-4 py-3 text-[#EEEFEE]/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>اللاعب</th>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>المركز</th>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium cursor-pointer hover:text-[#EEEFEE]/70" onClick={() => toggleSort("age")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
                         <span className="flex items-center justify-center gap-1">العمر <SortIcon k="age" /></span>
                       </th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("score")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium cursor-pointer hover:text-[#EEEFEE]/70" onClick={() => toggleSort("score")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
                         <span className="flex items-center justify-center gap-1">التقييم <SortIcon k="score" /></span>
                       </th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("potential")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium cursor-pointer hover:text-[#EEEFEE]/70" onClick={() => toggleSort("potential")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
                         <span className="flex items-center justify-center gap-1">الإمكانية <SortIcon k="potential" /></span>
                       </th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("speed")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium cursor-pointer hover:text-[#EEEFEE]/70" onClick={() => toggleSort("speed")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
                         <span className="flex items-center justify-center gap-1">السرعة <SortIcon k="speed" /></span>
                       </th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium cursor-pointer hover:text-white/70" onClick={() => toggleSort("goals")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium cursor-pointer hover:text-[#EEEFEE]/70" onClick={() => toggleSort("goals")} style={{ fontFamily: "'Tajawal', sans-serif" }}>
                         <span className="flex items-center justify-center gap-1">أهداف <SortIcon k="goals" /></span>
                       </th>
-                      <th className="text-center px-3 py-3 text-white/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>إجراءات</th>
+                      <th className="text-center px-3 py-3 text-[#EEEFEE]/40 font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>إجراءات</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -252,10 +253,10 @@ export default function Scouts() {
                                 {player.name.charAt(0)}
                               </div>
                               <div>
-                                <div className="text-white font-medium flex items-center gap-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                                <div className="text-[#EEEFEE] font-medium flex items-center gap-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                                   {player.name} {player.flag && <span>{player.flag}</span>}
                                 </div>
-                                <div className="text-white/35 text-xs flex items-center gap-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                                <div className="text-[#EEEFEE]/35 text-xs flex items-center gap-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                                   <MapPin size={10} /> {player.city} · {player.academy.replace("أكاديمية ", "").replace("مدرسة ", "")}
                                 </div>
                               </div>
@@ -266,7 +267,7 @@ export default function Scouts() {
                               {player.position}
                             </span>
                           </td>
-                          <td className="px-3 py-3 text-center text-white/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.age}</td>
+                          <td className="px-3 py-3 text-center text-[#EEEFEE]/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.age}</td>
                           <td className="px-3 py-3 text-center">
                             <span className="font-bold text-base" style={{ color: player.score >= 85 ? "oklch(0.65 0.2 145)" : player.score >= 80 ? "oklch(0.85 0.18 85)" : "white", fontFamily: "'Space Grotesk', sans-serif" }}>
                               {player.score}
@@ -275,20 +276,20 @@ export default function Scouts() {
                           <td className="px-3 py-3 text-center">
                             <span className="font-bold text-sm" style={{ color: "oklch(0.65 0.2 200)", fontFamily: "'Space Grotesk', sans-serif" }}>{player.potential}</span>
                           </td>
-                          <td className="px-3 py-3 text-center text-white/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.speed}</td>
-                          <td className="px-3 py-3 text-center text-white/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.goals}</td>
+                          <td className="px-3 py-3 text-center text-[#EEEFEE]/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.speed}</td>
+                          <td className="px-3 py-3 text-center text-[#EEEFEE]/60 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{player.goals}</td>
                           <td className="px-3 py-3">
                             <div className="flex items-center justify-center gap-1.5">
                               <button
                                 onClick={() => navigate(`/demo`)}
-                                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-[oklch(0.65_0.2_145/0.15)] text-white/40 hover:text-[oklch(0.65_0.2_145)] transition-all flex items-center justify-center"
+                                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-[oklch(0.65_0.2_145/0.15)] text-[#EEEFEE]/40 hover:text-[oklch(0.65_0.2_145)] transition-all flex items-center justify-center"
                                 title="عرض التقرير"
                               >
                                 <Eye size={13} />
                               </button>
                               <button
                                 onClick={() => toggleCompare(player.id)}
-                                className={`w-7 h-7 rounded-lg transition-all flex items-center justify-center ${isSelected ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "bg-white/5 text-white/40 hover:text-[oklch(0.65_0.2_145)] hover:bg-[oklch(0.65_0.2_145/0.1)]"}`}
+                                className={`w-7 h-7 rounded-lg transition-all flex items-center justify-center ${isSelected ? "bg-[oklch(0.65_0.2_145/0.2)] text-[oklch(0.65_0.2_145)]" : "bg-white/5 text-[#EEEFEE]/40 hover:text-[oklch(0.65_0.2_145)] hover:bg-[oklch(0.65_0.2_145/0.1)]"}`}
                                 title="مقارنة"
                                 disabled={!isSelected && compareList.length >= 2}
                               >
@@ -298,7 +299,7 @@ export default function Scouts() {
                                 href={`https://wa.me/966500000000?text=أريد معلومات عن اللاعب ${player.name}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-[oklch(0.65_0.2_145/0.15)] text-white/40 hover:text-[oklch(0.65_0.2_145)] transition-all flex items-center justify-center"
+                                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-[oklch(0.65_0.2_145/0.15)] text-[#EEEFEE]/40 hover:text-[oklch(0.65_0.2_145)] transition-all flex items-center justify-center"
                                 title="واتساب"
                               >
                                 <MessageCircle size={13} />
@@ -311,7 +312,7 @@ export default function Scouts() {
                   </tbody>
                 </table>
                 {filtered.length === 0 && (
-                  <div className="text-center py-12 text-white/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>لا توجد نتائج</div>
+                  <div className="text-center py-12 text-[#EEEFEE]/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>لا توجد نتائج</div>
                 )}
               </div>
             </div>
@@ -334,16 +335,16 @@ export default function Scouts() {
                           {player.name.charAt(0)}
                         </div>
                         <div>
-                          <div className="text-white font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.name} {player.flag}</div>
-                          <div className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.position} · {player.age} سنة</div>
+                          <div className="text-[#EEEFEE] font-bold" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.name} {player.flag}</div>
+                          <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.position} · {player.age} سنة</div>
                         </div>
                       </div>
                       <div className="text-2xl font-black" style={{ color: "oklch(0.65 0.2 145)", fontFamily: "'Space Grotesk', sans-serif" }}>{player.score}</div>
                     </div>
 
                     <div className="flex items-center gap-2 mb-3">
-                      <MapPin size={11} className="text-white/30" />
-                      <span className="text-white/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.city} · {player.academy.replace("أكاديمية ", "")}</span>
+                      <MapPin size={11} className="text-[#EEEFEE]/30" />
+                      <span className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{player.city} · {player.academy.replace("أكاديمية ", "")}</span>
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 mb-4">
@@ -355,7 +356,7 @@ export default function Scouts() {
                         <div key={i} className="bg-white/4 rounded-lg p-2 text-center">
                           <div style={{ color: stat.color }} className="flex justify-center mb-0.5">{stat.icon}</div>
                           <div className="font-bold text-sm" style={{ color: stat.color, fontFamily: "'Space Grotesk', sans-serif" }}>{stat.value}</div>
-                          <div className="text-white/30 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{stat.label}</div>
+                          <div className="text-[#EEEFEE]/30 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>{stat.label}</div>
                         </div>
                       ))}
                     </div>
@@ -366,7 +367,7 @@ export default function Scouts() {
                       </button>
                       <button
                         onClick={() => toggleCompare(player.id)}
-                        className={`flex-1 text-xs py-2 rounded-lg border transition-all flex items-center justify-center gap-1 ${isSelected ? "bg-[oklch(0.65_0.2_145/0.2)] border-[oklch(0.65_0.2_145/0.5)] text-[oklch(0.65_0.2_145)]" : "bg-white/5 border-white/10 text-white/50 hover:text-white"}`}
+                        className={`flex-1 text-xs py-2 rounded-lg border transition-all flex items-center justify-center gap-1 ${isSelected ? "bg-[oklch(0.65_0.2_145/0.2)] border-[oklch(0.65_0.2_145/0.5)] text-[oklch(0.65_0.2_145)]" : "bg-white/5 border-white/10 text-[#EEEFEE]/50 hover:text-[#EEEFEE]"}`}
                         style={{ fontFamily: "'Tajawal', sans-serif" }}
                         disabled={!isSelected && compareList.length >= 2}
                       >
@@ -377,7 +378,7 @@ export default function Scouts() {
                 );
               })}
               {filtered.length === 0 && (
-                <div className="col-span-3 text-center py-12 text-white/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>لا توجد نتائج</div>
+                <div className="col-span-3 text-center py-12 text-[#EEEFEE]/30" style={{ fontFamily: "'Tajawal', sans-serif" }}>لا توجد نتائج</div>
               )}
             </div>
           )}
@@ -388,7 +389,7 @@ export default function Scouts() {
               <div className="card-dark neon-border rounded-2xl px-6 py-3 flex items-center gap-4 shadow-2xl">
                 <div className="flex items-center gap-2">
                   <GitCompare size={16} className="neon-text" />
-                  <span className="text-white text-sm font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                  <span className="text-[#EEEFEE] text-sm font-medium" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                     {compareList.length === 1 ? "اختر لاعباً ثانياً للمقارنة" : "جاهز للمقارنة"}
                   </span>
                 </div>
@@ -401,14 +402,14 @@ export default function Scouts() {
                     قارن الآن
                   </button>
                 )}
-                <button onClick={() => setCompareList([])} className="text-white/40 hover:text-white text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>إلغاء</button>
+                <button onClick={() => setCompareList([])} className="text-[#EEEFEE]/40 hover:text-[#EEEFEE] text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>إلغاء</button>
               </div>
             </div>
           )}
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }

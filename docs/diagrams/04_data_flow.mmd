@@ -1,0 +1,43 @@
+sequenceDiagram
+    actor User
+    participant Browser as Browser (React SPA)
+    participant Server as Express Server
+    participant S3 as AWS S3 Storage
+    participant Claude as Claude 3.5 Sonnet
+    participant DB as MySQL Database
+    participant OAuth as Manus OAuth
+
+    Note over User,OAuth: Authentication Flow
+    User->>Browser: Visit platform
+    Browser->>Server: GET /api/trpc/auth.me
+    Server->>DB: Query user by session cookie
+    DB-->>Server: User record or null
+    Server-->>Browser: User state
+
+    Note over User,Claude: AI Analysis Flow
+    User->>Browser: Fill player form + select file
+    Browser->>Browser: Extract base64 from image/video frame
+    Browser->>Server: POST /api/scout/upload {fileData, mimeType}
+    Server->>Server: Buffer.from(base64)
+    Server->>S3: storagePut(key, buffer, mimeType)
+    S3-->>Server: {url: CDN_URL, key: S3_KEY}
+    Server-->>Browser: {url: CDN_URL}
+
+    Browser->>Server: POST /api/scout/analyze {imageUrl, playerInfo}
+    Server->>Server: Build FIFA/SAFF prompt
+    Server->>Claude: generateText({image: URL, text: prompt})
+    Note over Server,Claude: ~8 seconds response time
+    Claude-->>Server: JSON scout report (25 fields)
+    Server->>Server: Parse + validate JSON
+    Server-->>Browser: {success: true, report: AIScoutReport}
+    Browser->>Browser: Render full scout report
+
+    Note over User,OAuth: Login Flow (Optional)
+    User->>Browser: Click login
+    Browser->>OAuth: Redirect to OAuth portal
+    OAuth-->>Browser: Redirect with auth code
+    Browser->>Server: GET /api/oauth/callback?code=X
+    Server->>OAuth: Exchange code for user info
+    OAuth-->>Server: User profile
+    Server->>DB: Upsert user record
+    Server-->>Browser: Set JWT session cookie
