@@ -11,7 +11,7 @@ const modules = [
     num: "01", icon: <Brain size={28} />, title: "AI Analysis Engine",
     badge: "CORE MODULE", badgeColor: "#00DCC8",
     headline: "Professional Scout Report in 8 Seconds",
-    desc: "Upload a photo or video of any athlete. Claude Vision AI analyzes 18 performance metrics against FIFA Quality Programme and Saudi Football Federation (SAFF) standards, delivering a 25-field professional scout report — no equipment, no specialist required.",
+    desc: "Upload a photo or video of any athlete. AI analyzes 18 performance metrics delivering a 25-field professional scout report — no equipment, no specialist required.",
     features: [
       "18 performance metrics analyzed simultaneously",
       "25-field FIFA/SAFF standardized report",
@@ -94,7 +94,7 @@ const modules = [
 ];
 
 const techStack = [
-  { name: "Claude Vision AI", desc: "Anthropic's Claude 3.5 Sonnet for visual analysis", icon: <Brain size={20} /> },
+  { name: "AI Analysis Engine", desc: "Advanced AI vision model for multi-sport athlete analysis", icon: <Brain size={20} /> },
   { name: "FIFA/SAFF Standards", desc: "Dual-standard scoring framework", icon: <Trophy size={20} /> },
   { name: "Google Maps API", desc: "Real-time academy geolocation", icon: <Globe size={20} /> },
   { name: "S3 Cloud Storage", desc: "Secure media and report storage", icon: <Cpu size={20} /> },

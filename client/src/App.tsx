@@ -13,10 +13,14 @@ import Compare from "./pages/Compare";
 import SportID from "./pages/SportID";
 import Product from "./pages/Product";
 import Players from "./pages/Players";
+import Governance from "./pages/Governance";
+import SubGovernance from "./pages/SubGovernance";
+import TeamMembers from "./pages/TeamMembers";
 
 function Router() {
   return (
     <Switch>
+      {/* Main routes */}
       <Route path={"/"} component={Home} />
       <Route path={"/product"} component={Product} />
       <Route path={"/demo"} component={Demo} />
@@ -26,6 +30,11 @@ function Router() {
       <Route path={"/compare"} component={Compare} />
       <Route path={"/upload"} component={Upload} />
       <Route path={"/sportid"} component={SportID} />
+      {/* Governance routes */}
+      <Route path={"/governance"} component={Governance} />
+      <Route path={"/governance/sub"} component={SubGovernance} />
+      <Route path={"/governance/team"} component={TeamMembers} />
+      {/* Fallback */}
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

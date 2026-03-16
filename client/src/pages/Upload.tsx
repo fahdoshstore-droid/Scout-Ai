@@ -2,7 +2,7 @@ import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 /**
  * Upload & AI Analysis Page — SportScout Platform
  * Design: Saudi Tech Noir — dark navy + neon green
- * Analysis Engine: FIFA Quality Programme + Saudi Football Federation standards
+ * Analysis Engine: Professional Scout Standards + Saudi Football Federation standards
  * Covers: Technical, Physical, Tactical, Mental, Position-specific metrics
  */
 
@@ -23,32 +23,32 @@ import {
 import { toast } from "sonner";
 
 // ── FIFA + Saudi FA Standards ─────────────────────────────────────────────────
-const FIFA_CRITERIA = {
+const SCOUT_CRITERIA = {
   technical: [
-    { key: "ballControl", label: "التحكم بالكرة", labelEn: "Ball Control", weight: 0.20, description: "معيار FIFA: دقة الاستلام والتحكم تحت الضغط" },
-    { key: "dribbling", label: "المراوغة", labelEn: "Dribbling", weight: 0.18, description: "معيار FIFA: الاختراق والتجاوز في المساحات الضيقة" },
+    { key: "ballControl", label: "التحكم بالكرة", labelEn: "Ball Control", weight: 0.20, description: "معيار احترافي: دقة الاستلام والتحكم تحت الضغط" },
+    { key: "dribbling", label: "المراوغة", labelEn: "Dribbling", weight: 0.18, description: "معيار احترافي: الاختراق والتجاوز في المساحات الضيقة" },
     { key: "passing", label: "التمرير", labelEn: "Passing Accuracy", weight: 0.20, description: "معيار الاتحاد السعودي: دقة التمرير القصير والطويل" },
-    { key: "shooting", label: "التسديد", labelEn: "Shooting", weight: 0.15, description: "معيار FIFA: القوة والدقة والتوقيت" },
+    { key: "shooting", label: "التسديد", labelEn: "Shooting", weight: 0.15, description: "معيار احترافي: القوة والدقة والتوقيت" },
     { key: "heading", label: "اللعب الجوي", labelEn: "Heading", weight: 0.10, description: "معيار الاتحاد السعودي: الكسب الجوي والتوجيه" },
-    { key: "firstTouch", label: "اللمسة الأولى", labelEn: "First Touch", weight: 0.17, description: "معيار FIFA: جودة الاستلام والتهيئة للحركة التالية" },
+    { key: "firstTouch", label: "اللمسة الأولى", labelEn: "First Touch", weight: 0.17, description: "معيار احترافي: جودة الاستلام والتهيئة للحركة التالية" },
   ],
   physical: [
-    { key: "speed", label: "السرعة", labelEn: "Sprint Speed", weight: 0.25, description: "معيار FIFA: السرعة القصوى km/h — المعيار الدولي للفئة العمرية" },
-    { key: "acceleration", label: "التسارع", labelEn: "Acceleration", weight: 0.20, description: "معيار FIFA: الوصول للسرعة القصوى في 10 أمتار" },
+    { key: "speed", label: "السرعة", labelEn: "Sprint Speed", weight: 0.25, description: "معيار احترافي: السرعة القصوى km/h — المعيار الدولي للفئة العمرية" },
+    { key: "acceleration", label: "التسارع", labelEn: "Acceleration", weight: 0.20, description: "معيار احترافي: الوصول للسرعة القصوى في 10 أمتار" },
     { key: "stamina", label: "التحمل", labelEn: "Stamina", weight: 0.20, description: "معيار الاتحاد السعودي: المسافة المقطوعة لكل 90 دقيقة" },
-    { key: "strength", label: "القوة البدنية", labelEn: "Physical Strength", weight: 0.15, description: "معيار FIFA: الكسب في المواجهات الجسدية" },
-    { key: "agility", label: "الرشاقة", labelEn: "Agility", weight: 0.20, description: "معيار FIFA: تغيير الاتجاه بسرعة وكفاءة" },
+    { key: "strength", label: "القوة البدنية", labelEn: "Physical Strength", weight: 0.15, description: "معيار احترافي: الكسب في المواجهات الجسدية" },
+    { key: "agility", label: "الرشاقة", labelEn: "Agility", weight: 0.20, description: "معيار احترافي: تغيير الاتجاه بسرعة وكفاءة" },
   ],
   tactical: [
-    { key: "positioning", label: "التمركز", labelEn: "Positioning", weight: 0.25, description: "معيار FIFA: الاختيار الصحيح للمكان دفاعاً وهجوماً" },
+    { key: "positioning", label: "التمركز", labelEn: "Positioning", weight: 0.25, description: "معيار احترافي: الاختيار الصحيح للمكان دفاعاً وهجوماً" },
     { key: "vision", label: "الرؤية الميدانية", labelEn: "Field Vision", weight: 0.25, description: "معيار الاتحاد السعودي: القراءة التكتيكية للمباراة" },
-    { key: "pressing", label: "الضغط الدفاعي", labelEn: "Pressing", weight: 0.25, description: "معيار FIFA: الضغط الفوري عند فقدان الكرة" },
-    { key: "offBall", label: "الحركة بدون كرة", labelEn: "Off-Ball Movement", weight: 0.25, description: "معيار FIFA: خلق المساحات والتحركات الذكية" },
+    { key: "pressing", label: "الضغط الدفاعي", labelEn: "Pressing", weight: 0.25, description: "معيار احترافي: الضغط الفوري عند فقدان الكرة" },
+    { key: "offBall", label: "الحركة بدون كرة", labelEn: "Off-Ball Movement", weight: 0.25, description: "معيار احترافي: خلق المساحات والتحركات الذكية" },
   ],
   mental: [
-    { key: "decisionMaking", label: "اتخاذ القرار", labelEn: "Decision Making", weight: 0.35, description: "معيار FIFA: سرعة ودقة القرار تحت الضغط" },
+    { key: "decisionMaking", label: "اتخاذ القرار", labelEn: "Decision Making", weight: 0.35, description: "معيار احترافي: سرعة ودقة القرار تحت الضغط" },
     { key: "leadership", label: "القيادة والتواصل", labelEn: "Leadership", weight: 0.30, description: "معيار الاتحاد السعودي: التأثير الإيجابي على الفريق" },
-    { key: "resilience", label: "الصمود النفسي", labelEn: "Resilience", weight: 0.35, description: "معيار FIFA: الأداء تحت الضغط في المباريات المصيرية" },
+    { key: "resilience", label: "الصمود النفسي", labelEn: "Resilience", weight: 0.35, description: "معيار احترافي: الأداء تحت الضغط في المباريات المصيرية" },
   ],
 };
 
@@ -178,8 +178,8 @@ function runAIAnalysis(form: {
 // ── Label helpers ─────────────────────────────────────────────────────────────
 function getMetricLabel(key: string): string {
   const all = [
-    ...FIFA_CRITERIA.technical, ...FIFA_CRITERIA.physical,
-    ...FIFA_CRITERIA.tactical, ...FIFA_CRITERIA.mental,
+    ...SCOUT_CRITERIA.technical, ...SCOUT_CRITERIA.physical,
+    ...SCOUT_CRITERIA.tactical, ...SCOUT_CRITERIA.mental,
   ];
   return all.find((m) => m.key === key)?.label ?? key;
 }
@@ -243,9 +243,9 @@ const academies = [
 const analysisStages = [
   { label: "استخراج الإطارات وتحليل جودة الوسيط", icon: <FileVideo size={14} /> },
   { label: "تتبع حركة اللاعب بالذكاء الاصطناعي", icon: <Activity size={14} /> },
-  { label: "قياس المؤشرات البدنية (FIFA Physical Standards)", icon: <Zap size={14} /> },
+  { label: "قياس المؤشرات البدنية (Professional Physical Standards)", icon: <Zap size={14} /> },
   { label: "تحليل المهارات التقنية والتكتيكية", icon: <Target size={14} /> },
-  { label: "مقارنة بمعايير الاتحاد السعودي لكرة القدم", icon: <Shield size={14} /> },
+  { label: "مقارنة بمعايير الاتحادات الرياضية السعودية", icon: <Shield size={14} /> },
   { label: "توليد تقرير الأداء الشامل وتوصية الكشاف", icon: <Brain size={14} /> },
 ];
 
@@ -454,13 +454,13 @@ export default function UploadPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, oklch(0.65 0.2 145 / 0.06) 0%, transparent 70%)" }} />
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-4" style={{ background: "oklch(0.65 0.2 145 / 0.1)", border: "1px solid oklch(0.65 0.2 145 / 0.3)", color: "oklch(0.65 0.2 145)" }}>
-            <Brain size={12} /> محرك تحليل AI — معايير FIFA + الاتحاد السعودي
+            <Brain size={12} /> محرك تحليل AI — المعايير الاحترافية
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-[#EEEFEE] mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             تحليل <span style={{ color: "oklch(0.65 0.2 145)" }}>AI</span> للاعب
           </h1>
           <p className="text-[#EEEFEE]/50 max-w-xl mx-auto text-sm leading-relaxed">
-            ارفع فيديو أو صورة للاعب وسيحلل الذكاء الاصطناعي أداءه وفق <strong className="text-[#EEEFEE]/70">معايير FIFA الدولية</strong> ومعايير <strong className="text-[#EEEFEE]/70">الاتحاد السعودي لكرة القدم</strong>
+            ارفع فيديو أو صورة للاعب وسيحلل الذكاء الاصطناعي أداءه وفق <strong className="text-[#EEEFEE]/70">المعايير الاحترافية الدولية</strong> ومعايير <strong className="text-[#EEEFEE]/70">الاتحادات الرياضية السعودية</strong>
           </p>
         </div>
       </div>
@@ -476,7 +476,7 @@ export default function UploadPage() {
               <div>
                 <div className="text-[#EEEFEE] font-bold text-sm mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير التحليل المعتمدة</div>
                 <div className="text-[#EEEFEE]/50 text-xs leading-relaxed">
-                  يعتمد محرك التحليل على <strong className="text-[#EEEFEE]/70">FIFA Quality Programme</strong> لقياس المهارات التقنية والبدنية، و<strong className="text-[#EEEFEE]/70">معايير الاتحاد السعودي لكرة القدم</strong> للفئات العمرية المحلية (U13–U19)، مع تقييم 4 محاور رئيسية: التقني، البدني، التكتيكي، والذهني.
+                  يعتمد محرك التحليل على <strong className="text-[#EEEFEE]/70">Professional Scout Standards</strong> لقياس المهارات التقنية والبدنية، و<strong className="text-[#EEEFEE]/70">معايير الاتحادات الرياضية السعودية</strong> للفئات العمرية المحلية (U13–U19)، مع تقييم 4 محاور رئيسية: التقني، البدني، التكتيكي، والذهني.
                 </div>
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function UploadPage() {
             {form.position && POSITIONS_WEIGHTS[form.position] && (
               <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                 <div className="text-[#EEEFEE]/60 text-xs font-semibold mb-3" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                  أوزان التقييم لمركز <span style={{ color: "oklch(0.65 0.2 145)" }}>{form.position}</span> (معيار FIFA)
+                  أوزان التقييم لمركز <span style={{ color: "oklch(0.65 0.2 145)" }}>{form.position}</span> (معيار احترافي)
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {Object.entries(POSITIONS_WEIGHTS[form.position]).map(([cat, w]) => {
@@ -684,7 +684,7 @@ export default function UploadPage() {
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center gap-2 mb-3">
                 <AlertTriangle size={14} style={{ color: "#F59E0B" }} />
-                <span className="text-[#EEEFEE]/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>نصائح لتحليل أدق (معيار FIFA)</span>
+                <span className="text-[#EEEFEE]/60 text-xs font-semibold" style={{ fontFamily: "'Tajawal', sans-serif" }}>نصائح لتحليل أدق (معيار احترافي)</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
@@ -735,7 +735,7 @@ export default function UploadPage() {
 
             <div className="text-center">
               <div className="text-[#EEEFEE] font-black text-xl mb-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>جاري تحليل {form.playerName}</div>
-              <div className="text-[#EEEFEE]/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير FIFA + الاتحاد السعودي لكرة القدم</div>
+              <div className="text-[#EEEFEE]/40 text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>معايير FIFA + الاتحادات الرياضية السعودية</div>
             </div>
 
             <div className="w-full max-w-md space-y-3">
@@ -774,7 +774,7 @@ export default function UploadPage() {
                 </div>
                 <div>
                   <div className="text-[#EEEFEE] font-bold text-sm" style={{ fontFamily: "'Tajawal', sans-serif" }}>تحليل Claude AI الحقيقي ✔️</div>
-                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>تم التحليل الفعلي بالذكاء الاصطناعي وفق معايير FIFA + الاتحاد السعودي — رقم التقرير: {aiReport.reportId}</div>
+                  <div className="text-[#EEEFEE]/40 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>تم التحليل الفعلي بالذكاء الاصطناعي وفق المعايير الاحترافية — رقم التقرير: {aiReport.reportId}</div>
                 </div>
               </div>
             ) : (
@@ -1033,7 +1033,7 @@ export default function UploadPage() {
             {/* Tab: Technical / Physical / Tactical / Mental */}
             {(["technical", "physical", "tactical", "mental"] as const).map((cat) => {
               if (activeResultTab !== cat) return null;
-              const criteria = FIFA_CRITERIA[cat];
+              const criteria = SCOUT_CRITERIA[cat];
               const values = analysisResult[cat] as Record<string, number>;
               return (
                 <div key={cat} className="space-y-3">

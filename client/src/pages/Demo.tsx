@@ -142,7 +142,7 @@ export default function Demo() {
     "تحليل حركة اللاعب...",
     "قياس السرعة والتسارع...",
     "تقييم المهارات الفنية...",
-    "مقارنة بمعايير FIFA...",
+    "مقارنة بمعايير Professional Standards...",
     "توليد تقرير الأداء...",
   ];
 
@@ -461,7 +461,7 @@ export default function Demo() {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-3 h-3 rounded-full" style={{ background: "oklch(0.85 0.18 85)" }} />
-                      <span className="text-white/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>معيار FIFA</span>
+                      <span className="text-white/50 text-xs" style={{ fontFamily: "'Tajawal', sans-serif" }}>معيار Professional Standards</span>
                     </div>
                   </div>
                   <ResponsiveContainer width="100%" height={260}>
@@ -530,7 +530,7 @@ export default function Demo() {
                               className="text-white/35 text-xs"
                               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                             >
-                              FIFA: {skill.benchmark}
+                              Professional Standards: {skill.benchmark}
                             </span>
                             <span
                               className="neon-text text-sm font-bold"

@@ -40,7 +40,7 @@ const techStack = [
 const architectureLayers = [
   { label: "المستخدم", items: ["لاعب", "ولي أمر", "كشاف", "أكاديمية"] },
   { label: "الواجهة", items: ["React PWA", "Arabic RTL", "Mobile-first"] },
-  { label: "الذكاء الاصطناعي", items: ["Claude Vision", "FIFA Benchmarks", "Radar Analysis"] },
+  { label: "الذكاء الاصطناعي", items: ["Sport ID", "AI Analysis", "Radar Analysis"] },
   { label: "البيانات", items: ["Supabase DB", "Video Storage", "Real-time"] },
 ];
 

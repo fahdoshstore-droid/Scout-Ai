@@ -13,7 +13,7 @@ const steps = [
     icon: <Cpu size={26} />,
     title: "تحليل AI",
     desc: "يحلل Vision AI الحركة والمهارات تلقائياً",
-    detail: "Anthropic Claude Vision",
+    detail: "Advanced AI Vision",
   },
   {
     number: "03",
