@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { BookOpen, FileText, Lock, BarChart2, ChevronLeft } from "lucide-react";
 import { Link } from "wouter";
 
@@ -30,6 +31,7 @@ const policies = [
 ];
 
 export default function SubGovernance() {
+  const { isRTL } = useLanguage();
   return (
     <div className="min-h-screen bg-[#000A0F] text-[#EEEFEE]">
       <Ada2aiNavbar />

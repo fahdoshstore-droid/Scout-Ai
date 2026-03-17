@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 
 
@@ -51,6 +52,7 @@ const positionColors: Record<string, string> = {
 };
 
 export default function Scouts() {
+  const { isRTL } = useLanguage();
   const [, navigate] = useLocation();
   const [search, setSearch] = useState("");
   const [position, setPosition] = useState("الكل");

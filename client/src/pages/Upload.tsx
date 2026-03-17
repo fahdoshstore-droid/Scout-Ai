@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 /**
  * Upload & AI Analysis Page — SportScout Platform
  * Design: Saudi Tech Noir — dark navy + neon green
@@ -251,6 +252,7 @@ const analysisStages = [
 
 // ── Main Component ─────────────────────────────────────────────────────────────
 export default function UploadPage() {
+  const { isRTL } = useLanguage();
   const [, navigate] = useLocation();
   const [step, setStep] = useState<Step>("form");
   const [form, setForm] = useState({

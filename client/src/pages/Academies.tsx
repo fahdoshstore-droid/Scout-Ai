@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useRef, useState, useEffect } from "react";
 import { MapView } from "@/components/Map";
 
@@ -174,6 +175,7 @@ const sports = ["الكل", "كرة القدم", "متعدد"];
 const ageGroups = ["الكل", "5-10", "10-15", "15-25"];
 
 export default function Academies() {
+  const { isRTL } = useLanguage();
   const mapRef = useRef<google.maps.Map | null>(null);
   const markersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
   const [selectedCity, setSelectedCity] = useState("الكل");

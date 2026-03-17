@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 /**
  * SportID Page — SportScout Platform
  * Design: Saudi Tech Noir + Saudi Ministry of Sports branding
@@ -299,6 +300,7 @@ function OnboardingModal({ onComplete, onSelectPlayer }: { onComplete: () => voi
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function SportIDPage() {
+  const { isRTL } = useLanguage();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedPlayerIdx, setSelectedPlayerIdx] = useState(0);

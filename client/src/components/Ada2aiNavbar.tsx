@@ -1,20 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Ada2ai Logo SVG — Teal rounded square with "A" + wordmark
 function Ada2aiLogo({ size = 32 }: { size?: number }) {
   return (
     <div className="flex items-center gap-2.5 select-none">
-      {/* Badge icon */}
       <div
         className="flex items-center justify-center"
         style={{
           width: size,
           height: size,
-          background: "#00DCC8",
+          background: "linear-gradient(135deg, #00DCC8, #007ABA)",
           borderRadius: "8px",
           flexShrink: 0,
         }}
@@ -31,7 +31,6 @@ function Ada2aiLogo({ size = 32 }: { size?: number }) {
           A
         </span>
       </div>
-      {/* Wordmark */}
       <span
         style={{
           fontFamily: "'Orbitron', sans-serif",
@@ -49,28 +48,16 @@ function Ada2aiLogo({ size = 32 }: { size?: number }) {
   );
 }
 
-// Governance dropdown items
-const governanceItems = [
-  { label: "Sub-Governance", href: "/governance/sub" },
-  { label: "Team Members", href: "/governance/team" },
-];
-
-// Main nav — exactly 5 items
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Product", href: "/product" },
-  { label: "AI Demo", href: "/demo" },
-  { label: "Partnerships", href: "/academies" },
-  { label: "Governance", href: null, dropdown: governanceItems },
-];
-
 export default function Ada2aiNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [govOpen, setGovOpen] = useState(false);
+  const [dashOpen, setDashOpen] = useState(false);
   const [location] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
+  const { t, lang, setLang, isRTL } = useLanguage();
   const govRef = useRef<HTMLDivElement>(null);
+  const dashRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -81,39 +68,105 @@ export default function Ada2aiNavbar() {
   useEffect(() => {
     setMobileOpen(false);
     setGovOpen(false);
+    setDashOpen(false);
   }, [location]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (govRef.current && !govRef.current.contains(e.target as Node)) {
-        setGovOpen(false);
-      }
+      if (govRef.current && !govRef.current.contains(e.target as Node)) setGovOpen(false);
+      if (dashRef.current && !dashRef.current.contains(e.target as Node)) setDashOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  const governanceItems = [
+    { label: t("nav.subGov"), href: "/governance/sub" },
+    { label: t("nav.teamMembers"), href: "/governance/team" },
+  ];
+
+  const dashboardItems = [
+    { label: t("nav.scoutDashboard"), href: "/scouts" },
+    { label: t("nav.compare"), href: "/compare" },
+    { label: t("nav.upload"), href: "/upload" },
+    { label: t("nav.sportId"), href: "/sport-id" },
+  ];
+
+  const navLinks = [
+    { label: t("nav.product"), href: "/product" },
+    { label: t("nav.training"), href: "/training" },
+    { label: t("nav.partnerships"), href: "/academies" },
+    { label: t("nav.governance"), href: null, dropdown: governanceItems, key: "governance" },
+    { label: t("nav.dashboards"), href: null, dropdown: dashboardItems, key: "dashboards" },
+  ];
+
   const navLinkStyle = (isActive: boolean) => ({
-    fontFamily: "'Cairo', sans-serif",
+    fontFamily: isRTL ? "'Cairo', sans-serif" : "'Cairo', sans-serif",
     fontWeight: isActive ? 600 : 500,
-    fontSize: "15px",
+    fontSize: "14px",
     color: isActive ? "#00DCC8" : "rgba(238, 239, 238, 0.82)",
     background: isActive ? "rgba(0, 220, 200, 0.08)" : "transparent",
   });
+
+  const DropdownMenu = ({
+    items,
+    isOpen,
+    align = "left",
+  }: {
+    items: { label: string; href: string }[];
+    isOpen: boolean;
+    align?: "left" | "right";
+  }) => {
+    if (!isOpen) return null;
+    return (
+      <div
+        className="absolute top-full mt-1.5 rounded-lg overflow-hidden z-50"
+        style={{
+          background: "rgba(0, 10, 15, 0.97)",
+          border: "1px solid rgba(0, 220, 200, 0.18)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+          minWidth: "190px",
+          left: align === "left" ? 0 : "auto",
+          right: align === "right" ? 0 : "auto",
+        }}
+      >
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="block px-5 py-3 text-sm transition-all duration-150"
+            style={{
+              fontFamily: isRTL ? "'Cairo', sans-serif" : "'Cairo', sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              color: "rgba(238,239,238,0.75)",
+              borderBottom: "1px solid rgba(255,255,255,0.04)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "#00DCC8";
+              (e.currentTarget as HTMLElement).style.background = "rgba(0,220,200,0.06)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "rgba(238,239,238,0.75)";
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+            }}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <>
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        dir={isRTL ? "rtl" : "ltr"}
         style={{
-          background: scrolled
-            ? "rgba(0, 10, 15, 0.96)"
-            : "rgba(0, 10, 15, 0.72)",
+          background: scrolled ? "rgba(0, 10, 15, 0.96)" : "rgba(0, 10, 15, 0.72)",
           backdropFilter: "blur(18px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(0, 220, 200, 0.18)"
-            : "1px solid transparent",
+          borderBottom: scrolled ? "1px solid rgba(0, 220, 200, 0.18)" : "1px solid transparent",
           boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.5)" : "none",
         }}
       >
@@ -125,76 +178,51 @@ export default function Ada2aiNavbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => {
-                if (link.dropdown) {
-                  // Governance dropdown
+                if (link.key === "governance") {
                   return (
                     <div key="governance" className="relative" ref={govRef}>
                       <button
-                        className="px-4 py-2 rounded-md flex items-center gap-1.5 transition-all duration-200"
+                        className="px-3 py-2 rounded-md flex items-center gap-1.5 transition-all duration-200"
                         style={navLinkStyle(location.startsWith("/governance"))}
-                        onClick={() => setGovOpen((v) => !v)}
-                        onMouseEnter={(e) => {
-                          if (!location.startsWith("/governance")) {
-                            (e.currentTarget as HTMLElement).style.color = "#EEEFEE";
-                            (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!location.startsWith("/governance")) {
-                            (e.currentTarget as HTMLElement).style.color = "rgba(238, 239, 238, 0.82)";
-                            (e.currentTarget as HTMLElement).style.background = "transparent";
-                          }
-                        }}
+                        onClick={() => { setGovOpen((v) => !v); setDashOpen(false); }}
                       >
                         {link.label}
                         <ChevronDown
-                          size={14}
+                          size={13}
                           style={{
                             transform: govOpen ? "rotate(180deg)" : "rotate(0deg)",
                             transition: "transform 0.2s",
-                            color: "rgba(238,239,238,0.5)",
+                            color: "rgba(238,239,238,0.4)",
                           }}
                         />
                       </button>
+                      <DropdownMenu items={governanceItems} isOpen={govOpen} />
+                    </div>
+                  );
+                }
 
-                      {govOpen && (
-                        <div
-                          className="absolute top-full left-0 mt-1.5 rounded-lg overflow-hidden"
+                if (link.key === "dashboards") {
+                  const isActive = ["/scouts", "/compare", "/upload", "/sport-id"].includes(location);
+                  return (
+                    <div key="dashboards" className="relative" ref={dashRef}>
+                      <button
+                        className="px-3 py-2 rounded-md flex items-center gap-1.5 transition-all duration-200"
+                        style={navLinkStyle(isActive)}
+                        onClick={() => { setDashOpen((v) => !v); setGovOpen(false); }}
+                      >
+                        {link.label}
+                        <ChevronDown
+                          size={13}
                           style={{
-                            background: "rgba(0, 10, 15, 0.97)",
-                            border: "1px solid rgba(0, 220, 200, 0.18)",
-                            boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-                            minWidth: "180px",
+                            transform: dashOpen ? "rotate(180deg)" : "rotate(0deg)",
+                            transition: "transform 0.2s",
+                            color: "rgba(238,239,238,0.4)",
                           }}
-                        >
-                          {link.dropdown.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="block px-5 py-3 text-sm transition-all duration-150"
-                              style={{
-                                fontFamily: "'Cairo', sans-serif",
-                                fontWeight: 500,
-                                fontSize: "14px",
-                                color: "rgba(238,239,238,0.75)",
-                                borderBottom: "1px solid rgba(255,255,255,0.05)",
-                              }}
-                              onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLElement).style.color = "#00DCC8";
-                                (e.currentTarget as HTMLElement).style.background = "rgba(0,220,200,0.06)";
-                              }}
-                              onMouseLeave={(e) => {
-                                (e.currentTarget as HTMLElement).style.color = "rgba(238,239,238,0.75)";
-                                (e.currentTarget as HTMLElement).style.background = "transparent";
-                              }}
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+                        />
+                      </button>
+                      <DropdownMenu items={dashboardItems} isOpen={dashOpen} align="right" />
                     </div>
                   );
                 }
@@ -204,7 +232,7 @@ export default function Ada2aiNavbar() {
                   <Link
                     key={link.href!}
                     href={link.href!}
-                    className="px-4 py-2 rounded-md transition-all duration-200"
+                    className="px-3 py-2 rounded-md transition-all duration-200"
                     style={navLinkStyle(isActive)}
                     onMouseEnter={(e) => {
                       if (!isActive) {
@@ -225,10 +253,35 @@ export default function Ada2aiNavbar() {
               })}
             </div>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
+            {/* Desktop Right: Language Toggle + Auth */}
+            <div className="hidden lg:flex items-center gap-2">
+              {/* Language Toggle */}
+              <button
+                onClick={() => setLang(lang === "en" ? "ar" : "en")}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all duration-200"
+                style={{
+                  fontFamily: "'Cairo', sans-serif",
+                  fontSize: "13px",
+                  color: "rgba(238,239,238,0.7)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.04)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "#00DCC8";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,220,200,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "rgba(238,239,238,0.7)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                }}
+              >
+                <Globe size={13} />
+                <span>{lang === "en" ? "العربية" : "English"}</span>
+              </button>
+
+              {/* Auth */}
               {isAuthenticated ? (
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <span
                     className="text-sm"
                     style={{ color: "rgba(238,239,238,0.6)", fontFamily: "'Cairo', sans-serif" }}
@@ -237,32 +290,32 @@ export default function Ada2aiNavbar() {
                   </span>
                   <button
                     onClick={logout}
-                    className="text-sm px-4 py-1.5 rounded-md transition-all"
+                    className="text-sm px-3 py-1.5 rounded-md transition-all"
                     style={{
                       fontFamily: "'Cairo', sans-serif",
                       color: "rgba(238,239,238,0.6)",
                       border: "1px solid rgba(255,255,255,0.1)",
                     }}
                   >
-                    Logout
+                    {t("nav.logout")}
                   </button>
                 </div>
               ) : (
                 <>
                   <a
                     href={getLoginUrl()}
-                    className="text-sm px-4 py-1.5 rounded-md transition-all"
+                    className="text-sm px-3 py-1.5 rounded-md transition-all"
                     style={{
                       fontFamily: "'Cairo', sans-serif",
-                      fontSize: "15px",
+                      fontSize: "14px",
                       color: "rgba(238,239,238,0.75)",
                     }}
                   >
-                    Login
+                    {t("nav.login")}
                   </a>
-                  <Link href="/demo">
-                    <button className="btn-ada-primary text-sm px-5 py-2">
-                      Get Started
+                  <Link href="/upload">
+                    <button className="btn-ada-primary text-sm px-4 py-2">
+                      {t("nav.getStarted")}
                     </button>
                   </Link>
                 </>
@@ -290,8 +343,23 @@ export default function Ada2aiNavbar() {
             }}
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+              {/* Language toggle mobile */}
+              <button
+                onClick={() => setLang(lang === "en" ? "ar" : "en")}
+                className="flex items-center gap-2 px-4 py-3 rounded-md text-sm mb-1"
+                style={{
+                  fontFamily: "'Cairo', sans-serif",
+                  color: "#00DCC8",
+                  background: "rgba(0,220,200,0.06)",
+                  border: "1px solid rgba(0,220,200,0.15)",
+                }}
+              >
+                <Globe size={14} />
+                {lang === "en" ? "التبديل إلى العربية" : "Switch to English"}
+              </button>
+
               {navLinks.map((link) => {
-                if (link.dropdown) {
+                if (link.key === "governance") {
                   return (
                     <div key="governance-mobile">
                       <button
@@ -309,16 +377,12 @@ export default function Ada2aiNavbar() {
                       </button>
                       {govOpen && (
                         <div className="ml-4 flex flex-col gap-0.5">
-                          {link.dropdown.map((item) => (
+                          {governanceItems.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
                               className="px-4 py-2.5 rounded-md text-sm"
-                              style={{
-                                fontFamily: "'Cairo', sans-serif",
-                                fontSize: "14px",
-                                color: "rgba(238,239,238,0.65)",
-                              }}
+                              style={{ fontFamily: "'Cairo', sans-serif", fontSize: "14px", color: "rgba(238,239,238,0.65)" }}
                             >
                               {item.label}
                             </Link>
@@ -328,6 +392,41 @@ export default function Ada2aiNavbar() {
                     </div>
                   );
                 }
+
+                if (link.key === "dashboards") {
+                  return (
+                    <div key="dashboards-mobile">
+                      <button
+                        className="w-full text-left px-4 py-3 rounded-md text-sm flex items-center justify-between"
+                        style={{
+                          fontFamily: "'Cairo', sans-serif",
+                          fontSize: "15px",
+                          color: "rgba(238, 239, 238, 0.8)",
+                          fontWeight: 500,
+                        }}
+                        onClick={() => setDashOpen((v) => !v)}
+                      >
+                        {link.label}
+                        <ChevronDown size={14} style={{ transform: dashOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }} />
+                      </button>
+                      {dashOpen && (
+                        <div className="ml-4 flex flex-col gap-0.5">
+                          {dashboardItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="px-4 py-2.5 rounded-md text-sm"
+                              style={{ fontFamily: "'Cairo', sans-serif", fontSize: "14px", color: "rgba(238,239,238,0.65)" }}
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 const isActive = location === link.href;
                 return (
                   <Link
@@ -346,35 +445,28 @@ export default function Ada2aiNavbar() {
                   </Link>
                 );
               })}
+
               <div className="mt-3 pt-3 border-t border-white/10 flex gap-3">
                 {isAuthenticated ? (
                   <button
                     onClick={logout}
                     className="flex-1 py-2.5 text-sm rounded-md"
-                    style={{
-                      fontFamily: "'Cairo', sans-serif",
-                      color: "rgba(238,239,238,0.6)",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                    }}
+                    style={{ fontFamily: "'Cairo', sans-serif", color: "rgba(238,239,238,0.6)", border: "1px solid rgba(255,255,255,0.1)" }}
                   >
-                    Logout
+                    {t("nav.logout")}
                   </button>
                 ) : (
                   <>
                     <a
                       href={getLoginUrl()}
                       className="flex-1 py-2.5 text-sm rounded-md text-center"
-                      style={{
-                        fontFamily: "'Cairo', sans-serif",
-                        color: "rgba(238,239,238,0.75)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                      }}
+                      style={{ fontFamily: "'Cairo', sans-serif", color: "rgba(238,239,238,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}
                     >
-                      Login
+                      {t("nav.login")}
                     </a>
-                    <Link href="/demo" className="flex-1">
+                    <Link href="/upload" className="flex-1">
                       <button className="btn-ada-primary w-full text-sm py-2.5">
-                        Get Started
+                        {t("nav.getStarted")}
                       </button>
                     </Link>
                   </>

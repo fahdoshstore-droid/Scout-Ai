@@ -4,18 +4,19 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import Academies from "./pages/Academies";
-import Demo from "./pages/Demo";
 import Scouts from "./pages/Scouts";
 import Upload from "./pages/Upload";
 import Compare from "./pages/Compare";
 import SportID from "./pages/SportID";
 import Product from "./pages/Product";
-import Players from "./pages/Players";
 import Governance from "./pages/Governance";
 import SubGovernance from "./pages/SubGovernance";
 import TeamMembers from "./pages/TeamMembers";
+import Dashboards from "./pages/Dashboards";
+import TrainingHub from "./pages/TrainingHub";
 
 function Router() {
   return (
@@ -23,13 +24,16 @@ function Router() {
       {/* Main routes */}
       <Route path={"/"} component={Home} />
       <Route path={"/product"} component={Product} />
-      <Route path={"/demo"} component={Demo} />
       <Route path={"/academies"} component={Academies} />
+      {/* Dashboard routes */}
+      <Route path={"/dashboards"} component={Dashboards} />
       <Route path={"/scouts"} component={Scouts} />
-      <Route path={"/players"} component={Players} />
       <Route path={"/compare"} component={Compare} />
       <Route path={"/upload"} component={Upload} />
+      <Route path={"/sport-id"} component={SportID} />
       <Route path={"/sportid"} component={SportID} />
+      {/* Training Hub */}
+      <Route path={"/training"} component={TrainingHub} />
       {/* Governance routes */}
       <Route path={"/governance"} component={Governance} />
       <Route path={"/governance/sub"} component={SubGovernance} />
@@ -45,10 +49,12 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <LanguageProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

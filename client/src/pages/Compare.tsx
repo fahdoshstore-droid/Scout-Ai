@@ -1,4 +1,5 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 
 
@@ -50,6 +51,7 @@ const playerColors = [
 ];
 
 export default function Compare() {
+  const { isRTL } = useLanguage();
   const [, navigate] = useLocation();
   const search = useSearch();
   const params = new URLSearchParams(search);

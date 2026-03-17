@@ -112,3 +112,28 @@
 - [x] Academies Directory: rename to "Sports Institutes", add "sports clubs, academies, and gyms" in text
 - [x] Demo section: replace demo module card with core platform statement matching home page
 - [x] Technology section: change "FIFA SAFF standards" to "International federations related Standards"
+
+## Full Site Redesign Sprint (Bilingual + Imagery + Sport Logos)
+
+### Assets & Setup
+- [ ] Generate custom sport logos/icons for 6 sports (Football, Basketball, Boxing, Swimming, Free Diving, Other Sports)
+- [ ] Search and download professional sports imagery
+- [ ] Search and download sports background video for Hero
+
+### Language System
+- [ ] Create LanguageContext.tsx (AR/EN toggle with localStorage persistence)
+- [ ] Create translations/en.ts with all English strings
+- [ ] Create translations/ar.ts with all Arabic strings
+- [ ] Add language toggle button to Ada2aiNavbar (AR / EN)
+
+### Page Redesigns
+- [ ] Home page: full bilingual redesign with video hero + sport logos + professional imagery
+- [ ] Product page: bilingual module cards with visual imagery
+- [ ] Scouts Dashboard: bilingual player cards and filters
+- [ ] Upload/AI Analysis page: bilingual upload flow
+- [ ] SportID page: bilingual digital ID card
+- [ ] Compare page: bilingual comparison UI
+- [ ] Academies/Partnerships page: bilingual directory with imagery
+- [ ] Training Hub page: bilingual training platform preview
+- [ ] Governance pages: bilingual content
+- [ ] Navbar: language toggle + all routes updated
