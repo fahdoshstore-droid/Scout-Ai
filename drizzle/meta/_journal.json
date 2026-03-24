@@ -8,6 +8,13 @@
       "when": 1773359568261,
       "tag": "0000_magenta_the_hunter",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1774373291988,
+      "tag": "0001_omniscient_whiplash",
+      "breakpoints": true
     }
   ]
 }

@@ -162,3 +162,10 @@
 - [ ] Possession bars display from analysis results
 - [ ] Voronoi field visualization from analysis results
 - [ ] JSON results display panel
+
+## Suggested Improvements Sprint (Mar 24, 2026)
+- [x] Find and integrate a real Saudi athlete image for the Products page hero card
+- [x] Add waitlist signup form to bottom of Products page with DB storage
+- [x] Create individual module detail pages for all 6 modules
+- [x] Register module routes in App.tsx
+- [x] Update module cards to link to their detail pages

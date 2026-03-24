@@ -21,6 +21,7 @@ import Governance    from "./pages/Governance";
 import SubGovernance from "./pages/SubGovernance";
 import TeamMembers   from "./pages/TeamMembers";
 import NotFound      from "./pages/NotFound";
+import ModuleDetail  from "./pages/ModuleDetail";
 
 // ── Router ────────────────────────────────────────────────
 function Router() {
@@ -48,6 +49,9 @@ function Router() {
       <Route path="/governance"         component={Governance} />
       <Route path="/governance/sub"     component={SubGovernance} />
       <Route path="/governance/team"    component={TeamMembers} />
+
+      {/* ── Module Detail ── */}
+      <Route path="/modules/:slug"  component={ModuleDetail} />
 
       {/* ── Fallback ── */}
       <Route path="/404"          component={NotFound} />

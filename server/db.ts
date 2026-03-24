@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, waitlist } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -90,3 +90,25 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // TODO: add feature queries here as your schema grows.
+
+export async function joinWaitlist(data: {
+  name: string;
+  email: string;
+  role: "athlete" | "scout" | "coach" | "academy" | "federation" | "other";
+  sport?: string;
+  message?: string;
+}): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot join waitlist: database not available");
+    return;
+  }
+  await db.insert(waitlist).values(data).onDuplicateKeyUpdate({ set: { name: data.name } });
+}
+
+export async function getWaitlistCount(): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const result = await db.select().from(waitlist);
+  return result.length;
+}

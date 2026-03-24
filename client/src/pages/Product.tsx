@@ -1,5 +1,7 @@
 'use client';
 import { useState } from "react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 import { Link } from "wouter";
 import {
   Brain, Shield, Users, BarChart3, Building2, Trophy,
@@ -30,6 +32,23 @@ export default function Product() {
   const [nafathId, setNafathId] = useState('');
   const [verifying, setVerifying] = useState(false);
 
+  // Waitlist form state
+  const [wlName, setWlName] = useState('');
+  const [wlEmail, setWlEmail] = useState('');
+  const [wlRole, setWlRole] = useState<'athlete'|'scout'|'coach'|'academy'|'federation'|'other'>('athlete');
+  const [wlSport, setWlSport] = useState('');
+  const [wlSubmitted, setWlSubmitted] = useState(false);
+  const joinWaitlist = trpc.waitlist.join.useMutation({
+    onSuccess: () => setWlSubmitted(true),
+    onError: (err) => toast.error(isRTL ? `خطأ: ${err.message}` : `Error: ${err.message}`),
+  });
+
+  async function handleWaitlistSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!wlName || !wlEmail) return;
+    joinWaitlist.mutate({ name: wlName, email: wlEmail, role: wlRole, sport: wlSport || undefined });
+  }
+
   async function handleNafathVerify() {
     setVerifying(true);
     await new Promise(r => setTimeout(r, 2200));
@@ -55,8 +74,7 @@ export default function Product() {
       desc: t("module.sportId.desc"),
       features: isRTL
         ? ["هوية رياضية موثقة عبر نفاذ", "تسجيل حضور QR فوري في المنشآت", "نقاط رياضية وتتبع الأداء", "تقارير وتحليلات مباشرة للوزارة"]
-        : ["Nafath-verified sport identity", "Instant QR check-in at facilities", "Sport Points & performance tracking", "Live ministry reporting & analytics"],
-      link: "/upload",
+        : ["Nafath-verified sport identity", "Instant QR check-in at facilities", "Sport Points & performance tracking", "Live ministry reporting & analytics"],      link: "/modules/sport-id",
     },
     {
       num: "02",
@@ -69,7 +87,7 @@ export default function Product() {
       features: isRTL
         ? ["تحليل متعدد المقاييس", "تقرير احترافي موحد", "يعمل مع أي رياضة وأي جهاز", "دعم ثنائي اللغة"]
         : ["Multi-metric performance analysis", "Standardized professional report", "Works with any sport, any device", "Bilingual Arabic/English output"],
-      link: "/upload",
+      link: "/modules/ai-engine",
     },
     {
       num: "03",
@@ -82,7 +100,7 @@ export default function Product() {
       features: isRTL
         ? ["بحث متعدد المعايير", "تغطية جميع مناطق المملكة", "تصفية حسب الرياضة والعمر", "تصدير تقارير احترافية"]
         : ["Multi-metric filter search", "Coverage across all KSA regions", "Sport & age category filtering", "Export professional reports"],
-      link: "/scouts",
+      link: "/modules/scouts",
     },
     {
       num: "04",
@@ -95,7 +113,7 @@ export default function Product() {
       features: isRTL
         ? ["تراكب مزدوج لمخطط الرادار", "مقارنة مقياس بمقياس", "توصيات مولدة بالذكاء الاصطناعي", "تقارير مقارنة قابلة للمشاركة"]
         : ["Dual radar chart overlay", "Side-by-side metric comparison", "AI-generated recommendations", "Shareable comparison reports"],
-      link: "/compare",
+      link: "/modules/compare",
     },
     {
       num: "05",
@@ -108,7 +126,7 @@ export default function Product() {
       features: isRTL
         ? ["أكثر من 500 معهد مرسوم على الخريطة", "تصفية متعددة الرياضات والفئات العمرية", "التحقق من حالة الاعتماد", "التواصل المباشر والتسجيل"]
         : ["500+ institutes mapped across KSA", "Multi-sport & age group filtering", "Accreditation status verification", "Direct contact & enrollment"],
-      link: "/academies",
+      link: "/modules/institutes",
     },
     {
       num: "06",
@@ -121,7 +139,7 @@ export default function Product() {
       features: isRTL
         ? ["خطط تدريب مخصصة بالذكاء الاصطناعي", "تتبع تقدم الرياضيين", "إدارة المباريات والجلسات", "مساعد تدريب فوري بالدردشة"]
         : ["AI-generated personalized training plans", "Athlete progress tracking", "Match & session management", "Real-time AI coaching assistant"],
-      link: "/training",
+      link: "/modules/training",
     },
   ];
 
@@ -158,7 +176,7 @@ export default function Product() {
             >
               {/* Athlete photo */}
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/115062705/gJEX8KKv2DgTKGvafGwXZn/athlete-profile_0c5f1de1.jpg"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/115062705/gJEX8KKv2DgTKGvafGwXZn/saudi-athlete_a8a3434a.jpg"
                 alt="Athlete"
                 className="absolute inset-0 w-full h-full object-cover object-top"
                 style={{ opacity: 0.82, mixBlendMode: 'luminosity' }}
@@ -687,6 +705,110 @@ export default function Product() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          WAITLIST SECTION
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 px-4" style={{ borderBottom: '1px solid rgba(0,220,200,0.06)', background: 'linear-gradient(180deg, rgba(0,122,186,0.04) 0%, transparent 100%)' }}>
+        <div className="container mx-auto max-w-2xl">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4" style={{ background: 'rgba(0,220,200,0.06)', borderColor: 'rgba(0,220,200,0.2)' }}>
+              <span className="w-2 h-2 rounded-full bg-[#00DCC8] animate-pulse" />
+              <span className="text-[#00DCC8] text-[10px] font-orbitron tracking-widest">
+                {isRTL ? 'قائمة الانتظار' : 'EARLY ACCESS'}
+              </span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-white font-orbitron mb-3">
+              {isRTL ? 'انضم إلى قائمة الانتظار' : 'Join the Waitlist'}
+            </h2>
+            <p className="text-white/40 text-sm font-cairo max-w-md mx-auto leading-relaxed">
+              {isRTL
+                ? 'كن من أوائل المستفيدين من منصة ada2ai — سجّل اهتمامك الآن وسنتواصل معك عند الإطلاق.'
+                : 'Be among the first to access ada2ai — register your interest now and we\'ll reach out at launch.'}
+            </p>
+          </div>
+
+          {wlSubmitted ? (
+            <div className="text-center py-12 rounded-2xl border" style={{ background: 'rgba(0,220,200,0.04)', borderColor: 'rgba(0,220,200,0.2)' }}>
+              <div className="text-5xl mb-4">✅</div>
+              <h3 className="text-xl font-black text-[#00DCC8] font-orbitron mb-2">
+                {isRTL ? 'تم التسجيل بنجاح!' : 'You\'re on the list!'}
+              </h3>
+              <p className="text-white/40 text-sm font-cairo">
+                {isRTL ? 'سنتواصل معك قريباً عند الإطلاق الرسمي.' : 'We\'ll reach out when we officially launch.'}
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleWaitlistSubmit} className="rounded-2xl border p-8 flex flex-col gap-5" style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.07)' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs font-cairo">{isRTL ? 'الاسم الكامل' : 'Full Name'} *</label>
+                  <input
+                    type="text" required value={wlName} onChange={e => setWlName(e.target.value)}
+                    placeholder={isRTL ? 'أدخل اسمك' : 'Your name'}
+                    className="w-full border rounded-xl px-4 py-3 text-white text-sm outline-none font-cairo transition-colors focus:border-[#00DCC8]/50"
+                    style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.1)' }}
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs font-cairo">{isRTL ? 'البريد الإلكتروني' : 'Email'} *</label>
+                  <input
+                    type="email" required value={wlEmail} onChange={e => setWlEmail(e.target.value)}
+                    placeholder={isRTL ? 'بريدك الإلكتروني' : 'your@email.com'}
+                    className="w-full border rounded-xl px-4 py-3 text-white text-sm outline-none font-cairo transition-colors focus:border-[#00DCC8]/50"
+                    style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.1)' }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs font-cairo">{isRTL ? 'دورك' : 'Your Role'} *</label>
+                  <select
+                    value={wlRole} onChange={e => setWlRole(e.target.value as typeof wlRole)}
+                    className="w-full border rounded-xl px-4 py-3 text-white text-sm outline-none font-cairo transition-colors focus:border-[#00DCC8]/50"
+                    style={{ background: 'rgba(10,20,30,0.95)', borderColor: 'rgba(255,255,255,0.1)' }}
+                  >
+                    {[
+                      { val: 'athlete', en: 'Athlete', ar: 'رياضي' },
+                      { val: 'scout', en: 'Scout', ar: 'كشاف' },
+                      { val: 'coach', en: 'Coach', ar: 'مدرب' },
+                      { val: 'academy', en: 'Academy / Club', ar: 'أكاديمية / نادي' },
+                      { val: 'federation', en: 'Federation', ar: 'اتحاد' },
+                      { val: 'other', en: 'Other', ar: 'أخرى' },
+                    ].map(r => (
+                      <option key={r.val} value={r.val}>{isRTL ? r.ar : r.en}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs font-cairo">{isRTL ? 'الرياضة (اختياري)' : 'Sport (optional)'}</label>
+                  <input
+                    type="text" value={wlSport} onChange={e => setWlSport(e.target.value)}
+                    placeholder={isRTL ? 'مثال: كرة القدم' : 'e.g. Football'}
+                    className="w-full border rounded-xl px-4 py-3 text-white text-sm outline-none font-cairo transition-colors focus:border-[#00DCC8]/50"
+                    style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.1)' }}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit" disabled={joinWaitlist.isPending}
+                className="w-full py-4 rounded-xl font-black text-[#000A0F] font-orbitron tracking-wide text-sm transition-all hover:opacity-90 hover:scale-[1.01] disabled:opacity-60"
+                style={{ background: 'linear-gradient(135deg, #007ABA 0%, #00DCC8 100%)', boxShadow: '0 0 40px rgba(0,220,200,0.15)' }}
+              >
+                {joinWaitlist.isPending
+                  ? (isRTL ? 'جارٍ التسجيل...' : 'Submitting...')
+                  : (isRTL ? 'سجّل اهتمامك الآن ✦' : 'Register My Interest ✦')}
+              </button>
+
+              <p className="text-center text-white/20 text-xs font-cairo">
+                {isRTL ? '🔐 لن نشارك بياناتك مع أي طرف ثالث.' : '🔐 We will never share your data with third parties.'}
+              </p>
+            </form>
+          )}
         </div>
       </section>
 
