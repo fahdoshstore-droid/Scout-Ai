@@ -10,10 +10,10 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType>({
-  lang: "en",
+  lang: "ar",
   setLang: () => {},
   t: (k) => k,
-  isRTL: false,
+  isRTL: true,
 });
 
 export const useLanguage = () => useContext(LanguageContext);
@@ -581,7 +581,7 @@ const translations: Record<Language, Record<string, string>> = {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>(() => {
     const stored = localStorage.getItem("ada2ai-lang");
-    return (stored === "ar" || stored === "en") ? stored : "en";
+    return (stored === "ar" || stored === "en") ? stored : "ar";
   });
 
   const setLang = (newLang: Language) => {
