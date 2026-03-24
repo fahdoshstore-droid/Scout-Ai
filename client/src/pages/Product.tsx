@@ -386,22 +386,101 @@ export default function Product() {
                   : 'ada2ai gives every Saudi athlete a unified digital identity — verified, linked to real performance data, and officially recognized.'}
               </p>
 
-              {/* Feature bullets */}
-              <div className="grid grid-cols-1 gap-2.5">
+              {/* Feature cards — creative expanded design */}
+              <div className="grid grid-cols-1 gap-3">
                 {[
-                  { icon: 'USER_TRACK', en: 'Nafath-verified sport identity', ar: 'هوية رياضية موثقة عبر نفاذ' },
-                  { icon: 'QR_VERIFY', en: 'Instant QR check-in at facilities', ar: 'تسجيل حضور QR فوري في المنشآت' },
-                  { icon: 'POWER_STAT', en: 'Sport Points & performance tracking', ar: 'نقاط رياضية وتتبع الأداء' },
-                  { icon: 'MINISTRY', en: 'Live ministry reporting & analytics', ar: 'تقارير وتحليلات مباشرة للوزارة' },
-                ].map(f => (
-                  <div key={f.en}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all"
-                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.06)' }}>
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ background: 'rgba(0,220,200,0.1)', border: '1px solid rgba(0,220,200,0.2)' }}>
-                      <SysIcon type={f.icon} size={15} />
+                  {
+                    num: '01',
+                    icon: 'USER_TRACK',
+                    en: 'Nafath-Verified Identity',
+                    ar: 'هوية موثقة عبر نفاذ',
+                    descEn: 'Every athlete gets an official digital passport linked to the national Nafath system.',
+                    descAr: 'جواز رياضي رسمي مرتبط بمنظومة نفاذ الوطنية لكل رياضي.',
+                    accent: '#007ABA',
+                  },
+                  {
+                    num: '02',
+                    icon: 'QR_VERIFY',
+                    en: 'Instant QR Check-In',
+                    ar: 'تسجيل حضور QR فوري',
+                    descEn: 'Scan once to enter any facility — no paperwork, no delays, under 3 seconds.',
+                    descAr: 'مسح واحد للدخول لأي منشأة — بدون أوراق، بدون تأخير، في أقل من 3 ثواني.',
+                    accent: '#00DCC8',
+                  },
+                  {
+                    num: '03',
+                    icon: 'POWER_STAT',
+                    en: 'Sport Points & Performance',
+                    ar: 'نقاط رياضية وتتبع الأداء',
+                    descEn: 'AI-powered scoring tracks 12+ performance metrics in real time across all sports.',
+                    descAr: 'نظام تسجيل مدعوم بالذكاء الاصطناعي يتتبع أكثر من 12 مقياساً فورياً.',
+                    accent: '#007ABA',
+                  },
+                  {
+                    num: '04',
+                    icon: 'MINISTRY',
+                    en: 'Ministry Live Analytics',
+                    ar: 'تحليلات مباشرة للوزارة',
+                    descEn: 'Real-time dashboards give sports authorities instant visibility across all athletes.',
+                    descAr: 'لوحات تحكم فورية تمنح الجهات الرسمية رؤية شاملة لجميع الرياضيين.',
+                    accent: '#00DCC8',
+                  },
+                ].map((f, idx) => (
+                  <div key={f.num}
+                    className="group relative flex items-stretch gap-0 rounded-2xl overflow-hidden border transition-all duration-300 cursor-default"
+                    style={{
+                      background: 'rgba(255,255,255,0.025)',
+                      borderColor: 'rgba(255,255,255,0.06)',
+                    }}
+                  >
+                    {/* Left accent strip with number */}
+                    <div
+                      className="flex flex-col items-center justify-center px-4 py-4 shrink-0 relative"
+                      style={{
+                        background: `linear-gradient(180deg, ${f.accent}22 0%, ${f.accent}08 100%)`,
+                        borderRight: `1px solid ${f.accent}30`,
+                        minWidth: '56px',
+                      }}
+                    >
+                      {/* Glowing dot */}
+                      <div className="w-1.5 h-1.5 rounded-full mb-2" style={{ background: f.accent, boxShadow: `0 0 8px ${f.accent}` }} />
+                      <span
+                        className="font-orbitron font-black text-xs tracking-widest"
+                        style={{ color: f.accent, writingMode: 'vertical-rl', transform: 'rotate(180deg)', letterSpacing: '0.15em' }}
+                      >{f.num}</span>
+                      <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ background: f.accent, opacity: 0.3 }} />
                     </div>
-                    <span className="text-white/70 text-sm font-cairo">{isRTL ? f.ar : f.en}</span>
+
+                    {/* Main content */}
+                    <div className="flex items-center gap-3 px-4 py-3.5 flex-1">
+                      {/* Icon */}
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300"
+                        style={{
+                          background: `${f.accent}18`,
+                          border: `1px solid ${f.accent}35`,
+                          boxShadow: `0 0 16px ${f.accent}15`,
+                        }}
+                      >
+                        <SysIcon type={f.icon} size={18} />
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-white/90 text-sm font-bold font-cairo leading-tight">
+                          {isRTL ? f.ar : f.en}
+                        </span>
+                        <span className="text-white/35 text-xs font-cairo leading-relaxed">
+                          {isRTL ? f.descAr : f.descEn}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right glow on hover */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                      style={{ background: `linear-gradient(90deg, transparent 60%, ${f.accent}08 100%)`, border: `1px solid ${f.accent}20` }}
+                    />
                   </div>
                 ))}
               </div>
