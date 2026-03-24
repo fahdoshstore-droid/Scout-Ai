@@ -23,7 +23,7 @@ export const useLanguage = () => useContext(LanguageContext);
 const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navbar
-    "nav.product": "Product",
+    "nav.product": "Products",
     "nav.partnerships": "Partnerships",
     "nav.governance": "Governance",
     "nav.dashboards": "Dashboards",
@@ -300,7 +300,7 @@ const translations: Record<Language, Record<string, string>> = {
 
   ar: {
     // Navbar
-    "nav.product": "المنتج",
+    "nav.product": "المنتجات",
     "nav.partnerships": "الشراكات",
     "nav.governance": "الحوكمة",
     "nav.dashboards": "لوحات التحكم",
