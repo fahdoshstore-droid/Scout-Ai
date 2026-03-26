@@ -1,39 +1,50 @@
 /**
  * Ada2ai — Player Visual Analysis Route
- * Uses Claude (via Forge API) to analyze player images
+ * Uses Claude Vision (Anthropic SDK) to analyze athlete images/videos
  * Standards: FIFA Quality Programme + Saudi Football Federation (SAFF)
  */
 
 import { Router } from "express";
-import { createOpenAI } from "@ai-sdk/openai";
-import { generateText } from "ai";
+import Anthropic from "@anthropic-ai/sdk";
 import { storagePut } from "./storage";
 import { nanoid } from "nanoid";
 
 const router = Router();
 
-// ── AI Client ────────────────────────────────────────────────────────────────
-function getAIModel() {
-  const openai = createOpenAI({
-    apiKey: process.env.BUILT_IN_FORGE_API_KEY,
-    baseURL: `${process.env.BUILT_IN_FORGE_API_URL}/v1`,
-  });
-  return openai.chat("claude-3-5-sonnet-20241022");
+// ── Anthropic Client ─────────────────────────────────────────────────────────
+function getAnthropicClient() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not set");
+  return new Anthropic({ apiKey });
 }
 
-// ── Compact FIFA/SAFF Scout Prompt ────────────────────────────────────────────
-const SYSTEM_PROMPT = `You are an elite FIFA-certified football scout for Ada2ai platform in Saudi Arabia's Eastern Province.
-Analyze player images using FIFA Quality Programme + Saudi Football Federation (SAFF) standards.
-Only infer what is visually reasonable. Respond ONLY with valid JSON, no markdown fences.`;
+// ── System Prompt ─────────────────────────────────────────────────────────────
+const SYSTEM_PROMPT = `You are an elite FIFA-certified football scout and sports scientist for Ada2ai platform in Saudi Arabia's Eastern Province.
+Your role is to analyze athlete images using FIFA Quality Programme + Saudi Football Federation (SAFF) standards.
+You specialize in youth talent identification (ages 10-21).
 
-function buildUserPrompt(playerInfo: {
+CRITICAL RULES:
+1. Respond ONLY with valid JSON — no markdown fences, no explanations outside JSON
+2. All "note" and descriptive text fields MUST be in Arabic
+3. Scores are integers from 40-99 (never 100, never below 40)
+4. Base scores on what you can visually observe — be realistic and honest
+5. If image quality is low, reflect that in scoutConfidence (lower score)
+6. Detect the sport type from the image (football, basketball, athletics, etc.)`;
+
+function buildAnalysisPrompt(playerInfo: {
   name?: string; age?: string; position?: string; city?: string;
 }) {
   const today = new Date().toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" });
-  return `Analyze this football player. Player: ${playerInfo.name || "Unknown"}, Age: ${playerInfo.age || "Unknown"}, Position: ${playerInfo.position || "Unknown"}, City: ${playerInfo.city || "Eastern Province SA"}.
+  return `Analyze this athlete image carefully.
 
-Return ONLY this JSON structure (fill in realistic values based on what you can see, no markdown fences):
-{"reportId":"${nanoid(8)}","analysisDate":"${today}","estimatedAge":{"range":"15-17","category":"U17","saff_category":"ناشئين"},"physicalProfile":{"bodyType":"athletic","bodyTypeAr":"رياضي","heightEstimate":"average","heightEstimateAr":"متوسط","balance":7,"posture":"Arabic description","coordinationIndicators":"Arabic description"},"athleticIndicators":{"speed":{"score":7,"label":"السرعة","note":"Arabic note"},"agility":{"score":7,"label":"الرشاقة","note":"Arabic note"},"explosiveness":{"score":7,"label":"الانفجارية","note":"Arabic note"},"stamina":{"score":6,"label":"التحمل","note":"Arabic note"}},"technicalIndicators":{"ballControl":{"score":7,"label":"التحكم بالكرة","note":"Arabic note"},"dribblingPosture":{"score":7,"label":"وضعية المراوغة","note":"Arabic note"},"firstTouch":{"score":6,"label":"اللمسة الأولى","note":"Arabic note"},"coordination":{"score":7,"label":"التنسيق","note":"Arabic note"},"passing":{"score":6,"label":"التمرير","note":"Arabic note"},"shooting":{"score":6,"label":"التسديد","note":"Arabic note"}},"tacticalProfile":{"positioning":{"score":7,"label":"التمركز","note":"Arabic note"},"pressing":{"score":6,"label":"الضغط","note":"Arabic note"},"transitionSpeed":{"score":7,"label":"سرعة الانتقال","note":"Arabic note"},"decisionMaking":{"score":6,"label":"اتخاذ القرار","note":"Arabic note"}},"mentalProfile":{"focus":{"score":7,"label":"التركيز"},"confidence":{"score":7,"label":"الثقة"},"leadership":{"score":6,"label":"القيادة"}},"overallRating":72,"sportDNA":{"RW":75,"LW":70,"ST":65,"CAM":68,"CM":60,"CDM":55,"RB":50,"LB":48,"CB":45,"GK":30},"bestPosition":"RW","bestPositionAr":"جناح أيمن","tacticalHints":"Arabic 2-3 sentences about tactical profile","strengths":["Arabic strength 1","Arabic strength 2","Arabic strength 3"],"developmentAreas":["Arabic area 1","Arabic area 2"],"fifaStandardComparison":{"technicalLevel":"Meets Standard","physicalLevel":"Above Standard","saffYouthBenchmark":72},"scoutRecommendation":"Arabic 2-3 sentences scout recommendation","scoutConfidence":68,"confidenceNote":"Arabic explanation of confidence level"}`;
+Player Info provided:
+- Name: ${playerInfo.name || "غير محدد"}
+- Age: ${playerInfo.age || "غير محدد"}
+- Position: ${playerInfo.position || "غير محدد"}
+- City: ${playerInfo.city || "المنطقة الشرقية، السعودية"}
+
+Return ONLY this exact JSON structure (no markdown, no extra text):
+{"reportId":"${nanoid(8)}","analysisDate":"${today}","detectedSport":{"sport":"كرة القدم","sportEn":"Football","confidence":85,"note":"Arabic note about sport detection"},"estimatedAge":{"range":"15-17","category":"U17","saff_category":"ناشئين","note":"Arabic note"},"physicalProfile":{"bodyType":"athletic","bodyTypeAr":"رياضي","heightEstimate":"average","heightEstimateAr":"متوسط","balance":75,"posture":"Arabic description of posture","coordinationIndicators":"Arabic description"},"athleticIndicators":{"speed":{"score":78,"label":"السرعة","note":"Arabic note"},"agility":{"score":75,"label":"الرشاقة","note":"Arabic note"},"explosiveness":{"score":72,"label":"الانفجارية","note":"Arabic note"},"stamina":{"score":70,"label":"التحمل","note":"Arabic note"}},"technicalIndicators":{"ballControl":{"score":76,"label":"التحكم بالكرة","note":"Arabic note"},"dribblingPosture":{"score":74,"label":"وضعية المراوغة","note":"Arabic note"},"firstTouch":{"score":72,"label":"اللمسة الأولى","note":"Arabic note"},"coordination":{"score":75,"label":"التنسيق","note":"Arabic note"},"passing":{"score":70,"label":"التمرير","note":"Arabic note"},"shooting":{"score":68,"label":"التسديد","note":"Arabic note"}},"tacticalProfile":{"positioning":{"score":72,"label":"التمركز","note":"Arabic note"},"pressing":{"score":68,"label":"الضغط","note":"Arabic note"},"transitionSpeed":{"score":74,"label":"سرعة الانتقال","note":"Arabic note"},"decisionMaking":{"score":70,"label":"اتخاذ القرار","note":"Arabic note"}},"mentalProfile":{"focus":{"score":74,"label":"التركيز"},"confidence":{"score":72,"label":"الثقة"},"leadership":{"score":68,"label":"القيادة"}},"overallRating":74,"sportDNA":{"RW":78,"LW":72,"ST":68,"CAM":70,"CM":65,"CDM":58,"RB":55,"LB":52,"CB":48,"GK":35},"bestPosition":"RW","bestPositionAr":"جناح أيمن","secondPosition":"ST","secondPositionAr":"مهاجم","tacticalHints":"Arabic 2-3 sentences about tactical profile and playing style","strengths":["Arabic strength 1 specific","Arabic strength 2 specific","Arabic strength 3 specific"],"developmentAreas":["Arabic development area 1 with advice","Arabic development area 2 with advice"],"fifaStandardComparison":{"technicalLevel":"Meets Standard","physicalLevel":"Above Standard","saffYouthBenchmark":72,"benchmarkNote":"Arabic note comparing to SAFF youth standards"},"scoutRecommendation":"Arabic 3-4 sentences professional scout recommendation","scoutConfidence":72,"confidenceNote":"Arabic explanation of analysis confidence level","imageQuality":"good"}`;
 }
 
 // ── Upload Endpoint ───────────────────────────────────────────────────────────
@@ -79,43 +90,71 @@ router.post("/analyze", async (req, res) => {
       return res.status(400).json({ error: "imageUrl is required" });
     }
 
-    console.log("[Scout Analysis] Starting analysis for:", playerInfo?.name || "Unknown");
-    console.log("[Scout Analysis] Image URL:", imageUrl.substring(0, 80));
+    console.log("[Scout Analysis] Starting Claude Vision analysis...");
+    console.log("[Scout Analysis] Player:", playerInfo?.name || "Unknown");
+    console.log("[Scout Analysis] Image:", imageUrl.substring(0, 80));
 
-    const model = getAIModel();
+    const anthropic = getAnthropicClient();
 
-    const { text } = await generateText({
-      model,
+    // Fetch image and convert to base64 for Claude
+    let imageSource: Anthropic.Base64ImageSource | Anthropic.URLImageSource;
+
+    try {
+      const imgRes = await fetch(imageUrl, { signal: AbortSignal.timeout(15000) });
+      if (!imgRes.ok) throw new Error(`Failed to fetch image: ${imgRes.status}`);
+      const imgBuffer = await imgRes.arrayBuffer();
+      const base64Data = Buffer.from(imgBuffer).toString("base64");
+      const contentType = imgRes.headers.get("content-type") || "image/jpeg";
+      const supportedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      const mediaType = supportedTypes.includes(contentType) ? contentType : "image/jpeg";
+      imageSource = {
+        type: "base64",
+        media_type: mediaType as "image/jpeg" | "image/png" | "image/gif" | "image/webp",
+        data: base64Data,
+      };
+      console.log("[Scout Analysis] Image fetched, size:", imgBuffer.byteLength, "bytes");
+    } catch (fetchErr) {
+      console.warn("[Scout Analysis] Could not fetch image, using URL source:", fetchErr);
+      imageSource = { type: "url", url: imageUrl };
+    }
+
+    const claudeResponse = await anthropic.messages.create({
+      model: "claude-opus-4-5",
+      max_tokens: 2000,
       system: SYSTEM_PROMPT,
       messages: [
         {
           role: "user",
           content: [
-            { type: "image" as const, image: new URL(imageUrl) },
-            { type: "text" as const, text: buildUserPrompt(playerInfo || {}) },
+            { type: "image", source: imageSource },
+            { type: "text", text: buildAnalysisPrompt(playerInfo || {}) },
           ],
         },
       ],
-      maxOutputTokens: 1500,
     });
 
-    console.log("[Scout Analysis] Got response, length:", text.length);
+    const rawText = claudeResponse.content[0].type === "text" ? claudeResponse.content[0].text : "";
+    console.log("[Scout Analysis] Claude response length:", rawText.length);
 
-    // Parse JSON response — strip markdown fences if present
+    // Parse JSON — strip markdown fences if Claude added them
     let report;
     try {
-      const cleaned = text.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/i, "").trim();
+      const cleaned = rawText
+        .replace(/^```json\s*/i, "")
+        .replace(/^```\s*/i, "")
+        .replace(/\s*```$/i, "")
+        .trim();
       const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error("No JSON found in response");
+      if (!jsonMatch) throw new Error("No JSON object found in response");
       report = JSON.parse(jsonMatch[0]);
     } catch (parseErr) {
       console.error("[Scout Analysis] JSON parse error:", parseErr);
-      console.error("[Scout Analysis] Raw response:", text.substring(0, 500));
-      return res.status(500).json({ error: "Failed to parse AI response", raw: text.substring(0, 200) });
+      console.error("[Scout Analysis] Raw response:", rawText.substring(0, 500));
+      return res.status(500).json({ error: "Failed to parse AI response", raw: rawText.substring(0, 300) });
     }
 
-    console.log("[Scout Analysis] Success! Overall rating:", report.overallRating);
-    return res.json({ success: true, report });
+    console.log("[Scout Analysis] ✅ Success! Overall rating:", report.overallRating);
+    return res.json({ success: true, report, model: "claude-opus-4-5", source: "anthropic" });
 
   } catch (err: any) {
     console.error("[Scout Analysis] Error:", err?.message || err);
@@ -125,12 +164,13 @@ router.post("/analyze", async (req, res) => {
   }
 });
 
-// ── Health Check ──────────────────────────────────────────────────────────────
+// ── Health / Validate Key ─────────────────────────────────────────────────────
 router.get("/health", (_req, res) => {
-  res.json({ status: "ok", service: "scout-analysis" });
+  const hasKey = !!process.env.ANTHROPIC_API_KEY;
+  res.json({ status: "ok", service: "scout-analysis", anthropicKeySet: hasKey, model: "claude-opus-4-5" });
 });
 
 export function registerScoutAnalysisRoutes(app: import("express").Express) {
   app.use("/api/scout", router);
-  console.log("[Scout Analysis] Routes registered at /api/scout");
+  console.log("[Scout Analysis] Routes registered at /api/scout (Claude Vision / Anthropic)");
 }

@@ -1,5 +1,6 @@
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import { useLanguage } from "@/contexts/LanguageContext";
+import FifaCard, { FifaCardPlayer } from "@/components/FifaCard";
 /**
  * Upload & AI Analysis Page — SportScout Platform
  * Design: Saudi Tech Noir — dark navy + neon green
@@ -207,7 +208,8 @@ type AnalysisResult = ReturnType<typeof runAIAnalysis>;
 type AIScoutReport = {
   reportId: string;
   analysisDate: string;
-  estimatedAge: { range: string; category: string; saff_category: string };
+  detectedSport?: { sport: string; sportEn: string; confidence: number; note: string };
+  estimatedAge: { range: string; category: string; saff_category: string; note?: string };
   physicalProfile: {
     bodyType: string; bodyTypeAr: string;
     heightEstimate: string; heightEstimateAr: string;
@@ -221,11 +223,13 @@ type AIScoutReport = {
   sportDNA: Record<string, number>;
   bestPosition: string;
   bestPositionAr: string;
+  secondPosition?: string;
+  secondPositionAr?: string;
   tacticalHints: string;
   strengths: string[];
   developmentAreas: string[];
   fifaStandardComparison: {
-    technicalLevel: string; physicalLevel: string; saffYouthBenchmark: number;
+    technicalLevel: string; physicalLevel: string; saffYouthBenchmark: number; benchmarkNote?: string;
   };
   scoutRecommendation: string;
   scoutConfidence: number;
@@ -267,6 +271,7 @@ export default function UploadPage() {
   const [aiReport, setAiReport] = useState<AIScoutReport | null>(null);
   const [analysisMode, setAnalysisMode] = useState<"ai" | "simulated">("simulated");
   const [analysisError, setAnalysisError] = useState<string | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFormSubmit = () => {
@@ -403,6 +408,7 @@ export default function UploadPage() {
       if (!uploadRes.ok) throw new Error(`Upload failed: ${uploadRes.status}`);
       const uploadData = await uploadRes.json();
       if (!uploadData.url) throw new Error("No URL returned from upload");
+      setUploadedImageUrl(uploadData.url);
 
       // Analyze with Claude — wait up to 60s
       const controller = new AbortController();
@@ -926,6 +932,57 @@ export default function UploadPage() {
                     </div>
                     <div className="text-[#EEEFEE]/30 text-xs mt-2" style={{ fontFamily: "'Tajawal', sans-serif" }}>{aiReport.confidenceNote}</div>
                   </div>
+
+                  {/* ── FIFA SportID Card ────────────────────────────────── */}
+                  {(() => {
+                    // Build FifaCardPlayer from Claude AI report
+                    const overallRating = aiReport.overallRating;
+                    const level: FifaCardPlayer["level"] =
+                      overallRating >= 85 ? "Platinum"
+                      : overallRating >= 75 ? "Gold"
+                      : overallRating >= 65 ? "Silver"
+                      : "Bronze";
+
+                    const birthYear = parseInt(form.age)
+                      ? new Date().getFullYear() - parseInt(form.age)
+                      : 2007;
+
+                    // Map Claude scores to FifaCard stats
+                    const tech = aiReport.technicalIndicators;
+                    const ath = aiReport.athleticIndicators;
+                    const sportIdCode = `SA-${birthYear}-${form.playerName.replace(/\s+/g, "").substring(0, 2).toUpperCase()}-${String(overallRating).padStart(4, "0")}`;
+
+                    const cardPlayer: FifaCardPlayer = {
+                      name: form.playerName,
+                      jerseyNumber: overallRating,
+                      position: form.position || aiReport.bestPositionAr,
+                      sport: aiReport.detectedSport?.sport || "كرة القدم",
+                      birthYear,
+                      sportId: sportIdCode,
+                      avatar: uploadedImageUrl || undefined,
+                      level,
+                      stats: {
+                        speed:    ath?.speed?.score ?? 70,
+                        passing:  tech?.passing?.score ?? 68,
+                        shooting: tech?.shooting?.score ?? 66,
+                        defense:  aiReport.tacticalProfile?.positioning?.score ?? 65,
+                        skill:    tech?.ballControl?.score ?? 72,
+                        strength: ath?.stamina?.score ?? 68,
+                      },
+                    };
+
+                    return (
+                      <div className="mt-6">
+                        <div className="text-xs font-semibold mb-4 flex items-center gap-2" style={{ color: "#FFD700", fontFamily: "'Space Grotesk', sans-serif" }}>
+                          <Award size={14} /> بطاقة SportID — FIFA Edition
+                        </div>
+                        <div className="flex justify-center">
+                          <FifaCard player={cardPlayer} />
+                        </div>
+                      </div>
+                    );
+                  })()}
+
                 </div>
               </div>
             )}

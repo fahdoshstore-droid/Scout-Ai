@@ -170,3 +170,14 @@
 - [x] Register module routes in App.tsx
 - [x] Update module cards to link to their detail pages
 - [x] Add #اطلق_قدراتك_الخارقة initiative section after Hero in Home.tsx
+
+## Real Claude Vision Analysis Integration (Mar 26, 2026)
+- [x] Install @anthropic-ai/sdk and add ANTHROPIC_API_KEY secret
+- [x] Rewrite scoutAnalysis.ts to use Anthropic SDK directly (claude-opus-4-5)
+- [x] Add detectedSport, secondPosition, benchmarkNote fields to AIScoutReport type
+- [x] Add uploadedImageUrl state to track S3 URL of uploaded image
+- [x] Add FIFA SportID card (FifaCard component) in Upload results after Claude AI report
+- [x] Card auto-maps Claude scores to FIFA card stats (speed, passing, shooting, defense, skill, strength)
+- [x] Card level auto-assigned based on overallRating (Platinum/Gold/Silver/Bronze)
+- [x] SportID code auto-generated: SA-{birthYear}-{initials}-{rating}
+- [x] Player avatar uses uploaded image URL from S3
