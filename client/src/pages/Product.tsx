@@ -77,7 +77,7 @@ export default function Product() {
       features: isRTL
         ? ["بحث متعدد المعايير", "تغطية جميع مناطق المملكة", "تصفية حسب الرياضة والعمر", "تصدير تقارير احترافية"]
         : ["Multi-metric filter search", "Coverage across all KSA regions", "Sport & age category filtering", "Export professional reports"],
-      link: "/modules/scouts",
+      link: "/scouts",
     },
     {
       num: "02",
@@ -102,7 +102,7 @@ export default function Product() {
       features: isRTL
         ? ["تحليل متعدد المقاييس", "تقرير احترافي موحد", "يعمل مع أي رياضة وأي جهاز", "دعم ثنائي اللغة"]
         : ["Multi-metric performance analysis", "Standardized professional report", "Works with any sport, any device", "Bilingual Arabic/English output"],
-      link: "/modules/ai-engine",
+      link: "/demo",
     },
     {
       num: "04",
@@ -115,7 +115,7 @@ export default function Product() {
       features: isRTL
         ? ["خطط تدريب مخصصة بالذكاء الاصطناعي", "تتبع تقدم الرياضيين", "إدارة المباريات والجلسات", "مساعد تدريب فوري بالدردشة"]
         : ["AI-generated personalized training plans", "Athlete progress tracking", "Match & session management", "Real-time AI coaching assistant"],
-      link: "/modules/training",
+      link: "/training",
     },
     {
       num: "05",
@@ -128,7 +128,7 @@ export default function Product() {
       features: isRTL
         ? ["تراكب مزدوج لمخطط الرادار", "مقارنة مقياس بمقياس", "توصيات مولدة بالذكاء الاصطناعي", "تقارير مقارنة قابلة للمشاركة"]
         : ["Dual radar chart overlay", "Side-by-side metric comparison", "AI-generated recommendations", "Shareable comparison reports"],
-      link: "/modules/compare",
+      link: "/compare",
     },
     {
       num: "06",
@@ -141,7 +141,7 @@ export default function Product() {
       features: isRTL
         ? ["أكثر من 500 معهد مرسوم على الخريطة", "تصفية متعددة الرياضات والفئات العمرية", "التحقق من حالة الاعتماد", "التواصل المباشر والتسجيل"]
         : ["500+ institutes mapped across KSA", "Multi-sport & age group filtering", "Accreditation status verification", "Direct contact & enrollment"],
-      link: "/modules/institutes",
+      link: "/academies",
     },
   ];
 
