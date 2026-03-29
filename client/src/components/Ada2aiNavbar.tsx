@@ -90,14 +90,14 @@ export default function Ada2aiNavbar() {
     { label: t("nav.compare"), href: "/compare" },
     { label: t("nav.upload"), href: "/upload" },
     { label: t("nav.sportId"), href: "/sport-id" },
+    { label: t("nav.training"), href: "/training" },
   ];
 
   const navLinks = [
+    { label: t("nav.dashboards"), href: null, dropdown: dashboardItems, key: "dashboards" },
     { label: t("nav.product"), href: "/product" },
-    { label: t("nav.training"), href: "/training" },
     { label: t("nav.partnerships"), href: "/academies" },
     { label: t("nav.governance"), href: null, dropdown: governanceItems, key: "governance" },
-    { label: t("nav.dashboards"), href: null, dropdown: dashboardItems, key: "dashboards" },
   ];
 
   const navLinkStyle = (isActive: boolean) => ({
