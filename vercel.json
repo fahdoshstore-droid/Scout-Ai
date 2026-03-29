@@ -3,24 +3,8 @@
   "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "routes": [
-    {
-      "src": "/api/scout/(.*)",
-      "dest": "/dist/index.js"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/dist/index.js"
-    },
-    {
-      "src": "/((?!api/).*)",
-      "dest": "/index.html"
-    }
-  ],
+  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
