@@ -195,11 +195,12 @@ export default function Home() {
   ];
 
   const steps = [
-    { num: "01", icon: <IdCard size={20} />, title: t("how.1.title"), desc: t("how.1.desc"), color: "#00DCC8" },
-    { num: "02", icon: <Upload size={20} />, title: t("how.2.title"), desc: t("how.2.desc"), color: "#007ABA" },
-    { num: "03", icon: <Brain size={20} />, title: t("how.3.title"), desc: t("how.3.desc"), color: "#FFA500" },
-    { num: "04", icon: <Search size={20} />, title: t("how.4.title"), desc: t("how.4.desc"), color: "#00DCC8" },
-    { num: "05", icon: <Link2 size={20} />, title: t("how.5.title"), desc: t("how.5.desc"), color: "#007ABA" },
+    { num: "01", icon: <Users size={20} />, title: t("how.1.title"), desc: t("how.1.desc"), color: "#FFA500" },
+    { num: "02", icon: <IdCard size={20} />, title: t("how.2.title"), desc: t("how.2.desc"), color: "#00DCC8" },
+    { num: "03", icon: <Brain size={20} />, title: t("how.3.title"), desc: t("how.3.desc"), color: "#007ABA" },
+    { num: "04", icon: <Trophy size={20} />, title: t("how.4.title"), desc: t("how.4.desc"), color: "#FFA500" },
+    { num: "05", icon: <BarChart3 size={20} />, title: t("how.5.title"), desc: t("how.5.desc"), color: "#00DCC8" },
+    { num: "06", icon: <Building2 size={20} />, title: t("how.6.title"), desc: t("how.6.desc"), color: "#007ABA" },
   ];
 
   return (
