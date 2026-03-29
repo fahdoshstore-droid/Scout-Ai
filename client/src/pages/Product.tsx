@@ -69,6 +69,19 @@ export default function Product() {
     {
       num: "01",
       iconType: "USER_TRACK",
+      title: t("module.scouts.title"),
+      badge: isRTL ? "اكتشاف المواهب" : "TALENT DISCOVERY",
+      color: "#FFA500",
+      headline: isRTL ? "اكتشف المواهب الإقليمية على نطاق واسع" : "Discover Regional Talent at Scale",
+      desc: t("module.scouts.desc"),
+      features: isRTL
+        ? ["بحث متعدد المعايير", "تغطية جميع مناطق المملكة", "تصفية حسب الرياضة والعمر", "تصدير تقارير احترافية"]
+        : ["Multi-metric filter search", "Coverage across all KSA regions", "Sport & age category filtering", "Export professional reports"],
+      link: "/modules/scouts",
+    },
+    {
+      num: "02",
+      iconType: "USER_TRACK",
       title: t("module.sportId.title"),
       badge: isRTL ? "الهوية الرقمية" : "DIGITAL IDENTITY",
       color: "#00DCC8",
@@ -79,7 +92,7 @@ export default function Product() {
         : ["Nafath-verified sport identity", "Instant QR check-in at facilities", "Sport Points & performance tracking", "Live ministry reporting & analytics"],      link: "/modules/sport-id",
     },
     {
-      num: "02",
+      num: "03",
       iconType: "AI_ANALYTICS",
       title: t("module.aiEngine.title"),
       badge: isRTL ? "الوحدة الأساسية" : "CORE MODULE",
@@ -92,20 +105,20 @@ export default function Product() {
       link: "/modules/ai-engine",
     },
     {
-      num: "03",
-      iconType: "USER_TRACK",
-      title: t("module.scouts.title"),
-      badge: isRTL ? "اكتشاف المواهب" : "TALENT DISCOVERY",
+      num: "04",
+      iconType: "TRAINING",
+      title: t("module.training.title"),
+      badge: isRTL ? "مركز التدريب" : "TRAINING HUB",
       color: "#FFA500",
-      headline: isRTL ? "اكتشف المواهب الإقليمية على نطاق واسع" : "Discover Regional Talent at Scale",
-      desc: t("module.scouts.desc"),
+      headline: isRTL ? "منصة تدريب ذكية للمدربين والأندية" : "AI-Powered Training Platform for Coaches & Clubs",
+      desc: t("module.training.desc"),
       features: isRTL
-        ? ["بحث متعدد المعايير", "تغطية جميع مناطق المملكة", "تصفية حسب الرياضة والعمر", "تصدير تقارير احترافية"]
-        : ["Multi-metric filter search", "Coverage across all KSA regions", "Sport & age category filtering", "Export professional reports"],
-      link: "/modules/scouts",
+        ? ["خطط تدريب مخصصة بالذكاء الاصطناعي", "تتبع تقدم الرياضيين", "إدارة المباريات والجلسات", "مساعد تدريب فوري بالدردشة"]
+        : ["AI-generated personalized training plans", "Athlete progress tracking", "Match & session management", "Real-time AI coaching assistant"],
+      link: "/modules/training",
     },
     {
-      num: "04",
+      num: "05",
       iconType: "CHART",
       title: t("module.compare.title"),
       badge: isRTL ? "التحليلات" : "ANALYTICS",
@@ -118,10 +131,10 @@ export default function Product() {
       link: "/modules/compare",
     },
     {
-      num: "05",
+      num: "06",
       iconType: "MINISTRY",
       title: t("module.institutes.title"),
-      badge: isRTL ? "الشبكة" : "NETWORK",
+      badge: isRTL ? "الاحتراف" : "PRO CAREER",
       color: "#007ABA",
       headline: isRTL ? "ربط الرياضيين بمساراتهم" : "Connect Athletes to Their Pathways",
       desc: t("module.institutes.desc"),
@@ -129,19 +142,6 @@ export default function Product() {
         ? ["أكثر من 500 معهد مرسوم على الخريطة", "تصفية متعددة الرياضات والفئات العمرية", "التحقق من حالة الاعتماد", "التواصل المباشر والتسجيل"]
         : ["500+ institutes mapped across KSA", "Multi-sport & age group filtering", "Accreditation status verification", "Direct contact & enrollment"],
       link: "/modules/institutes",
-    },
-    {
-      num: "06",
-      iconType: "TRAINING",
-      title: t("module.training.title"),
-      badge: isRTL ? "جديد" : "NEW",
-      color: "#FFA500",
-      headline: isRTL ? "منصة تدريب ذكية للمدربين والأندية" : "AI-Powered Training Platform for Coaches & Clubs",
-      desc: t("module.training.desc"),
-      features: isRTL
-        ? ["خطط تدريب مخصصة بالذكاء الاصطناعي", "تتبع تقدم الرياضيين", "إدارة المباريات والجلسات", "مساعد تدريب فوري بالدردشة"]
-        : ["AI-generated personalized training plans", "Athlete progress tracking", "Match & session management", "Real-time AI coaching assistant"],
-      link: "/modules/training",
     },
   ];
 
@@ -525,261 +525,6 @@ export default function Product() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          STATS BAR
-      ══════════════════════════════════════════════════════════════ */}
-      <div className="border-y" style={{ background: 'rgba(255,255,255,0.015)', borderColor: 'rgba(0,220,200,0.06)' }}>
-        <div className="container mx-auto px-4 py-5 grid grid-cols-2 md:grid-cols-4">
-          {[
-            { num: '6', en: 'Integrated Modules', ar: 'وحدات متكاملة' },
-            { num: '6+', en: 'IP Rights', ar: 'حقوق ملكية فكرية' },
-            { num: '500+', en: 'Target Ecosystems', ar: 'منظومات مستهدفة' },
-            { num: isRTL ? 'في ثواني' : 'Seconds', en: 'Analysis Time', ar: 'وقت التحليل' },
-          ].map((s, i) => (
-            <div key={s.en} className={`flex flex-col items-center justify-center py-2 gap-1 ${i < 3 ? 'border-e border-white/5' : ''}`}>
-              <div className="text-2xl font-black font-orbitron" style={{ color: '#00DCC8' }}>{s.num}</div>
-              <div className="text-white/30 text-xs font-cairo">{isRTL ? s.ar : s.en}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════════════
-          FEATURES GRID — 4 key features
-      ══════════════════════════════════════════════════════════════ */}
-      <section className="py-16 px-4" style={{ borderBottom: '1px solid rgba(0,220,200,0.06)' }}>
-        <div className="container mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4" style={{ background: 'rgba(0,220,200,0.06)', borderColor: 'rgba(0,220,200,0.2)' }}>
-              <span className="text-[#00DCC8] text-[10px] font-orbitron tracking-widest">
-                {isRTL ? 'المنصة الذكية' : 'INTELLIGENT PLATFORM'}
-              </span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white font-orbitron mb-3">
-              {isRTL ? 'كل ما تحتاجه في مكان واحد' : 'Everything in One Platform'}
-            </h2>
-            <p className="text-white/35 text-sm font-cairo max-w-lg mx-auto leading-relaxed">
-              {isRTL
-                ? 'منصة متكاملة تجمع الهوية الرياضية والأداء والتحليلات والتواصل مع الجهات الرسمية.'
-                : 'A complete platform combining sport identity, performance, analytics and official connectivity.'}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[
-              { icon: 'SHIELD', en: 'Verified Identity', ar: 'هوية موثقة', desc_en: 'Nafath-linked national sport ID', desc_ar: 'هوية رياضية وطنية موثقة' },
-              { icon: 'POWER_STAT', en: 'Performance AI', ar: 'ذكاء الأداء', desc_en: '12+ metrics tracked in real time', desc_ar: 'أكثر من 12 مقياساً فورياً' },
-              { icon: 'QR_VERIFY', en: 'Instant QR Access', ar: 'دخول QR فوري', desc_en: 'Check-in any facility in under 60s', desc_ar: 'دخول أي منشأة في أقل من 60 ثانية' },
-              { icon: 'CHART', en: 'Ministry Analytics', ar: 'تحليلات الوزارة', desc_en: 'Live dashboards for governing bodies', desc_ar: 'لوحات تحكم مباشرة للجهات الرسمية' },
-            ].map(f => (
-              <div key={f.en} className="p-5 rounded-2xl border transition-all hover:border-[#00DCC8]/25 group" style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.06)' }}>
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-colors group-hover:bg-[#00DCC8]/15" style={{ background: 'rgba(0,220,200,0.08)', border: '1px solid rgba(0,220,200,0.15)' }}>
-                  <SysIcon type={f.icon} size={20} />
-                </div>
-                <div className="text-white font-bold font-orbitron text-sm mb-1.5">{isRTL ? f.ar : f.en}</div>
-                <div className="text-white/35 text-xs font-cairo leading-relaxed">{isRTL ? f.desc_ar : f.desc_en}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          AI ANALYSIS ILLUSTRATION — Radar Chart
-      ══════════════════════════════════════════════════════════════ */}
-      <section className="py-14 px-4" style={{ borderBottom: '1px solid rgba(0,220,200,0.06)' }}>
-        <div className="container mx-auto">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-3"
-              style={{ background: 'rgba(0,220,200,0.06)', borderColor: 'rgba(0,220,200,0.18)' }}>
-              <span className="text-[#00DCC8] text-[10px] font-orbitron tracking-widest">
-                {isRTL ? 'تحليل الأداء بالذكاء الاصطناعي' : 'AI PERFORMANCE ANALYSIS'}
-              </span>
-            </div>
-            <h2 className="text-xl md:text-2xl font-black text-white font-orbitron">
-              {isRTL ? 'كل رياضة. كل لاعب. محلَّل.' : 'Every Sport. Every Athlete. Analyzed.'}
-            </h2>
-          </div>
-
-          <div className="relative rounded-2xl overflow-hidden border"
-            style={{ background: '#000A0F', borderColor: 'rgba(0,220,200,0.12)' }}>
-            <style>{`
-              @keyframes radar-spin  { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
-              @keyframes radar-pulse { 0%,100%{opacity:0.15;r:90} 50%{opacity:0.35;r:95} }
-              @keyframes node-pulse  { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
-              @keyframes line-dash   { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
-              @keyframes float-card  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-              @keyframes scan-h      { 0%{transform:translateX(-600px);opacity:0.5} 100%{transform:translateX(600px);opacity:0} }
-              @keyframes glow-ring   { 0%,100%{opacity:0.08} 50%{opacity:0.22} }
-              @keyframes score-count { 0%{opacity:0.4} 100%{opacity:1} }
-            `}</style>
-            <svg viewBox="0 0 1100 380" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              <defs>
-                <radialGradient id="bCenterGlow2" cx="50%" cy="50%" r="55%">
-                  <stop offset="0%"  stopColor="#007ABA" stopOpacity="0.14"/>
-                  <stop offset="100%" stopColor="#000A0F" stopOpacity="0"/>
-                </radialGradient>
-                <filter id="bGlow2" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="5" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-              <rect width="1100" height="380" fill="#000A0F"/>
-              {Array.from({length:19}).map((_,i)=>(
-                <line key={`v${i}`} x1={i*62} y1="0" x2={i*62} y2="380" stroke="white" strokeOpacity="0.022" strokeWidth="1"/>
-              ))}
-              {Array.from({length:7}).map((_,i)=>(
-                <line key={`h${i}`} x1="0" y1={i*65} x2="1100" y2={i*65} stroke="white" strokeOpacity="0.022" strokeWidth="1"/>
-              ))}
-              <rect width="1100" height="380" fill="url(#bCenterGlow2)"/>
-              <line x1="0" y1="0" x2="1100" y2="0" stroke="#00DCC8" strokeWidth="1.5" strokeOpacity="0.35"
-                style={{animation:'scan-line 5s linear infinite'}}/>
-              {[210,415,665,875].map((x,i)=>(
-                <line key={i} x1={x} y1="30" x2={x} y2="340" stroke="white" strokeOpacity="0.05" strokeWidth="1" strokeDasharray="4,7"/>
-              ))}
-
-              {/* RUNNER */}
-              <g transform="translate(105,0)" filter="url(#bGlow2)">
-              <g style={{animation:'ath-float 3.2s ease-in-out infinite',animationDelay:'0s'}}>
-                <g transform="translate(-16,7)" style={{animation:'trail-fade 3.2s ease-in-out infinite'}}>
-                  <circle cx="12" cy="46" r="18" fill="#00DCC8"/>
-                  <path d="M8,62 C5,90 2,115 -2,138" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none"/>
-                </g>
-                <circle cx="12" cy="46" r="18" fill="#00DCC8" opacity="0.88"/>
-                <path d="M8,62 C5,90 2,115 -2,138" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M5,84 C25,76 40,82 48,94" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M0,82 C-20,96 -30,118 -34,136" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-2,138 C12,162 22,194 18,228 C16,250 20,268 14,285" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-2,138 C-18,158 -30,186 -34,215 C-37,237 -28,258 -34,275" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <ellipse cx="0" cy="295" rx="42" ry="8" fill="#00DCC8" style={{animation:'glow-pulse 3.2s ease-in-out infinite'}}/>
-                <g style={{animation:'stat-pulse 3.2s ease-in-out infinite',animationDelay:'0.4s'}}>
-                  <rect x="36" y="78" width="62" height="28" rx="5" fill="#000A0F" fillOpacity="0.95" stroke="#00DCC8" strokeOpacity="0.45" strokeWidth="1"/>
-                  <text x="67" y="92" textAnchor="middle" fill="#007ABA" fontSize="7" fontFamily="'Orbitron',monospace" fontWeight="700">SPEED</text>
-                  <text x="67" y="102" textAnchor="middle" fill="#00DCC8" fontSize="9" fontFamily="'Orbitron',monospace" fontWeight="900">88 km/h</text>
-                </g>
-                <text x="0" y="318" textAnchor="middle" fill="white" fillOpacity="0.35" fontSize="10" fontFamily="'Cairo',sans-serif">{isRTL?'العدو':'Running'}</text>
-              </g>
-              </g>
-
-              {/* FOOTBALL KICKER */}
-              <g transform="translate(313,0)" filter="url(#bGlow2)">
-              <g style={{animation:'ath-float 2.8s ease-in-out infinite',animationDelay:'0.7s'}}>
-                <circle cx="-5" cy="44" r="18" fill="#00DCC8" opacity="0.88"/>
-                <path d="M-5,61 C-8,92 -8,116 -6,138" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-6,84 C-26,68 -42,58 -52,52" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-3,84 C14,96 24,112 28,126" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-8,138 C-16,166 -18,200 -14,230 C-10,252 -14,272 -10,288" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-4,138 C14,132 38,128 64,126 C86,124 102,130 114,140" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <circle cx="128" cy="142" r="15" fill="#00DCC8" fillOpacity="0.1" stroke="#00DCC8" strokeWidth="1.5" strokeOpacity="0.75"/>
-                <circle cx="128" cy="142" r="5" fill="#00DCC8" opacity="0.85"/>
-                <ellipse cx="0" cy="298" rx="46" ry="8" fill="#00DCC8" style={{animation:'glow-pulse 2.8s ease-in-out infinite',animationDelay:'0.3s'}}/>
-                <g style={{animation:'stat-pulse 2.8s ease-in-out infinite',animationDelay:'1s'}}>
-                  <rect x="-100" y="44" width="66" height="28" rx="5" fill="#000A0F" fillOpacity="0.95" stroke="#00DCC8" strokeOpacity="0.45" strokeWidth="1"/>
-                  <text x="-67" y="58" textAnchor="middle" fill="#007ABA" fontSize="7" fontFamily="'Orbitron',monospace" fontWeight="700">TECHNIQUE</text>
-                  <text x="-67" y="68" textAnchor="middle" fill="#00DCC8" fontSize="9" fontFamily="'Orbitron',monospace" fontWeight="900">92 / 100</text>
-                </g>
-                <text x="55" y="318" textAnchor="middle" fill="white" fillOpacity="0.35" fontSize="10" fontFamily="'Cairo',sans-serif">{isRTL?'كرة القدم':'Football'}</text>
-              </g>
-              </g>
-
-              {/* BASKETBALL */}
-              <g transform="translate(540,0)" filter="url(#bGlow2)">
-              <g style={{animation:'ath-float 3.8s ease-in-out infinite',animationDelay:'0.2s'}}>
-                <circle cx="0" cy="12" r="22" fill="#00DCC8" fillOpacity="0.12" stroke="#00DCC8" strokeWidth="1.5" strokeOpacity="0.8"/>
-                <circle cx="0" cy="12" r="8" fill="#00DCC8" opacity="0.9"/>
-                <circle cx="0" cy="42" r="24" fill="#00DCC8" opacity="0.92"/>
-                <path d="M0,65 C2,100 2,125 2,148" stroke="#00DCC8" strokeWidth="14" strokeLinecap="round" fill="none" opacity="0.92"/>
-                <path d="M2,88 C22,68 34,48 36,30" stroke="#00DCC8" strokeWidth="13" strokeLinecap="round" fill="none" opacity="0.92"/>
-                <path d="M-2,88 C-22,68 -34,48 -36,30" stroke="#00DCC8" strokeWidth="13" strokeLinecap="round" fill="none" opacity="0.92"/>
-                <path d="M0,148 C-14,170 -24,194 -26,218 C-24,236 -18,250 -20,265" stroke="#00DCC8" strokeWidth="14" strokeLinecap="round" fill="none" opacity="0.92"/>
-                <path d="M2,148 C18,168 28,192 30,215 C30,232 24,246 26,260" stroke="#00DCC8" strokeWidth="14" strokeLinecap="round" fill="none" opacity="0.92"/>
-                <g style={{animation:'stat-pulse 3.8s ease-in-out infinite'}}>
-                  <rect x="48" y="72" width="80" height="42" rx="6" fill="#000A0F" fillOpacity="0.96" stroke="#00DCC8" strokeOpacity="0.55" strokeWidth="1.2"/>
-                  <text x="88" y="89" textAnchor="middle" fill="#007ABA" fontSize="7.5" fontFamily="'Orbitron',monospace" fontWeight="700">TOP ATHLETE</text>
-                  <text x="88" y="104" textAnchor="middle" fill="#00DCC8" fontSize="13" fontFamily="'Orbitron',monospace" fontWeight="900">96/100</text>
-                </g>
-                <text x="0" y="285" textAnchor="middle" fill="white" fillOpacity="0.42" fontSize="11" fontFamily="'Cairo',sans-serif">{isRTL?'كرة السلة':'Basketball'}</text>
-              </g>
-              </g>
-
-              {/* SWIMMER */}
-              <g transform="translate(770,0)" filter="url(#bGlow2)">
-              <g style={{animation:'ath-float 2.6s ease-in-out infinite',animationDelay:'1.1s'}}>
-                <ellipse cx="0" cy="202" rx="90" ry="7" fill="none" stroke="#007ABA" strokeWidth="1.2" strokeOpacity="0.28"/>
-                <ellipse cx="0" cy="202" rx="65" ry="5" fill="none" stroke="#007ABA" strokeWidth="0.8" strokeOpacity="0.18"/>
-                <circle cx="-75" cy="185" r="15" fill="#00DCC8" opacity="0.88"/>
-                <path d="M-61,187 C-25,182 20,184 58,186 C82,188 100,184 118,181" stroke="#00DCC8" strokeWidth="14" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-61,181 C-38,170 -8,166 22,167 C50,169 72,175 92,180" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M118,180 C136,172 154,164 170,160" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M118,186 C138,195 156,200 172,198" stroke="#00DCC8" strokeWidth="11" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <g style={{animation:'stat-pulse 2.6s ease-in-out infinite',animationDelay:'1.3s'}}>
-                  <rect x="-78" y="155" width="66" height="28" rx="5" fill="#000A0F" fillOpacity="0.95" stroke="#00DCC8" strokeOpacity="0.45" strokeWidth="1"/>
-                  <text x="-45" y="169" textAnchor="middle" fill="#007ABA" fontSize="7" fontFamily="'Orbitron',monospace" fontWeight="700">ENDURANCE</text>
-                  <text x="-45" y="179" textAnchor="middle" fill="#00DCC8" fontSize="9" fontFamily="'Orbitron',monospace" fontWeight="900">94 / 100</text>
-                </g>
-                <text x="0" y="228" textAnchor="middle" fill="white" fillOpacity="0.35" fontSize="10" fontFamily="'Cairo',sans-serif">{isRTL?'السباحة':'Swimming'}</text>
-              </g>
-              </g>
-
-              {/* WEIGHTLIFTER */}
-              <g transform="translate(990,0)" filter="url(#bGlow2)">
-              <g style={{animation:'ath-float 4.2s ease-in-out infinite',animationDelay:'0.5s'}}>
-                <circle cx="0" cy="64" r="19" fill="#00DCC8" opacity="0.88"/>
-                <path d="M0,82 C0,112 0,128 0,148" stroke="#00DCC8" strokeWidth="14" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M-2,96 C-22,80 -44,64 -62,56 C-74,50 -84,48 -92,48" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M2,96 C22,80 44,64 62,56 C74,50 84,48 92,48" stroke="#00DCC8" strokeWidth="12" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <line x1="-110" y1="48" x2="110" y2="48" stroke="#00DCC8" strokeWidth="8" strokeOpacity="0.88"/>
-                <circle cx="-112" cy="48" r="18" fill="none" stroke="#00DCC8" strokeWidth="2" strokeOpacity="0.72"/>
-                <circle cx="-112" cy="48" r="11" fill="#00DCC8" fillOpacity="0.12"/>
-                <circle cx="112" cy="48" r="18" fill="none" stroke="#00DCC8" strokeWidth="2" strokeOpacity="0.72"/>
-                <circle cx="112" cy="48" r="11" fill="#00DCC8" fillOpacity="0.12"/>
-                <path d="M-4,148 C-22,172 -34,200 -38,228 C-38,248 -34,266 -36,282" stroke="#00DCC8" strokeWidth="13" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <path d="M4,148 C22,170 34,198 38,226 C38,246 34,264 36,280" stroke="#00DCC8" strokeWidth="13" strokeLinecap="round" fill="none" opacity="0.88"/>
-                <ellipse cx="0" cy="290" rx="50" ry="9" fill="#00DCC8" style={{animation:'glow-pulse 4.2s ease-in-out infinite',animationDelay:'0.5s'}}/>
-                <g style={{animation:'stat-pulse 4.2s ease-in-out infinite',animationDelay:'0.8s'}}>
-                  <rect x="50" y="88" width="62" height="28" rx="5" fill="#000A0F" fillOpacity="0.95" stroke="#00DCC8" strokeOpacity="0.45" strokeWidth="1"/>
-                  <text x="81" y="102" textAnchor="middle" fill="#007ABA" fontSize="7" fontFamily="'Orbitron',monospace" fontWeight="700">STRENGTH</text>
-                  <text x="81" y="112" textAnchor="middle" fill="#00DCC8" fontSize="9" fontFamily="'Orbitron',monospace" fontWeight="900">89 / 100</text>
-                </g>
-                <text x="0" y="308" textAnchor="middle" fill="white" fillOpacity="0.35" fontSize="10" fontFamily="'Cairo',sans-serif">{isRTL?'رفع الأثقال':'Weightlifting'}</text>
-              </g>
-              </g>
-
-              {/* Floating particles */}
-              {[{cx:180,cy:80,r:2,d:'0s'},{cx:390,cy:55,r:1.5,d:'1.2s'},{cx:540,cy:310,r:2.5,d:'0.6s'},
-                {cx:700,cy:60,r:1.8,d:'1.8s'},{cx:880,cy:90,r:2,d:'0.9s'},{cx:260,cy:140,r:1.5,d:'2.2s'},
-              ].map((p,i)=>(
-                <circle key={i} cx={p.cx} cy={p.cy} r={p.r} fill="#00DCC8" fillOpacity="0.35"
-                  style={{animation:`dot-drift 4s ease-in-out infinite`,animationDelay:p.d}}/>
-              ))}
-              <text x="550" y="16" textAnchor="middle" fill="#00DCC8" fillOpacity="0.1" fontSize="8"
-                fontFamily="'Orbitron',monospace" letterSpacing="3">
-                ada2ai · SPORT INTELLIGENCE · 6 SPORTS TRACKED
-              </text>
-            </svg>
-            <div className="absolute inset-0 pointer-events-none"
-              style={{background:'linear-gradient(90deg,rgba(0,10,15,0.7) 0%,transparent 5%,transparent 95%,rgba(0,10,15,0.7) 100%)'}}/>
-          </div>
-
-          {/* Sport tags */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
-            {[
-              {emoji:'🏃',en:'Running',ar:'العدو'},
-              {emoji:'⚽',en:'Football',ar:'كرة القدم'},
-              {emoji:'🏀',en:'Basketball',ar:'كرة السلة'},
-              {emoji:'🏊',en:'Swimming',ar:'السباحة'},
-              {emoji:'🏋️',en:'Weightlifting',ar:'رفع الأثقال'},
-              {emoji:'🥊',en:'Boxing',ar:'الملاكمة'},
-            ].map(s=>(
-              <span key={s.en} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-cairo border"
-                style={{background:'rgba(255,255,255,0.025)',borderColor:'rgba(255,255,255,0.07)',color:'rgba(255,255,255,0.4)'}}>
-                <span>{s.emoji}</span>
-                {isRTL?s.ar:s.en}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
           6 MODULES — Detailed cards
       ══════════════════════════════════════════════════════════════ */}
       <section className="py-16 px-4" style={{ borderBottom: '1px solid rgba(0,220,200,0.06)' }}>
@@ -789,7 +534,7 @@ export default function Product() {
               {isRTL ? "وحدات المنصة" : "Platform Modules"}
             </span>
             <h2 className="font-orbitron font-bold text-2xl lg:text-3xl text-[#EEEFEE] mb-4">
-              {isRTL ? "ست وحدات. منصة واحدة." : "Six Modules. One Platform."}
+              {isRTL ? "6 منتجات، منصة واحدة" : "6 Products. One Platform."}
             </h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'rgba(238,239,238,0.45)', fontFamily: "'Cairo', sans-serif", lineHeight: 1.9 }}>
               {isRTL
@@ -797,6 +542,67 @@ export default function Product() {
                 : 'From discovery to professionalism — for athletes, scouts, and coaches.'}
             </p>
           </div>
+          {/* منظومة Ada2ai — Pipeline Flow */}
+          <motion.div
+            className="mt-8 mb-12 max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-8">
+              <div className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "#00DCC8", fontFamily: "'Space Grotesk', sans-serif" }}>
+                {isRTL ? "مسار الرياضي من الاكتشاف إلى الاحتراف" : "Athlete Journey: Discovery to Pro"}
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-0" dir="rtl">
+              {[
+                { label: isRTL ? "تحليل اللاعب" : "Scout AI",        color: "#00DCC8", num: "01" },
+                { label: isRTL ? "هوية رياضية" : "Sport ID",         color: "#007ABA", num: "02" },
+                { label: isRTL ? "لوحة المدرب" : "Coach Dashboard",  color: "#00DCC8", num: "03" },
+                { label: isRTL ? "مركز التدريب" : "Training Hub",     color: "#007ABA", num: "04" },
+                { label: isRTL ? "لوحة الكشاف" : "Scout Dashboard",  color: "#00DCC8", num: "05" },
+                { label: isRTL ? "الاحتراف" : "Pro Career",         color: "#FFD700", num: "★" },
+              ].map((step, i, arr) => (
+                <div key={i} className="flex items-center">
+                  <motion.div
+                    className="flex flex-col items-center gap-2"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                  >
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center font-black text-sm"
+                      style={{
+                        background: `${step.color}15`,
+                        border: `2px solid ${step.color}50`,
+                        color: step.color,
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        boxShadow: `0 0 18px ${step.color}20`,
+                      }}
+                    >
+                      {step.num}
+                    </div>
+                    <div
+                      className="text-xs font-semibold text-center leading-tight"
+                      style={{ color: "rgba(238,239,238,0.75)", fontFamily: "'Cairo', sans-serif", maxWidth: 72 }}
+                    >
+                      {step.label}
+                    </div>
+                  </motion.div>
+                  {i < arr.length - 1 && (
+                    <div className="flex items-center mx-2 pb-5">
+                      <div style={{ width: 24, height: 2, background: `linear-gradient(90deg, ${step.color}50, ${arr[i+1].color}50)` }} />
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5h6M5 2l3 3-3 3" stroke={arr[i+1].color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {modules.map((m, i) => (
@@ -860,67 +666,6 @@ export default function Product() {
             ))}
           </div>
 
-          {/* منظومة Ada2ai — Pipeline Flow */}
-          <motion.div
-            className="mt-16 max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-8">
-              <div className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "#00DCC8", fontFamily: "'Space Grotesk', sans-serif" }}>
-                {isRTL ? "مسار الرياضي من الاكتشاف إلى الاحتراف" : "Athlete Journey: Discovery to Pro"}
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-0" dir="ltr">
-              {[
-                { label: isRTL ? "تحليل اللاعب" : "Scout AI",        color: "#00DCC8", num: "01" },
-                { label: isRTL ? "هوية رياضية" : "Sport ID",         color: "#007ABA", num: "02" },
-                { label: isRTL ? "لوحة المدرب" : "Coach Dashboard",  color: "#00DCC8", num: "03" },
-                { label: isRTL ? "مركز التدريب" : "Training Hub",     color: "#007ABA", num: "04" },
-                { label: isRTL ? "لوحة الكشاف" : "Scout Dashboard",  color: "#00DCC8", num: "05" },
-                { label: isRTL ? "الاحتراف" : "Pro Career",         color: "#FFD700", num: "★" },
-              ].map((step, i, arr) => (
-                <div key={i} className="flex items-center">
-                  <motion.div
-                    className="flex flex-col items-center gap-2"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.4 }}
-                  >
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center font-black text-sm"
-                      style={{
-                        background: `${step.color}15`,
-                        border: `2px solid ${step.color}50`,
-                        color: step.color,
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        boxShadow: `0 0 18px ${step.color}20`,
-                      }}
-                    >
-                      {step.num}
-                    </div>
-                    <div
-                      className="text-xs font-semibold text-center leading-tight"
-                      style={{ color: "rgba(238,239,238,0.75)", fontFamily: "'Cairo', sans-serif", maxWidth: 72 }}
-                    >
-                      {step.label}
-                    </div>
-                  </motion.div>
-                  {i < arr.length - 1 && (
-                    <div className="flex items-center mx-2 pb-5">
-                      <div style={{ width: 24, height: 2, background: `linear-gradient(90deg, ${step.color}50, ${arr[i+1].color}50)` }} />
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5h6M5 2l3 3-3 3" stroke={arr[i+1].color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.div>
 
         </div>
       </section>
