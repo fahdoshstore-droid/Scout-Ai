@@ -9,7 +9,8 @@ import {
   Building2, Award, Handshake,
   Search, UserX, Layers, Lock,
   IdCard, Upload, BarChart2, Link2,
-  Play, ChevronDown
+  Play, ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 import Ada2aiNavbar from "@/components/Ada2aiNavbar";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -423,74 +424,102 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════════
           SOLUTION / MODULES SECTION
       ══════════════════════════════════════════════════════════════ */}
-      <section className="py-20" style={{ borderTop: "1px solid rgba(0,220,200,0.06)" }}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 reveal">
+      <section className="py-16 px-4" style={{ borderBottom: '1px solid rgba(0,220,200,0.06)' }}>
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
             <span className="badge-verified mb-4 inline-block">{t("solution.badge")}</span>
-            <h2 className="font-orbitron font-bold text-2xl lg:text-3xl mb-4 text-[#EEEFEE]">
+            <h2 className="font-orbitron font-bold text-2xl lg:text-3xl text-[#EEEFEE] mb-4">
               {t("solution.title")}
             </h2>
-            <p
-              className="text-base max-w-xl mx-auto"
-              style={{
-                color: "rgba(238,239,238,0.55)",
-                fontFamily: lang === "ar" ? "'Cairo', sans-serif" : "inherit",
-                lineHeight: 1.9,
-              }}
-            >
+            <p className="text-base max-w-xl mx-auto" style={{ color: 'rgba(238,239,238,0.45)', fontFamily: "'Cairo', sans-serif", lineHeight: 1.9 }}>
               {t("solution.sub")}
             </p>
           </div>
 
+          {/* مسار الرياضي من الاكتشاف إلى الاحتراف */}
+          <motion.div
+            className="mt-8 mb-12 max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-8">
+              <div className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "#00DCC8", fontFamily: "'Space Grotesk', sans-serif" }}>
+                {lang === "ar" ? "مسار الرياضي من الاكتشاف إلى الاحتراف" : "Athlete Journey: Discovery to Pro"}
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-0" dir="rtl">
+              {[
+                { label: lang === "ar" ? "تحليل اللاعب" : "Scout AI", color: "#00DCC8", num: "01" },
+                { label: lang === "ar" ? "هوية رياضية" : "Sport ID", color: "#007ABA", num: "02" },
+                { label: lang === "ar" ? "لوحة المدرب" : "Coach Dashboard", color: "#00DCC8", num: "03" },
+                { label: lang === "ar" ? "مركز التدريب" : "Training Hub", color: "#007ABA", num: "04" },
+                { label: lang === "ar" ? "لوحة الكشاف" : "Scout Dashboard", color: "#00DCC8", num: "05" },
+                { label: lang === "ar" ? "الاحتراف" : "Pro Career", color: "#FFD700", num: "★" },
+              ].map((step, i, arr) => (
+                <div key={i} className="flex items-center">
+                  <motion.div
+                    className="flex flex-col items-center gap-2"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                  >
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center font-black text-sm"
+                      style={{ background: `${step.color}15`, border: `2px solid ${step.color}50`, color: step.color, fontFamily: "'Space Grotesk', sans-serif", boxShadow: `0 0 18px ${step.color}20` }}
+                    >
+                      {step.num}
+                    </div>
+                    <div className="text-xs font-semibold text-center leading-tight" style={{ color: "rgba(238,239,238,0.75)", fontFamily: "'Cairo', sans-serif", maxWidth: 72 }}>
+                      {step.label}
+                    </div>
+                  </motion.div>
+                  {i < arr.length - 1 && (
+                    <div className="flex items-center mx-2 pb-5">
+                      <div style={{ width: 24, height: 2, background: `linear-gradient(90deg, ${step.color}50, ${arr[i+1].color}50)` }} />
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5h6M5 2l3 3-3 3" stroke={arr[i+1].color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* كروت الوحدات */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {modules.map((m, i) => (
               <Link key={i} href={m.href}>
                 <div
-                  className="ada-card p-6 cursor-pointer group transition-all duration-300 hover:scale-[1.02] reveal"
-                  style={{ animationDelay: `${i * 0.08}s` }}
+                  className="group cursor-pointer rounded-2xl border transition-all duration-300 hover:border-[#00DCC8]/30 hover:scale-[1.02] overflow-hidden"
+                  style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.07)' }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-                      style={{ background: `${m.color}15`, color: m.color }}
-                    >
-                      {m.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span
-                          className="text-xs font-bold"
-                          style={{ color: m.color, fontFamily: "'Orbitron', sans-serif" }}
-                        >
-                          {m.num}
-                        </span>
+                  <div style={{ height: '3px', background: `linear-gradient(90deg, ${m.color}, transparent)` }} />
+                  <div className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
+                        style={{ background: `${m.color}15`, border: `1px solid ${m.color}30` }}
+                      >
+                        {m.icon}
                       </div>
-                      <h3
-                        className="font-bold text-sm mb-2 text-[#EEEFEE]"
-                        style={{ fontFamily: lang === "ar" ? "'Cairo', sans-serif" : "'Orbitron', sans-serif" }}
-                      >
-                        {m.title}
-                      </h3>
-                      <p
-                        className="text-xs"
-                        style={{
-                          color: "rgba(238,239,238,0.5)",
-                          fontFamily: lang === "ar" ? "'Cairo', sans-serif" : "inherit",
-                          lineHeight: 1.8,
-                        }}
-                      >
-                        {m.desc}
-                      </p>
+                      <div className="flex-1">
+                        <span className="text-xs font-bold font-orbitron" style={{ color: m.color }}>{m.num}</span>
+                        <h3 className="font-bold text-sm text-[#EEEFEE]" style={{ fontFamily: lang === "ar" ? "'Cairo', sans-serif" : "'Orbitron', sans-serif" }}>
+                          {m.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className="flex items-center gap-1 mt-4 text-xs font-medium transition-all duration-200 group-hover:gap-2"
-                    style={{ color: m.color }}
-                  >
-                    <span style={{ fontFamily: lang === "ar" ? "'Cairo', sans-serif" : "inherit" }}>
-                      {t("common.learnMore")}
-                    </span>
-                    <ArrowRight size={12} />
+                    <p className="text-xs mb-4 leading-relaxed" style={{ color: 'rgba(238,239,238,0.45)', fontFamily: "'Cairo', sans-serif" }}>
+                      {m.desc}
+                    </p>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: m.color }}>
+                      <span>{lang === "ar" ? "استكشف" : "Explore"}</span>
+                      <ArrowRight size={12} />
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -498,7 +527,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ══════════════════════════════════════════════════════════════
           HOW IT WORKS SECTION
       ══════════════════════════════════════════════════════════════ */}
