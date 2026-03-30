@@ -14,6 +14,7 @@ import Compare       from "./pages/Compare";
 import Upload        from "./pages/Upload";
 import Academies     from "./pages/Academies";
 import Demo          from "./pages/Demo";
+import DemoVideo      from "./pages/DemoVideo";
 import Players       from "./pages/Players";
 import Dashboards    from "./pages/Dashboards";
 import SportID       from "./pages/SportID";
@@ -44,6 +45,7 @@ function Router() {
       <Route path="/players"      component={Players} />
       <Route path="/upload"       component={Upload} />
       <Route path="/demo"         component={Demo} />
+      <Route path="/demo-video"   component={DemoVideo} />
 
       {/* ── Platform Tools ── */}
       <Route path="/dashboards"   component={Dashboards} />
