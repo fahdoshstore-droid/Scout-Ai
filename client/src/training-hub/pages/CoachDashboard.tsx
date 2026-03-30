@@ -513,8 +513,6 @@ export default function CoachDashboard({ onNavigate, lang = "ar" }: CoachDashboa
             </p>
           </div>
         </div>
-          </div>
-        </div>
 
         {/* ── Save Success Toast ──────────────────────────────────────────────── */}
         {saveSuccess && (
