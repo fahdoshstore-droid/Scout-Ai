@@ -512,46 +512,7 @@ export default function CoachDashboard({ onNavigate, lang = "ar" }: CoachDashboa
               {isRTL ? "التكتيكات · أداء الفريق · تحليل الخصم · تحليل الفيديو" : "Tactics · Team Performance · Opponent Analysis · Video Analysis"}
             </p>
           </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Save Formation */}
-            <button
-              onClick={() => setShowSaveModal(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
-              style={{ background: "rgba(34,197,94,0.08)", color: "#22C55E", border: "1px solid rgba(34,197,94,0.2)", fontFamily: font }}
-            >
-              <Save size={13} />
-              {isRTL ? "حفظ التشكيل" : "Save Formation"}
-            </button>
-            {/* Load Formation */}
-            <button
-              onClick={() => setShowLoadModal(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
-              style={{ background: "rgba(59,130,246,0.08)", color: "#60A5FA", border: "1px solid rgba(59,130,246,0.2)", fontFamily: font }}
-            >
-              <FolderOpen size={13} />
-              {isRTL ? `التشكيلات (${savedFormations.length})` : `Formations (${savedFormations.length})`}
-            </button>
-            {/* Ask AI */}
-            <button
-              onClick={() => onNavigate("ai-chat", {
-                prompt: isRTL ? "اقترح أفضل تشكيل للمباراة القادمة بناءً على أداء الفريق" : "Suggest the best formation for the next match based on team performance"
-              })}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
-              style={{ background: "rgba(0,220,200,0.08)", color: "#00DCC8", border: "1px solid rgba(0,220,200,0.2)", fontFamily: font }}
-            >
-              <Brain size={13} />
-              {isRTL ? "استشر AI" : "Ask AI"}
-            </button>
-            {/* Demo Video */}
-            <Link href="/demo-video">
-              <button
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
-                style={{ background: "rgba(168,85,247,0.08)", color: "#A855F7", border: "1px solid rgba(168,85,247,0.2)", fontFamily: font }}
-              >
-                <Video size={13} />
-                {isRTL ? "Demo" : "Demo"}
-              </button>
-            </Link>
+        </div>
           </div>
         </div>
 
@@ -806,6 +767,48 @@ export default function CoachDashboard({ onNavigate, lang = "ar" }: CoachDashboa
                 className="w-full text-sm text-white placeholder-white/25 resize-none focus:outline-none rounded-lg p-3"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", fontFamily: font, direction: isRTL ? "rtl" : "ltr" }}
               />
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 flex-wrap mt-3">
+                {/* Save Formation */}
+                <button
+                  onClick={() => setShowSaveModal(true)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
+                  style={{ background: "rgba(34,197,94,0.08)", color: "#22C55E", border: "1px solid rgba(34,197,94,0.2)", fontFamily: font }}
+                >
+                  <Save size={13} />
+                  {isRTL ? "حفظ التشكيل" : "Save"}
+                </button>
+                {/* Load Formation */}
+                <button
+                  onClick={() => setShowLoadModal(true)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
+                  style={{ background: "rgba(59,130,246,0.08)", color: "#60A5FA", border: "1px solid rgba(59,130,246,0.2)", fontFamily: font }}
+                >
+                  <FolderOpen size={13} />
+                  {isRTL ? `التشكيلات (${savedFormations.length})` : `Load (${savedFormations.length})`}
+                </button>
+                {/* Ask AI */}
+                <button
+                  onClick={() => onNavigate("ai-chat", {
+                    prompt: isRTL ? "اقترح أفضل تشكيل للمباراة القادمة بناءً على أداء الفريق" : "Suggest the best formation for the next match based on team performance"
+                  })}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
+                  style={{ background: "rgba(0,220,200,0.08)", color: "#00DCC8", border: "1px solid rgba(0,220,200,0.2)", fontFamily: font }}
+                >
+                  <Brain size={13} />
+                  {isRTL ? "استشر AI" : "Ask AI"}
+                </button>
+                {/* Demo Video */}
+                <Link href="/demo-video">
+                  <button
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
+                    style={{ background: "rgba(168,85,247,0.08)", color: "#A855F7", border: "1px solid rgba(168,85,247,0.2)", fontFamily: font }}
+                  >
+                    <Video size={13} />
+                    Demo
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
