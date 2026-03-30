@@ -542,6 +542,16 @@ export default function CoachDashboard({ onNavigate, lang = "ar" }: CoachDashboa
               <Brain size={13} />
               {isRTL ? "استشر AI" : "Ask AI"}
             </button>
+            {/* Demo Video */}
+            <Link href="/demo-video">
+              <button
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold"
+                style={{ background: "rgba(168,85,247,0.08)", color: "#A855F7", border: "1px solid rgba(168,85,247,0.2)", fontFamily: font }}
+              >
+                <Video size={13} />
+                {isRTL ? "Demo" : "Demo"}
+              </button>
+            </Link>
           </div>
         </div>
 
