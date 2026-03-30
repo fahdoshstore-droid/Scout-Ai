@@ -161,11 +161,11 @@ export default function UploadPage() {
       });
 
       // Upload
-      const uploadRes = await fetch("/api/scout/upload", {
+      const uploadRes = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ fileData, mimeType: file.type, fileName: file.name }),
+        body: JSON.stringify({ imageData: fileData, mimeType: file.type }),
       });
       if (!uploadRes.ok) throw new Error(`فشل رفع الملف: ${uploadRes.status}`);
       const uploadData = await uploadRes.json();
@@ -184,7 +184,7 @@ export default function UploadPage() {
       // Analyze
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 80000);
-      const analyzeRes = await fetch("/api/scout/analyze", {
+      const analyzeRes = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
