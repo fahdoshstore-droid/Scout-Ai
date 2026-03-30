@@ -388,39 +388,72 @@ export default function CoachDashboard({ onNavigate, lang = "ar" }: CoachDashboa
     setAnalysisResult(null);
 
     try {
-      const formData = new FormData();
-      formData.append("video", videoFile);
-      formData.append("team_a_name", teamAName);
-      formData.append("team_b_name", teamBName);
+      // Step 1: Convert video to base64
+      const reader = new FileReader();
+      const videoBase64 = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(videoFile);
+      });
 
-      // Try real API first, fall back to mock for demo
-      let result: VideoAnalysisResult;
-      try {
-        const response = await fetch("/api/v1/football/analyze-football", {
-          method: "POST",
-          body: formData,
-        });
-        if (!response.ok) throw new Error("API not available");
-        result = await response.json();
-      } catch {
-        // Demo fallback — simulate realistic analysis result
-        await new Promise(r => setTimeout(r, 3000));
-        result = {
-          team_0_name: teamAName,
-          team_1_name: teamBName,
-          team_0_possession: 57.3,
-          team_1_possession: 42.7,
-          team_0_area: 61.2,
-          team_1_area: 38.8,
-          team_0_goals: 2,
-          team_1_goals: 1,
-          team_0_shots: 14,
-          team_1_shots: 8,
-        };
+      // Step 2: Upload video to get frame URLs
+      const uploadResponse = await fetch("/api/scout/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fileData: videoBase64.split(",")[1], // Remove data:mime;base64, prefix
+          mimeType: videoFile.type || "video/mp4",
+          fileName: videoFile.name,
+        }),
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("Upload failed");
       }
+
+      const uploadData = await uploadResponse.json();
+      const frameUrls = uploadData.frameUrls || [];
+      const videoUrl = uploadData.url;
+
+      if (frameUrls.length === 0) {
+        throw new Error(isRTL ? "لم يتم استخراج إطارات من الفيديو" : "No frames extracted from video");
+      }
+
+      // Step 3: Analyze frames using Scout AI
+      const analyzeResponse = await fetch("/api/scout/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ frameUrls }),
+      });
+
+      if (!analyzeResponse.ok) {
+        throw new Error("Analysis failed");
+      }
+
+      const report = await analyzeResponse.json();
+
+      // Step 4: Transform report to VideoAnalysisResult format
+      const result: VideoAnalysisResult = {
+        team_0_name: teamAName || (isRTL ? "الفريق أ" : "Team A"),
+        team_1_name: teamBName || (isRTL ? "الفريق ب" : "Team B"),
+        team_0_possession: report.possession?.team_a || report.overallRating || 50,
+        team_1_possession: report.possession?.team_b || (100 - (report.overallRating || 50)),
+        team_0_area: report.area_control?.team_a || 50,
+        team_1_area: report.area_control?.team_b || 50,
+        team_0_goals: report.goals?.team_a || 0,
+        team_1_goals: report.goals?.team_b || 0,
+        team_0_shots: report.shots?.team_a || 0,
+        team_1_shots: report.shots?.team_b || 0,
+      };
+
       setAnalysisResult(result);
     } catch (err) {
-      setAnalysisError(isRTL ? "فشل تحليل الفيديو. تحقق من الاتصال." : "Video analysis failed. Check connection.");
+      console.error("[Video Analysis] Error:", err);
+      setAnalysisError(
+        isRTL 
+          ? "فشل تحليل الفيديو. تحقق من الاتصال." 
+          : "Video analysis failed. Check connection."
+      );
     } finally {
       setAnalyzing(false);
     }

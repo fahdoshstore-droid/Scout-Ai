@@ -40,6 +40,52 @@ async function startServer() {
   // Chat API with streaming and tool calling
   registerChatRoutes(app);
   registerScoutAnalysisRoutes(app);
+  
+  // ── Football Video Analysis API ─────────────────────────────────────────────
+  // This endpoint is called by CoachDashboard to analyze match videos
+  app.post("/api/v1/football/analyze-football", async (req, res) => {
+    try {
+      const { videoUrl, team_a_name, team_b_name } = req.body;
+      
+      if (!videoUrl) {
+        return res.status(400).json({ error: "videoUrl is required" });
+      }
+      
+      console.log("[Football Analysis] Starting analysis for:", team_a_name, "vs", team_b_name);
+      
+      // Call the scout analysis internally
+      const response = await fetch(`http://localhost:${port}/api/scout/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageUrl: videoUrl }),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Scout analysis failed");
+      }
+      
+      const report = await response.json();
+      
+      // Return in the format expected by CoachDashboard
+      res.json({
+        team_0_name: team_a_name || "Team A",
+        team_1_name: team_b_name || "Team B",
+        team_0_possession: report.possession?.team_a || 50,
+        team_1_possession: report.possession?.team_b || 50,
+        team_0_area: report.area_control?.team_a || 50,
+        team_1_area: report.area_control?.team_b || 50,
+        team_0_goals: report.goals?.team_a || 0,
+        team_1_goals: report.goals?.team_b || 0,
+        team_0_shots: report.shots?.team_a || 0,
+        team_1_shots: report.shots?.team_b || 0,
+        full_report: report,
+      });
+    } catch (err) {
+      console.error("[Football Analysis] Error:", err);
+      res.status(500).json({ error: "Analysis failed" });
+    }
+  });
+  
   // tRPC API
   app.use(
     "/api/trpc",
